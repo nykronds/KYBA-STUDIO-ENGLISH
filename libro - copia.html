@@ -15,60 +15,87 @@
 
 .nav-tabs {
     display: flex;
-    flex-wrap: wrap;           /* Se ajusta en celulares */
-    justify-content: center;   /* Centra las pestañas */
-    gap: 12px;                 /* Espacio entre pestañas */
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px;
-    border-radius: 0 0 20px 20px; /* Bordes redondeados abajo */
-    backdrop-filter: blur(10px); /* Efecto de vidrio (Glassmorphism) */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    position: sticky;          /* Se queda pegado al subir */
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 15px;
+    border-radius: 0 0 20px 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: sticky;
     top: 0;
     z-index: 1000;
-    margin-bottom: 30px;
-    border: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+
+    /* --- CONFIGURACIÓN DE SCROLL TOTAL --- */
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    
+    /* Esto asegura que si hay pocas pestañas se vean bien, 
+       pero si hay muchas, el scroll empiece desde el inicio */
+    justify-content: flex-start; 
+
+    /* Barra de scroll sutil para PC (para que sepa que hay más) */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
 }
 
+/* Mejora visual de la barra en Chrome/Edge */
+.nav-tabs::-webkit-scrollbar {
+    height: 5px; /* Barra muy delgada abajo */
+}
+
+.nav-tabs::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* Estilo de los botones */
 .tab-link {
-    text-decoration: none;     /* Quita el subrayado */
-    color: var(--tab-text);
-    padding: 12px 22px;
-    border-radius: 14px;       /* Bordes muy suaves */
-    font-size: 0.95rem;
+    flex: 0 0 auto;       /* IMPORTANTE: Evita que se deformen */
+    white-space: nowrap;  /* Evita que el texto se parta */
+    text-decoration: none;
+    color: #475569;       /* Gris profesional */
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
     font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 10px;                 /* Espacio entre icono y texto */
-    background: var(--tab-bg);
-    border: 1px solid transparent;
+    gap: 8px;
+    background: #f1f5f9; /* Fondo suave para que resalte del nav-tabs */
 }
 
-/* Efecto al pasar el mouse */
 .tab-link:hover {
-    background: var(--tab-hover);
-    color: var(--tab-active);
-    transform: translateY(-3px); /* Pequeño salto hacia arriba */
-    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+    background: #e2e8f0;
+    transform: translateY(-1px);
 }
 
-/* Estilo de la pestaña Activa */
 .tab-link.active {
-    background: var(--tab-active);
+    background: #3498db; /* Tu azul principal */
     color: white !important;
-    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4); /* Brillo azul */
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
-/* Ajuste para iconos */
-.tab-link i {
-    font-size: 1.1rem;
-}
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+/* --- AJUSTE PARA PC --- */
+@media (min-width: 1024px) {
+    .nav-tabs {
+        /* En pantallas grandes, damos un poco más de aire */
+        padding: 15px 30px;
+        gap: 15px;
+        /* Si quieres que se centren SOLO cuando caben: */
+        justify-content: center; 
     }
+    
+    /* Si el contenido excede el ancho, justify-content: center 
+       puede ocultar el inicio. Para evitarlo, usamos: */
+    .nav-tabs:has(> :nth-child(6)) { 
+        justify-content: flex-start; 
+    }
+}
 
     body {
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
