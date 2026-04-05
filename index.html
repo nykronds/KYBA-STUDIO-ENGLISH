@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>KYBA STUDIO ENGLISH - Inicio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -72,7 +72,6 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             overflow-x: auto;
             gap: 4px;
-            /* Soporte móvil táctil */
             -webkit-overflow-scrolling: touch; 
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -194,11 +193,11 @@
         .promo-image {
             flex: 0 0 45%;
             height: 280px;
-            max-height: 280px; 
+            max-height: 280px;
             background: #f8fafc;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;  /* Mejora la centralización horizontal del contenedor */
             overflow: hidden; 
             position: relative;
         }
@@ -217,8 +216,34 @@
             padding: 15px;
             flex-shrink: 0; 
             max-width: 100%; 
-            max-height: 100%; 
-            box-sizing: border-box; 
+            max-height: 100%;
+            transition: all 0.2s ease;
+        }
+
+        /* --- MEJORA EXCLUSIVA PARA kybalingo2.PNG: adaptación perfecta y centrado total --- */
+        .slide-container img[src*="kybalingo2.PNG"] {
+            padding: 0 !important;           /* Elimina márgenes internos para un uso completo del espacio */
+            object-fit: contain !important;  /* Escala manteniendo proporción y centrado nítido */
+            object-position: center center !important; /* Centrado absoluto en ambos ejes */
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+            margin: 0 auto;
+            background: transparent;
+            transform: scale(0.98);          /* Micro-ajuste visual para respiración estética, sin perder adaptación */
+        }
+
+        /* Refuerzo en móviles para que la imagen se vea siempre centrada y con tamaño ideal */
+        @media (max-width: 768px) {
+            .slide-container img[src*="kybalingo2.PNG"] {
+                transform: scale(0.96);       /* Pequeño respiro en pantallas pequeñas, mantiene enfoque */
+                object-fit: contain;
+                padding: 0;
+            }
+            .promo-image {
+                justify-content: center;
+                align-items: center;
+            }
         }
 
         @keyframes slide {
@@ -229,18 +254,10 @@
 
         @media (max-width: 768px) {
             .promo-banner { flex-direction: column; }
-            .promo-image { width: 100%; height: 160px; max-height: 160px; order: -1; } 
+            .promo-image { width: 100%; height: 220px; order: -1; justify-content: center; }
             .promo-content { padding: 2rem; text-align: center; align-items: center; }
             .tabs-menu { justify-content: flex-start; }
             .mascot-container { width: 80px; height: 80px; bottom: 10px; right: 10px; }
-            
-            /* Controles individuales de tamaño para móvil */
-            .slide-container img.img-kyba1 {
-                padding: 25px; /* Mantiene el tamaño original cómodo */
-            }
-            .slide-container img.img-kyba2 {
-                padding: 12px; /* Reduce el padding para aumentar el tamaño de la imagen de forma cuidada */
-            }
         }
 
         /* --- ANIMACIONES MASCOTA --- */
@@ -399,8 +416,8 @@
             </div>
             <div class="promo-image">
                 <div class="slide-container">
-                    <img src="kybalingo.png" alt="Nykro Tutor 1" class="img-kyba1">
-                    <img src="kybalingo2.PNG" alt="Nykro Tutor 2" class="img-kyba2">
+                    <img src="kybalingo.png" alt="Nykro Tutor 1">
+                    <img src="kybalingo2.PNG" alt="Nykro Tutor 2 - Kyba Studio">
                 </div>
             </div>
         </section>
@@ -428,24 +445,20 @@
 
     <script>
         function handleBark(event) {
-            // Evitar redirección inmediata si es el botón para que se escuche el audio
             if(event) event.preventDefault();
 
             const audio = document.getElementById('barkSound');
             const mascot = document.getElementById('mascot');
             const bubble = document.getElementById('bubble');
             
-            // Reiniciar audio si ya se estaba reproduciendo
             audio.currentTime = 0;
             audio.play().catch(e => console.log("Interacción requerida para audio"));
 
-            // Animación de ladrido
             mascot.classList.add('barking');
             mascot.classList.add('active-mobile');
             bubble.style.opacity = '1';
             bubble.innerText = "Woof! Woof! 🐾";
 
-            // Quitar animaciones después de un momento
             setTimeout(() => {
                 mascot.classList.remove('barking');
                 setTimeout(() => {
@@ -453,7 +466,6 @@
                     bubble.style.opacity = '';
                     bubble.innerText = "Ready? 🤓🐾";
                     
-                    // Si vino del botón, redirigir después del ladrido
                     if(event) {
                         window.location.href = "nykrolingo tiempos gramaticales.html";
                     }
@@ -461,26 +473,27 @@
             }, 400);
         }
 
-        // Mejora para scroll en móviles (menú de pestañas)
         const tabsMenu = document.querySelector('.tabs-menu');
         let isDown = false;
         let scrollLeft;
         let startX;
 
-        tabsMenu.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - tabsMenu.offsetLeft;
-            scrollLeft = tabsMenu.scrollLeft;
-        });
-        tabsMenu.addEventListener('mouseleave', () => isDown = false);
-        tabsMenu.addEventListener('mouseup', () => isDown = false);
-        tabsMenu.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - tabsMenu.offsetLeft;
-            const walk = (x - startX) * 2;
-            tabsMenu.scrollLeft = scrollLeft - walk;
-        });
+        if(tabsMenu) {
+            tabsMenu.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - tabsMenu.offsetLeft;
+                scrollLeft = tabsMenu.scrollLeft;
+            });
+            tabsMenu.addEventListener('mouseleave', () => isDown = false);
+            tabsMenu.addEventListener('mouseup', () => isDown = false);
+            tabsMenu.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - tabsMenu.offsetLeft;
+                const walk = (x - startX) * 2;
+                tabsMenu.scrollLeft = scrollLeft - walk;
+            });
+        }
     </script>
 </body>
 </html>
