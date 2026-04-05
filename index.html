@@ -194,7 +194,7 @@
         .promo-image {
             flex: 0 0 45%;
             height: 280px;
-            max-height: 280px; /* Mejora de adaptabilidad */
+            max-height: 280px; 
             background: #f8fafc;
             display: flex;
             align-items: center;
@@ -216,8 +216,9 @@
             object-fit: contain;
             padding: 15px;
             flex-shrink: 0; 
-            max-width: 100%; /* Mejora de adaptabilidad */
-            max-height: 100%; /* Mejora de adaptabilidad */
+            max-width: 100%; 
+            max-height: 100%; 
+            box-sizing: border-box; /* NUEVO: Soluciona el problema de tamaño desbordado */
         }
 
         @keyframes slide {
@@ -228,10 +229,15 @@
 
         @media (max-width: 768px) {
             .promo-banner { flex-direction: column; }
-            .promo-image { width: 100%; height: 220px; order: -1; }
+            .promo-image { width: 100%; height: 160px; max-height: 160px; order: -1; } /* MODIFICADO: Menor altura para celulares */
             .promo-content { padding: 2rem; text-align: center; align-items: center; }
             .tabs-menu { justify-content: flex-start; }
             .mascot-container { width: 80px; height: 80px; bottom: 10px; right: 10px; }
+            
+            /* NUEVO: Forzamos la imagen a verse más pequeña en móvil añadiendo más relleno interno */
+            .slide-container img {
+                padding: 25px; 
+            }
         }
 
         /* --- ANIMACIONES MASCOTA --- */
