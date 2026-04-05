@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" />
   <title>English File Advanced — Desglose completo + Frases por tiempos + Tests dinámicos</title>
   <style>
     /* --- MÓDULO DE PESTAÑAS PROFESIONALES --- */
 :root {
-    --tab-bg: #ffffff;          /* Color de fondo de pestaña inactiva */
-    --tab-hover: #f8fafc;      /* Color al pasar el mouse */
-    --tab-active: #3498db;     /* Color de la pestaña donde estás (Azul) */
-    --tab-text: #555555;       /* Color del texto */
+    --tab-bg: #ffffff;
+    --tab-hover: #f8fafc;
+    --tab-active: #3498db;
+    --tab-text: #555555;
 }
 
 .nav-tabs {
@@ -27,24 +27,16 @@
     top: 0;
     z-index: 1000;
     margin-bottom: 25px;
-
-    /* --- CONFIGURACIÓN DE SCROLL TOTAL --- */
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    
-    /* Esto asegura que si hay pocas pestañas se vean bien, 
-       pero si hay muchas, el scroll empiece desde el inicio */
-    justify-content: flex-start; 
-
-    /* Barra de scroll sutil para PC (para que sepa que hay más) */
+    justify-content: flex-start;
     scrollbar-width: thin;
     scrollbar-color: #cbd5e1 transparent;
 }
 
-/* Mejora visual de la barra en Chrome/Edge */
 .nav-tabs::-webkit-scrollbar {
-    height: 5px; /* Barra muy delgada abajo */
+    height: 5px;
 }
 
 .nav-tabs::-webkit-scrollbar-thumb {
@@ -52,21 +44,23 @@
     border-radius: 10px;
 }
 
-/* Estilo de los botones */
 .tab-link {
-    flex: 0 0 auto;       /* IMPORTANTE: Evita que se deformen */
-    white-space: nowrap;  /* Evita que el texto se parta */
+    flex: 0 0 auto;
+    white-space: nowrap;
     text-decoration: none;
-    color: #475569;       /* Gris profesional */
-    padding: 10px 18px;
-    border-radius: 12px;
-    font-size: 0.9rem;
+    color: #475569;
+    padding: 12px 20px;
+    border-radius: 40px;
+    font-size: 0.95rem;
     font-weight: 600;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #f1f5f9; /* Fondo suave para que resalte del nav-tabs */
+    background: #f1f5f9;
+    min-height: 44px;
+    cursor: pointer;
+    touch-action: manipulation;
 }
 
 .tab-link:hover {
@@ -75,25 +69,19 @@
 }
 
 .tab-link.active {
-    background: #3498db; /* Tu azul principal */
+    background: #3498db;
     color: white !important;
     box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
-/* --- AJUSTE PARA PC --- */
 @media (min-width: 1024px) {
     .nav-tabs {
-        /* En pantallas grandes, damos un poco más de aire */
         padding: 15px 30px;
         gap: 15px;
-        /* Si quieres que se centren SOLO cuando caben: */
-        justify-content: center; 
+        justify-content: center;
     }
-    
-    /* Si el contenido excede el ancho, justify-content: center 
-       puede ocultar el inicio. Para evitarlo, usamos: */
-    .nav-tabs:has(> :nth-child(6)) { 
-        justify-content: flex-start; 
+    .nav-tabs:has(> :nth-child(6)) {
+        justify-content: flex-start;
     }
 }
 
@@ -101,8 +89,9 @@
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
       background: linear-gradient(145deg, #f4f8fe 0%, #eef2f8 100%);
       color: #0a2a3b;
-      padding: 2rem 1.5rem;
+      padding: 1rem;
       line-height: 1.5;
+      margin: 0;
     }
 
     .container {
@@ -114,14 +103,14 @@
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(8px);
       border-radius: 2rem;
-      padding: 1.8rem 2.2rem;
+      padding: 1.2rem 1.5rem;
       margin-bottom: 2rem;
       box-shadow: 0 12px 28px -8px rgba(0,0,0,0.05);
       border: 1px solid rgba(255,255,255,0.7);
     }
 
     .hero h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 800;
       background: linear-gradient(135deg, #1e3c72, #2b5f8a);
       background-clip: text;
@@ -146,7 +135,7 @@
 
     .nav-pills a {
       background: white;
-      padding: 0.4rem 1.2rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 40px;
       text-decoration: none;
       font-weight: 600;
@@ -155,6 +144,10 @@
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
       transition: all 0.2s;
       border: 1px solid #e2edff;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      touch-action: manipulation;
     }
 
     .nav-pills a:hover {
@@ -174,12 +167,12 @@
 
     .unit-header {
       background: #ffffff;
-      padding: 1.5rem 2rem 0.8rem 2rem;
+      padding: 1.2rem 1.5rem 0.8rem 1.5rem;
       border-bottom: 2px solid #eef2f9;
     }
 
     .unit-header h2 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: #0c4e6e;
       margin-bottom: 0.2rem;
@@ -195,7 +188,8 @@
     @media (max-width: 880px) {
       .grid-2col {
         grid-template-columns: 1fr;
-        padding: 1.5rem;
+        padding: 1.2rem;
+        gap: 1.2rem;
       }
     }
 
@@ -212,7 +206,6 @@
       margin-top: 0;
     }
 
-    /* Estilos para las secciones de frases modelo organizadas */
     .model-group {
       margin: 1rem 0 1.5rem 0;
       background: #fafdff;
@@ -280,41 +273,48 @@
     }
 
     .quiz-question {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
       padding-bottom: 0.8rem;
       border-bottom: 1px dashed #cbdbe0;
     }
 
     .quiz-question p {
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
 
     .quiz-input, .quiz-select {
       width: 100%;
-      max-width: 280px;
-      padding: 0.5rem 0.8rem;
+      max-width: 100%;
+      padding: 0.75rem 1rem;
       border-radius: 60px;
       border: 1px solid #cbd5e1;
       background: white;
       font-family: inherit;
-      margin-right: 0.8rem;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      box-sizing: border-box;
     }
 
     .quiz-check {
       background: #2b6e9e;
       color: white;
       border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
+      padding: 0.75rem 1.2rem;
+      border-radius: 60px;
       font-weight: 600;
       cursor: pointer;
       transition: 0.1s;
+      font-size: 1rem;
+      min-height: 44px;
+      touch-action: manipulation;
+      width: auto;
+      display: inline-block;
     }
 
     .quiz-feedback {
-      margin-top: 0.5rem;
-      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
       padding: 0.3rem 0;
     }
 
@@ -333,12 +333,19 @@
     }
     .checklist-item {
       display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin: 0.6rem 0;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin: 0.8rem 0;
     }
     .checklist-item label {
       font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .checklist-item input {
+      margin-top: 0.2rem;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
     }
 
     footer {
@@ -348,6 +355,90 @@
       color: #4a627a;
       font-size: 0.85rem;
       border-top: 1px solid #dce5f0;
+    }
+
+    /* --- MEJORAS PARA MÓVIL --- */
+    @media (max-width: 640px) {
+      body {
+        padding: 0.75rem;
+      }
+      .hero {
+        padding: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .unit-header h2 {
+        font-size: 1.4rem;
+      }
+      .model-list {
+        columns: 1;
+        margin-left: 1rem;
+      }
+      .quiz-input, .quiz-select {
+        font-size: 16px; /* evita zoom en iOS */
+      }
+      .quiz-check {
+        width: 100%;
+        text-align: center;
+        margin-top: 0.25rem;
+      }
+      .nav-pills a {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+      }
+      .tab-link {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+      }
+      .grid-2col {
+        padding: 1rem;
+      }
+      .exercise-box, .interactive-quiz, .checklist-interactive {
+        padding: 1rem;
+      }
+      .sidebar {
+        padding: 1rem;
+      }
+      .pronunciation-tip {
+        font-size: 0.85rem;
+      }
+      .model-group h4 {
+        font-size: 0.95rem;
+      }
+      .checklist-item label {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Ajustes para pantallas muy pequeñas */
+    @media (max-width: 480px) {
+      .nav-tabs {
+        gap: 6px;
+        padding: 10px 12px;
+      }
+      .tab-link {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+      }
+      .container {
+        padding: 0;
+      }
+      .unit-header {
+        padding: 1rem;
+      }
+      .main-content h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Mejora de área táctil para todos los botones */
+    button, .quiz-check, .tab-link, .nav-pills a, .quiz-input, .quiz-select {
+      touch-action: manipulation;
+    }
+    button:focus, .quiz-check:focus, .tab-link:focus {
+      outline: 2px solid #3498db;
+      outline-offset: 2px;
     }
   </style>
 </head>
@@ -371,7 +462,7 @@
 
   <div class="nav-pills" id="dynamicToc"></div>
 
-  <!-- ================= UNIDAD 1 (con frases organizadas por tiempos) ================= -->
+  <!-- ================= UNIDAD 1 ================= -->
   <section id="unit1" class="unit-card">
     <div class="unit-header"><h2>📌 Unidad 1 — We are family / A job for life?</h2></div>
     <div class="grid-2col">
@@ -413,7 +504,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 2 (frases organizadas por pasado habitual vs puntual) -->
+  <!-- UNIDAD 2 -->
   <section id="unit2" class="unit-card">
     <div class="unit-header"><h2>🧠 Unidad 2 — Do you remember...? / On the tip of my tongue</h2></div>
     <div class="grid-2col">
@@ -433,7 +524,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 3 (get y marcadores) -->
+  <!-- UNIDAD 3 -->
   <section id="unit3" class="unit-card">
     <div class="unit-header"><h2>❤️ Unidad 3 — A love-hate relationship / Dramatic licence</h2></div>
     <div class="grid-2col">
@@ -450,7 +541,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 4 (inversión y deducción) -->
+  <!-- UNIDAD 4 -->
   <section id="unit4" class="unit-card">
     <div class="unit-header"><h2>📖 Unidad 4 — An open book / The sound of silence</h2></div>
     <div class="grid-2col">
@@ -467,7 +558,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 5 (distanciamiento y unreal past) -->
+  <!-- UNIDAD 5 -->
   <section id="unit5" class="unit-card">
     <div class="unit-header"><h2>⏳ Unidad 5 — No time for anything / Not for profit?</h2></div>
     <div class="grid-2col">
@@ -484,7 +575,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 6 (verb + object + infinitive/gerund, condicionales) -->
+  <!-- UNIDAD 6 -->
   <section id="unit6" class="unit-card">
     <div class="unit-header"><h2>🆘 Unidad 6 — Help, I need somebody! / Can't give it up</h2></div>
     <div class="grid-2col">
@@ -501,7 +592,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 7 (permiso, obligación, verbos de percepción) -->
+  <!-- UNIDAD 7 -->
   <section id="unit7" class="unit-card">
     <div class="unit-header"><h2>🎨 Unidad 7 — As a matter of fact... / A masterpiece?</h2></div>
     <div class="grid-2col">
@@ -517,7 +608,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 8 (gerundios/infinitivos, futuro) -->
+  <!-- UNIDAD 8 -->
   <section id="unit8" class="unit-card">
     <div class="unit-header"><h2>🏥 Unidad 8 — The best medicine? / A 'must-see' attraction</h2></div>
     <div class="grid-2col">
@@ -533,7 +624,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 9 (elipsis, formas compuestas, cocina) -->
+  <!-- UNIDAD 9 -->
   <section id="unit9" class="unit-card">
     <div class="unit-header"><h2>🐾 Unidad 9 — Pet hates / How to cook, how to eat</h2></div>
     <div class="grid-2col">
@@ -548,7 +639,7 @@
     </div>
   </section>
 
-  <!-- UNIDAD 10 (relative clauses, cleft sentences) -->
+  <!-- UNIDAD 10 -->
   <section id="unit10" class="unit-card">
     <div class="unit-header"><h2>🏁 Unidad 10 — On your marks, set, go! / No direction home</h2></div>
     <div class="grid-2col">
