@@ -62,7 +62,6 @@
             gap: 1.5rem;
         }
 
-        /* --- ESTILO DE PESTAÑAS ULTRA-COMPACTO --- */
         .tabs-menu {
             display: flex;
             flex-wrap: nowrap;
@@ -73,6 +72,8 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             overflow-x: auto;
             gap: 4px;
+            /* Soporte móvil táctil */
+            -webkit-overflow-scrolling: touch; 
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             scrollbar-width: none;
@@ -97,7 +98,7 @@
             border: 1px solid transparent;
         }
 
-        .tab-link:hover { 
+        .tab-link:hover, .tab-link:active { 
             background: rgba(79, 70, 229, 0.05); 
             color: var(--primary); 
         }
@@ -183,10 +184,12 @@
             align-items: center;
             gap: 0.6rem;
             width: fit-content;
-            transition: background 0.3s;
+            transition: transform 0.2s, background 0.3s;
+            cursor: pointer;
+            border: none;
         }
 
-        .promo-btn:hover { background: var(--primary-hover); }
+        .promo-btn:active { transform: scale(0.95); }
 
         .promo-image {
             flex: 0 0 45%;
@@ -209,8 +212,10 @@
             .promo-image { width: 100%; height: 220px; order: -1; }
             .promo-content { padding: 2rem; text-align: center; align-items: center; }
             .tabs-menu { justify-content: flex-start; }
+            .mascot-container { width: 80px; height: 80px; bottom: 10px; right: 10px; }
         }
 
+        /* --- ANIMACIONES MASCOTA --- */
         .mascot-container {
             position: fixed;
             bottom: 20px;
@@ -218,20 +223,40 @@
             width: 100px;
             height: 100px;
             z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.2s;
+            -webkit-tap-highlight-color: transparent;
         }
+        
         .dog-svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
         .dog-head { animation: breathe 4s ease-in-out infinite; transform-origin: center bottom; }
+        
         @keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        
+        /* Animación de ladrido visual */
+        @keyframes bark-anim {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1); }
+        }
+
+        .barking { animation: bark-anim 0.2s ease-in-out 2 !important; }
+
         .speech-bubble {
             position: absolute; top: -45px; right: 10px; background: white; padding: 8px 12px;
             border-radius: 15px; border-bottom-right-radius: 2px; font-size: 12px; font-weight: 800;
             color: var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.1); opacity: 0;
             transition: 0.3s ease; white-space: nowrap; pointer-events: none; border: 1px solid #e5e7eb;
         }
-        .mascot-container:hover .speech-bubble { opacity: 1; transform: translateY(-5px); }
+        .mascot-container:hover .speech-bubble, .mascot-container.active-mobile .speech-bubble { 
+            opacity: 1; transform: translateY(-5px); 
+        }
     </style>
 </head>
 <body>
+
+    <audio id="barkSound" src="https://www.myinstants.com/media/sounds/dog-bark.mp3" preload="auto"></audio>
 
     <header>
         <h1>KYBA STUDIO ENGLISH MENU DE INICIO</h1>
@@ -340,9 +365,9 @@
                 <span class="promo-tag">Compañero Inteligente</span>
                 <h2>Domina el Inglés con <strong>KYBA STUDIO</strong></h2>
                 <p>Tu tutor IA está listo para guiarte. Mejora tu fluidez con un método diseñado para ti.</p>
-                <a href="nykrolingo tiempos gramaticales.html" class="promo-btn">
+                <button onclick="handleBark(event)" class="promo-btn">
                     ¡Comenzar ahora! <i class="fas fa-paw"></i>
-                </a>
+                </button>
             </div>
             <div class="promo-image">
                 <img src="kybalingo.png" alt="Nykro Tutor">
@@ -350,17 +375,17 @@
         </section>
     </main>
 
-    <div class="mascot-container">
-        <div class="speech-bubble">Ready? 🤓🐾</div>
+    <div class="mascot-container" id="mascot" onclick="handleBark(null)" ontouchstart="handleBark(null)">
+        <div class="speech-bubble" id="bubble">Woof! Let's go! 🐾</div>
         <svg class="dog-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <g class="dog-head">
+            <g class="dog-head" id="dogHead">
                 <path d="M 25,120 Q 10,160 30,185 Q 60,205 100,195 Q 140,205 170,185 Q 190,160 175,120 C 150,160 50,160 25,120 Z" fill="#ffffff" />
                 <path d="M 45,90 L 5,10 L 85,50 Z" fill="#1f2937" /><path d="M 40,80 L 15,20 L 75,55 Z" fill="#374151" />
                 <path d="M 155,90 L 195,10 L 115,50 Z" fill="#1f2937" /><path d="M 160,80 L 185,20 L 125,55 Z" fill="#374151" />
                 <path d="M 30,105 C 15,140 30,175 100,175 C 170,175 185,140 170,105 C 170,40 30,40 30,105 Z" fill="#ffffff" />
                 <path d="M 30,105 C 15,120 40,150 70,135 C 80,120 85,85 80,45 C 50,40 30,65 30,105 Z" fill="#1f2937" />
                 <path d="M 170,105 C 185,120 160,150 130,135 C 120,120 115,85 120,45 C 150,40 170,65 170,105 Z" fill="#1f2937" />
-                <ellipse cx="65" cy="95" rx="12" ry="8" fill="#ffffff" /><circle cx="65" cy="95" r="6" fill="#67e8f9" /><circle cx="65" cy="95" r="6" fill="#67e8f9" /><circle cx="65" cy="95" r="3" fill="#000000" /><circle cx="63" cy="93" r="1.5" fill="#ffffff" />
+                <ellipse cx="65" cy="95" rx="12" ry="8" fill="#ffffff" /><circle cx="65" cy="95" r="6" fill="#67e8f9" /><circle cx="65" cy="95" r="3" fill="#000000" /><circle cx="63" cy="93" r="1.5" fill="#ffffff" />
                 <ellipse cx="135" cy="95" rx="12" ry="8" fill="#ffffff" /><circle cx="135" cy="95" r="6" fill="#d97706" /><circle cx="135" cy="95" r="3" fill="#000000" /><circle cx="133" cy="93" r="1.5" fill="#ffffff" />
                 <ellipse cx="100" cy="130" rx="35" ry="30" fill="#ffffff" />
                 <path d="M 88,125 C 88,118 112,118 112,125 C 115,132 105,138 100,138 C 95,138 85,132 88,125 Z" fill="#111827" />
@@ -370,5 +395,61 @@
         </svg>
     </div>
 
+    <script>
+        function handleBark(event) {
+            // Evitar redirección inmediata si es el botón para que se escuche el audio
+            if(event) event.preventDefault();
+
+            const audio = document.getElementById('barkSound');
+            const mascot = document.getElementById('mascot');
+            const bubble = document.getElementById('bubble');
+            
+            // Reiniciar audio si ya se estaba reproduciendo
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log("Interacción requerida para audio"));
+
+            // Animación de ladrido
+            mascot.classList.add('barking');
+            mascot.classList.add('active-mobile');
+            bubble.style.opacity = '1';
+            bubble.innerText = "Woof! Woof! 🐾";
+
+            // Quitar animaciones después de un momento
+            setTimeout(() => {
+                mascot.classList.remove('barking');
+                setTimeout(() => {
+                    mascot.classList.remove('active-mobile');
+                    bubble.style.opacity = '';
+                    bubble.innerText = "Ready? 🤓🐾";
+                    
+                    // Si vino del botón, redirigir después del ladrido
+                    if(event) {
+                        window.location.href = "nykrolingo tiempos gramaticales.html";
+                    }
+                }, 1000);
+            }, 400);
+        }
+
+        // Mejora para scroll en móviles (menú de pestañas)
+        const tabsMenu = document.querySelector('.tabs-menu');
+        let isDown = false;
+        let scrollLeft;
+        let startX;
+
+        tabsMenu.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - tabsMenu.offsetLeft;
+            scrollLeft = tabsMenu.scrollLeft;
+        });
+        tabsMenu.addEventListener('mouseleave', () => isDown = false);
+        tabsMenu.addEventListener('mouseup', () => isDown = false);
+        tabsMenu.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - tabsMenu.offsetLeft;
+            const walk = (x - startX) * 2;
+            tabsMenu.scrollLeft = scrollLeft - walk;
+        });
+    </script>
 </body>
 </html>
