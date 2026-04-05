@@ -194,6 +194,7 @@
         .promo-image {
             flex: 0 0 45%;
             height: 280px;
+            max-height: 280px; /* Mejora de adaptabilidad */
             background: #f8fafc;
             display: flex;
             align-items: center;
@@ -215,6 +216,8 @@
             object-fit: contain;
             padding: 15px;
             flex-shrink: 0; 
+            max-width: 100%; /* Mejora de adaptabilidad */
+            max-height: 100%; /* Mejora de adaptabilidad */
         }
 
         @keyframes slide {
