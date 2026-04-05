@@ -104,7 +104,17 @@
 }
 
 /* Ocultar barra de scroll en Chrome/Safari */
-.file-tae: 13px;           /* Un poco más grande para mejor legibilidad */
+.file-tabs::-webkit-scrollbar { 
+    display: none; 
+}
+
+.tab-link {
+    background: transparent;
+    color: #5e6d82;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;           /* Un poco más grande para mejor legibilidad */
     font-weight: 600;
     transition: all 0.2s ease;
     border: 1px solid transparent;
@@ -140,17 +150,7 @@
            pero flex-start es más seguro para mantener el scroll. */
         justify-content: center; 
     }
-}bs::-webkit-scrollbar { 
-    display: none; 
 }
-
-.tab-link {
-    background: transparent;
-    color: #5e6d82;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 10px;
-    font-siz
 
 /* Ajustes para móviles o pantallas pequeñas */
 @media (max-width: 900px) {
