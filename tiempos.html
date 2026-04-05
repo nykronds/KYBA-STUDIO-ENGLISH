@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende 18 tiempos verbales en inglés con explicaciones, fórmulas y práctica interactiva. Ideal para IETS y TOEFL.">
+    <meta name="keywords" content="inglés, tiempos verbales, English tenses, IETS, TOEFL, gramática, práctica">
+    <meta name="author" content="Master English Learning">
+    <meta property="og:title" content="English Tenses Master - 18 Tiempos Verbales">
+    <meta property="og:description" content="Aprende inglés con práctica interactiva de tiempos verbales">
+    <meta property="og:type" content="website">
+    <title>Master English: 18 Tiempos Verbales + Explicaciones + Opciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+/* --- MÓDULO DE PESTAÑAS PROFESIONALES --- */
+        :root {
+            --primary: #1e2a3e;
+            --present: #2ecc71;
+            --past: #3498db;
+            --future: #9b59b6;
+            --conditional: #e67e22;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --success: #27ae60;
+            --error: #e74c3c;
+            --hint: #f39c12;
+            --tab-bg: #ffffff;
+            --tab-active: #3498db;
+            --text-main: #1e2a3e;
+            --text-muted: #444;
+            --expl-bg: #f8fafc;
+            --formula-bg: #f1f5f9;
+            --example-bg: #fffdf2;
+            --practice-bg: #f0f7ff;
+            --practice-border: #e0e6ed;
+            --nav-bg: rgba(255,255,255,0.8);
+            --footer-bg: #1e2a3e;
+        }
+
+        body.dark-mode {
+            --bg: #0f172a;
+            --card-bg: #1e2a3e;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --expl-bg: #162032;
+            --formula-bg: #0f1f33;
+            --example-bg: #1a2030;
+            --practice-bg: #162032;
+            --practice-border: #2d3f55;
+            --nav-bg: rgba(15,23,42,0.92);
+            --tab-bg: #1e2a3e;
+            --footer-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* --- MEJORA DE DISEÑO DE PESTAÑAS (NAV-TABS) --- */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            background: var(--nav-bg);
+            padding: 15px;
+            border-radius: 0 0 20px 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 20px;
+        }
+
+        .tab-link {
+            text-decoration: none;
+            color: #555;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+            background: var(--tab-bg);
+        }
+
+        .tab-link i {
+            font-size: 1.1rem;
+        }
+
+        .tab-link:hover {
+            background: #f8fafc;
+            color: var(--tab-active);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .tab-link.active {
+            background: var(--tab-active);
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Botón modo oscuro */
+        .dark-toggle {
+            background: var(--tab-bg);
+            border: 1px solid transparent;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .dark-toggle:hover {
+            background: #f8fafc;
+            color: #000;
+            transform: translateY(-2px);
+        }
+        body.dark-mode .dark-toggle {
+            color: #e2e8f0;
+        }
+        body.dark-mode .dark-toggle:hover {
+            color: #000;
+        }
+
+        /* --- FIN MEJORA PESTAÑAS --- */
+
+        header {
+            background: linear-gradient(135deg, #1e2a3e, #2c3e50);
+            color: white;
+            padding: 2.5rem 1rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            margin: 0 1rem;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-bar {
+            background: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            display: inline-flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        /* Barra de progreso */
+        .progress-wrap {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0 0.5rem;
+        }
+        .progress-bar-bg {
+            background: rgba(255,255,255,0.2);
+            border-radius: 40px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 10px;
+            border-radius: 40px;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+            width: 0%;
+        }
+        .progress-label {
+            text-align: right;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.75);
+            margin-top: 4px;
+        }
+
+        /* Botón reinicio */
+        .reset-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1rem;
+        }
+        .reset-btn:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Filtros de categoría */
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 1.2rem auto 0;
+            padding: 0 1rem;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 40px;
+            border: 2px solid transparent;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            color: #555;
+        }
+        .filter-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        .filter-btn.active-filter { color: white; }
+        .filter-btn[data-filter="all"]    { border-color: var(--primary); color: var(--primary); }
+        .filter-btn[data-filter="all"].active-filter { background: var(--primary); color: white; }
+        .filter-btn[data-filter="present"] { border-color: var(--present); color: var(--present); }
+        .filter-btn[data-filter="present"].active-filter { background: var(--present); }
+        .filter-btn[data-filter="past"]    { border-color: var(--past); color: var(--past); }
+        .filter-btn[data-filter="past"].active-filter { background: var(--past); }
+        .filter-btn[data-filter="future"]  { border-color: var(--future); color: var(--future); }
+        .filter-btn[data-filter="future"].active-filter { background: var(--future); }
+        .filter-btn[data-filter="conditional"] { border-color: var(--conditional); color: var(--conditional); }
+        .filter-btn[data-filter="conditional"].active-filter { background: var(--conditional); }
+
+        body.dark-mode .filter-btn { background: var(--card-bg); color: var(--text-muted); }
+
+        /* Banner de felicitación */
+        .congrats-banner {
+            display: none;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            text-align: center;
+            padding: 1.2rem 2rem;
+            border-radius: 20px;
+            margin: 1.5rem 1rem 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            animation: popIn 0.5s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 8px 25px rgba(39,174,96,0.3);
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.85) translateY(-10px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 1rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            grid-column: 1 / -1;
+            margin: 3rem 0 1rem;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.4rem;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .bg-present { background: var(--present); }
+        .bg-past { background: var(--past); }
+        .bg-future { background: var(--future); }
+        .bg-cond { background: var(--conditional); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* Animación de acierto */
+        @keyframes cardPulse {
+            0%   { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+            40%  { transform: scale(1.025); box-shadow: 0 10px 30px rgba(39,174,96,0.25); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        }
+        .card.correct-pulse {
+            animation: cardPulse 0.55s ease;
+        }
+
+        .card-content {
+            padding: 1.8rem;
+            flex: 1;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            border-left: 5px solid;
+            padding-left: 15px;
+            color: var(--text-main);
+        }
+
+        .present-title { border-left-color: var(--present); }
+        .past-title { border-left-color: var(--past); }
+        .future-title { border-left-color: var(--future); }
+        .cond-title { border-left-color: var(--conditional); }
+
+        .explanation {
+            background: var(--expl-bg);
+            padding: 15px;
+            border-radius: 16px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            transition: background 0.3s;
+        }
+
+        .explanation strong {
+            color: var(--text-main);
+        }
+
+        .formula {
+            background: var(--formula-bg);
+            font-family: 'Fira Code', monospace;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            border-left: 4px solid var(--primary);
+            margin: 12px 0;
+            color: #e83e8c;
+            transition: background 0.3s;
+        }
+
+        .example-box {
+            background: var(--example-bg);
+            padding: 15px;
+            border-radius: 16px;
+            margin: 15px 0;
+            border-left: 4px solid var(--hint);
+            font-style: italic;
+            color: var(--text-muted);
+            transition: background 0.3s;
+        }
+
+        .example-box span {
+            display: block;
+            margin-top: 5px;
+            color: #7f8c8d;
+            font-style: normal;
+            font-size: 0.85rem;
+        }
+
+        .practice-zone {
+            background: var(--practice-bg);
+            padding: 1.2rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+            border: 1px solid var(--practice-border);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .practice-zone label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #cbd5e1;
+            padding: 10px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            color: #475569;
+        }
+
+        body.dark-mode .option-btn {
+            background: #253448;
+            border-color: #2d3f55;
+            color: #94a3b8;
+        }
+
+        .option-btn:hover {
+            border-color: var(--tab-active);
+            color: var(--tab-active);
+            background: #f0f9ff;
+            transform: scale(1.05);
+        }
+
+        .option-btn.selected-correct {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+        }
+
+        .option-btn.selected-wrong {
+            background: var(--error);
+            color: white;
+            border-color: var(--error);
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Botón correcto revelado tras fallo */
+        .option-btn.reveal-correct {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+            opacity: 0.75;
+        }
+
+        /* Contador de intentos */
+        .attempt-badge {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .feedback {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 40px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.success {
+            background: #e0f7e8;
+            color: var(--success);
+            display: block;
+        }
+
+        .feedback.error {
+            background: #ffe6e5;
+            color: var(--error);
+            display: block;
+        }
+
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+            border-radius: 40px 40px 0 0;
+            transition: background 0.3s;
+        }
+
+        @media (max-width: 760px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-tabs {
+                border-radius: 0;
+            }
+            header h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab-link">Inicio</a>
+        <a href="Sentence Master Pro.html" class="tab-link">
+            <i class="fas fa-pen-fancy"></i> 📝 Phrasal Verbs Sentence Pro
+        </a>
+        <a href="phrasalverbs.html" class="tab-link">
+            <i class="fas fa-gamepad"></i> 🎮 Phrasal Verbs Option Master
+        </a>
+        <a href="tiempos.html" class="tab-link">
+            <i class="fas fa-hourglass-half"></i> ⏳ English Tenses Master
+        </a>
+        <a href="guia.html" class="tab-link">
+            <i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL
+        </a>
+        <a href="guia%202.html" class="tab-link">
+            <i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL
+        </a>
+        <a href="libro - copia.html" class="tab-link"><i class="fas fa-bookmark"></i> 📑 LIBRO Advanced_Student</a>
+        <a href="tiempos.html" class="tab-link active"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
+        <a href="more grammar.html" class="tab-link">App Interactiva de Pronunciación</a>
+        <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
+        <button class="dark-toggle" id="darkToggle" title="Alternar modo oscuro" aria-label="Alternar entre modo claro y oscuro"> <i class="fas fa-moon"></i> Modo Oscuro</button>
+    </nav>
+
+<header>
+    <h1>📘 18 Estructuras Esenciales + Explicaciones + Opciones</h1>
+    <p>12 tiempos canónicos + 2 formas de futuro + 4 condicionales | Aprende con teoría y práctica interactiva</p>
+    <div class="stats-bar">
+        <span>🎯 Aciertos: <span id="scoreCount">0</span> / <span id="totalExercises">18</span></span>
+        <span>💡 Elige una opción para cada ejercicio</span>
+        <span id="percentLabel">0%</span>
+        <div class="category-stats">
+            <span>🟢 Present: <span id="presentScore">0/4</span></span>
+            <span>🔵 Past: <span id="pastScore">0/4</span></span>
+            <span>🟣 Future: <span id="futureScore">0/6</span></span>
+            <span>🧠 Cond: <span id="condScore">0/4</span></span>
+        </div>
+    </div>
+    <div class="progress-wrap">
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <div class="progress-label" id="progressLabel">0 de 18 completados</div>
+    </div>
+    <button class="reset-btn" id="resetBtn" aria-label="Reiniciar todos los ejercicios y progreso"><i class="fas fa-redo"></i> Reiniciar ejercicios</button>
+
+    <div class="category-filters">
+        <button class="filter-btn active-filter" data-filter="all" aria-label="Mostrar todos los tiempos verbales">🌐 Todos</button>
+        <button class="filter-btn" data-filter="present" aria-label="Mostrar solo tiempos del presente">🟢 Present</button>
+        <button class="filter-btn" data-filter="past" aria-label="Mostrar solo tiempos del pasado">🔵 Past</button>
+        <button class="filter-btn" data-filter="future" aria-label="Mostrar solo tiempos del futuro">🟣 Future</button>
+        <button class="filter-btn" data-filter="conditional" aria-label="Mostrar solo condicionales">🧠 Conditionals</button>
+    </div>
+</header>
+
+<div id="congratsBanner" class="congrats-banner">
+    🎉 ¡Perfecto! ¡Completaste los 18 tiempos verbales con todos los aciertos! ¡Excelente trabajo! 🏆
+</div>
+
+<div class="container">
+    <div class="grid" id="tensesGrid"></div>
+</div>
+
+<footer>
+    <p>🌟 Cada tarjeta incluye explicación detallada, fórmula, ejemplo y práctica con opciones múltiples.</p>
+    <p style="margin-top:10px; font-size:0.8rem; opacity:0.7;">© 2026 Master English Learning System</p>
+</footer>
+
+<script>
+    // Datos completos de los 18 tiempos/estructuras
+    const tensesData = [
+        { // 1. Present Simple
+            category: "present",
+            title: "Present Simple",
+            explanation: "📌 Se usa para rutinas, hechos permanentes, verdades universales y horarios. Palabras clave: always, never, every day, usually.",
+            formula: "Sujeto + verbo ( + s/es para 3ª persona)",
+            example: "She <u>drinks</u> coffee every morning. <span>Ella toma café cada mañana.</span>",
+            exercisePrompt: "He (work) ___ in an office.",
+            correctAnswer: "works",
+            options: ["work", "works", "working"]
+        },
+        { // 2. Present Continuous
+            category: "present",
+            title: "Present Continuous",
+            explanation: "📌 Acciones que ocurren ahora mismo, o planes futuros ya acordados. Palabras clave: now, right now, at the moment, this week.",
+            formula: "am/is/are + verbo-ing",
+            example: "They <u>are playing</u> football right now. <span>Ellos están jugando fútbol ahora mismo.</span>",
+            exercisePrompt: "I (study) ___ for my exam tonight.",
+            correctAnswer: "am studying",
+            options: ["study", "am studying", "studies"]
+        },
+        { // 3. Present Perfect
+            category: "present",
+            title: "Present Perfect",
+            explanation: "📌 Conecta pasado con presente: experiencias, cambios, acciones sin tiempo específico. Palabras: ever, never, already, yet, just, for, since.",
+            formula: "have/has + participio pasado",
+            example: "We <u>have visited</u> that museum twice. <span>Hemos visitado ese museo dos veces.</span>",
+            exercisePrompt: "She (never/eat) ___ sushi.",
+            correctAnswer: "has never eaten",
+            options: ["never ate", "has never eaten", "never eats"]
+        },
+        { // 4. Present Perfect Continuous
+            category: "present",
+            title: "Present Perfect Continuous",
+            explanation: "📌 Énfasis en la duración de una acción que empezó en el pasado y sigue en el presente. Palabras: for, since, all day, lately.",
+            formula: "have/has + been + verbo-ing",
+            example: "I <u>have been waiting</u> for an hour. <span>He estado esperando durante una hora.</span>",
+            exercisePrompt: "They (work) ___ on this project since morning.",
+            correctAnswer: "have been working",
+            options: ["have worked", "have been working", "are working"]
+        },
+        { // 5. Past Simple
+            category: "past",
+            title: "Past Simple",
+            explanation: "📌 Acciones terminadas en un momento específico del pasado. Palabras: yesterday, last week, in 2010, ago.",
+            formula: "Sujeto + verbo-ed / irregular",
+            example: "He <u>went</u> to London last summer. <span>Él fue a Londres el verano pasado.</span>",
+            exercisePrompt: "I (buy) ___ a new car yesterday.",
+            correctAnswer: "bought",
+            options: ["buyed", "bought", "buy"]
+        },
+        { // 6. Past Continuous
+            category: "past",
+            title: "Past Continuous",
+            explanation: "📌 Acción que estaba en progreso en un momento del pasado (interrumpida o como contexto). Palabras: while, when, at 5 pm yesterday.",
+            formula: "was/were + verbo-ing",
+            example: "At 8 pm, I <u>was watching</u> TV. <span>A las 8 pm estaba viendo TV.</span>",
+            exercisePrompt: "They (play) ___ tennis when it started to rain.",
+            correctAnswer: "were playing",
+            options: ["played", "were playing", "was playing"]
+        },
+        { // 7. Past Perfect
+            category: "past",
+            title: "Past Perfect",
+            explanation: "📌 El 'pasado del pasado': una acción anterior a otra acción pasada. Palabras: after, before, by the time, already.",
+            formula: "had + participio pasado",
+            example: "The train <u>had left</u> before I arrived. <span>El tren se había ido antes de que yo llegara.</span>",
+            exercisePrompt: "She (finish) ___ her homework before dinner.",
+            correctAnswer: "had finished",
+            options: ["finished", "had finished", "has finished"]
+        },
+        { // 8. Past Perfect Continuous
+            category: "past",
+            title: "Past Perfect Continuous",
+            explanation: "📌 Duración de una acción hasta otro punto en el pasado. Enfatiza el tiempo. Palabras: for, since, before, until.",
+            formula: "had been + verbo-ing",
+            example: "He was tired because he <u>had been running</u>. <span>Estaba cansado porque había estado corriendo.</span>",
+            exercisePrompt: "They (wait) ___ for 3 hours before the bus came.",
+            correctAnswer: "had been waiting",
+            options: ["waited", "had waited", "had been waiting"]
+        },
+        { // 9. Future Simple (Will)
+            category: "future",
+            title: "Future Simple (Will)",
+            explanation: "📌 Predicciones, promesas, decisiones al instante. Palabras: I think, probably, promise, will.",
+            formula: "will + verbo base",
+            example: "I promise I <u>will call</u> you later. <span>Prometo que te llamaré más tarde.</span>",
+            exercisePrompt: "It (rain) ___ tomorrow according to the forecast.",
+            correctAnswer: "will rain",
+            options: ["rains", "will rain", "is raining"]
+        },
+        { // 10. Going to (plan/evidencia)
+            category: "future",
+            title: "Going to (Plan/Evidencia)",
+            explanation: "📌 Planes definidos o predicciones basadas en evidencia presente. Palabras: going to, look at those clouds, I've decided.",
+            formula: "am/is/are + going to + verbo",
+            example: "She <u>is going to study</u> medicine. <span>Ella va a estudiar medicina.</span>",
+            exercisePrompt: "Look at those dark clouds! It (snow) ___.",
+            correctAnswer: "is going to snow",
+            options: ["will snow", "is going to snow", "snows"]
+        },
+        { // 11. Future Continuous
+            category: "future",
+            title: "Future Continuous",
+            explanation: "📌 Acción que estará en progreso en un momento futuro. Palabras: at this time tomorrow, next week at 5 pm.",
+            formula: "will be + verbo-ing",
+            example: "At 9 pm, I <u>will be watching</u> a movie. <span>A las 9 pm estaré viendo una película.</span>",
+            exercisePrompt: "This time next week, we (celebrate) ___ our anniversary.",
+            correctAnswer: "will be celebrating",
+            options: ["will celebrate", "will be celebrating", "celebrate"]
+        },
+        { // 12. Future Perfect
+            category: "future",
+            title: "Future Perfect",
+            explanation: "📌 Acción que ya estará terminada antes de un punto futuro. Palabras: by (time), before, by then.",
+            formula: "will have + participio pasado",
+            example: "By 2030, we <u>will have built</u> a new hospital. <span>Para 2030, habremos construido un nuevo hospital.</span>",
+            exercisePrompt: "She (graduate) ___ by next June.",
+            correctAnswer: "will have graduated",
+            options: ["will graduate", "will be graduating", "will have graduated"]
+        },
+        { // 13. Future Perfect Continuous
+            category: "future",
+            title: "Future Perfect Continuous",
+            explanation: "📌 Duración de una acción hasta un momento futuro. Enfatiza el tiempo. Palabras: for, by the time.",
+            formula: "will have been + verbo-ing",
+            example: "By December, I <u>will have been working</u> here for 5 years. <span>Para diciembre, habré estado trabajando aquí 5 años.</span>",
+            exercisePrompt: "They (live) ___ in this city for a decade by 2027.",
+            correctAnswer: "will have been living",
+            options: ["will live", "will be living", "will have been living"]
+        },
+        { // 14. Zero Conditional
+            category: "conditional",
+            title: "Zero Conditional",
+            explanation: "📌 Verdades generales, leyes científicas, instrucciones. Siempre es cierto. Palabras: if, when, whenever.",
+            formula: "If + Present Simple, ... Present Simple",
+            example: "If you <u>heat</u> ice, it <u>melts</u>. <span>Si calientas hielo, se derrite.</span>",
+            exercisePrompt: "If you (mix) ___ red and blue, you get purple.",
+            correctAnswer: "mix",
+            options: ["mix", "mixes", "will mix"]
+        },
+        { // 15. First Conditional
+            category: "conditional",
+            title: "First Conditional",
+            explanation: "📌 Situaciones reales o posibles en el futuro. Palabras: if, unless, as soon as.",
+            formula: "If + Present Simple, ... will + verbo",
+            example: "If you study hard, you <u>will pass</u> the exam. <span>Si estudias duro, aprobarás el examen.</span>",
+            exercisePrompt: "If it rains, we (stay) ___ at home.",
+            correctAnswer: "will stay",
+            options: ["stay", "will stay", "would stay"]
+        },
+        { // 16. Second Conditional
+            category: "conditional",
+            title: "Second Conditional",
+            explanation: "📌 Situaciones hipotéticas o irreales en el presente/futuro. Palabras: if, would, could, might.",
+            formula: "If + Past Simple, ... would + verbo",
+            example: "If I <u>won</u> the lottery, I <u>would travel</u> the world. <span>Si ganara la lotería, viajaría por el mundo.</span>",
+            exercisePrompt: "If I (be) ___ you, I would say sorry.",
+            correctAnswer: "were",
+            options: ["was", "were", "am"]
+        },
+        { // 17. Third Conditional
+            category: "conditional",
+            title: "Third Conditional",
+            explanation: "📌 Arrepentimientos o críticas sobre el pasado (irreal en el pasado). Palabras: if, would have, could have.",
+            formula: "If + Past Perfect, ... would have + participio",
+            example: "If I <u>had studied</u> harder, I <u>would have passed</u>. <span>Si hubiera estudiado más, habría aprobado.</span>",
+            exercisePrompt: "If she (ask) ___ for help, she would have finished.",
+            correctAnswer: "had asked",
+            options: ["asked", "had asked", "would ask"]
+        },
+        { // 18. Present Continuous (future arrangements)
+            category: "future",
+            title: "Present Continuous (Future)",
+            explanation: "📌 Acuerdos fijos, citas, planes ya organizados. Diferencia de 'going to' (más definitivo). Palabras: tomorrow, next week, at 3 pm.",
+            formula: "am/is/are + verbo-ing (con tiempo futuro)",
+            example: "I <u>am meeting</u> my dentist tomorrow at 3 PM. <span>Me reúno con mi dentista mañana a las 3 PM.</span>",
+            exercisePrompt: "We (have) ___ dinner with friends next Saturday.",
+            correctAnswer: "are having",
+            options: ["have", "will have", "are having"]
+        }
+    ];
+
+    // ==================== ESTADO ====================
+    let score = 0;
+    let answered = new Array(tensesData.length).fill(false);
+    let attempts = new Array(tensesData.length).fill(0);
+    let activeFilter = 'all';
+
+    const STORAGE_KEY = 'tiempos_progress_v1';
+
+    // ==================== PERSISTENCIA ====================
+    function saveProgress() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ score, answered, attempts }));
+    }
+
+    function loadProgress() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            if (saved && Array.isArray(saved.answered) && saved.answered.length === tensesData.length) {
+                score    = saved.score    || 0;
+                answered = saved.answered;
+                attempts = saved.attempts || new Array(tensesData.length).fill(0);
+                return true;
+            }
+        } catch(e) {}
+        return false;
+    }
+
+    function clearProgress() {
+        localStorage.removeItem(STORAGE_KEY);
+        score    = 0;
+        answered = new Array(tensesData.length).fill(false);
+        attempts = new Array(tensesData.length).fill(0);
+    }
+
+    // ==================== UI STATS ====================
+    function updateScoreUI() {
+        const total = tensesData.length;
+        const pct = Math.round((score / total) * 100);
+        document.getElementById('scoreCount').innerText = score;
+        document.getElementById('percentLabel').innerText = pct + '%';
+        document.getElementById('progressBar').style.width = pct + '%';
+        document.getElementById('progressLabel').innerText = `${score} de ${total} completados`;
+
+        // Estadísticas por categoría
+        const categories = {
+            present: { count: 0, total: 4 },
+            past: { count: 0, total: 4 },
+            future: { count: 0, total: 6 },
+            conditional: { count: 0, total: 4 }
+        };
+
+        tensesData.forEach((tense, idx) => {
+            if (answered[idx]) {
+                categories[tense.category].count++;
+            }
+        });
+
+        document.getElementById('presentScore').innerText = `${categories.present.count}/${categories.present.total}`;
+        document.getElementById('pastScore').innerText = `${categories.past.count}/${categories.past.total}`;
+        document.getElementById('futureScore').innerText = `${categories.future.count}/${categories.future.total}`;
+        document.getElementById('condScore').innerText = `${categories.conditional.count}/${categories.conditional.total}`;
+
+        if (score === total) {
+            document.getElementById('congratsBanner').style.display = 'block';
+        }
+    }
+
+    // ==================== BARAJAR OPCIONES ====================
+    function shuffleArray(arr) {
+        return arr.slice().sort(() => Math.random() - 0.5);
+    }
+
+    // ==================== LÓGICA DE RESPUESTA ====================
+    function handleOptionClick(index, selectedAnswer, btnElement) {
+        if (answered[index]) return;
+
+        const tense = tensesData[index];
+        const isCorrect = (selectedAnswer === tense.correctAnswer);
+        const feedbackDiv = document.getElementById(`fb-${index}`);
+        const optionsContainer = document.getElementById(`options-${index}`);
+        const attemptBadge = document.getElementById(`attempts-${index}`);
+        const card = document.getElementById(`card-${index}`);
+
+        attempts[index]++;
+
+        const allBtns = optionsContainer.querySelectorAll('.option-btn');
+        allBtns.forEach(btn => {
+            btn.classList.remove('selected-correct', 'selected-wrong', 'reveal-correct');
+        });
+
+        if (isCorrect) {
+            answered[index] = true;
+            score++;
+            updateScoreUI();
+            saveProgress();
+
+            btnElement.classList.add('selected-correct');
+            feedbackDiv.innerHTML = '✅ ¡Correcto! Muy bien.';
+            feedbackDiv.className = 'feedback success';
+
+            // Desactivar todos los botones después de responder correctamente
+            allBtns.forEach(btn => {
+                btn.disabled = true;
+                btn.style.cursor = 'not-allowed';
+            });
+
+            // Animación de tarjeta
+            if (card) {
+                card.classList.remove('correct-pulse');
+                void card.offsetWidth; // reflow para reiniciar animación
+                card.classList.add('correct-pulse');
+            }
+
+            if (attemptBadge) {
+                const n = attempts[index];
+                attemptBadge.innerText = n === 1
+                    ? '⭐ Acertaste al primer intento'
+                    : `Intentos: ${n}`;
+            }
+
+            checkAllAnswered();
+        } else {
+            btnElement.classList.add('selected-wrong');
+
+            // Revelar la correcta
+            allBtns.forEach(btn => {
+                if (btn.dataset.answer === tense.correctAnswer) {
+                    btn.classList.add('reveal-correct');
+                }
+            });
+
+            feedbackDiv.innerHTML = `❌ Incorrecto. La respuesta correcta es: "<strong>${tense.correctAnswer}</strong>".`;
+            feedbackDiv.className = 'feedback error';
+
+            if (attemptBadge) {
+                attemptBadge.innerText = `Intentos: ${attempts[index]}`;
+            }
+
+            saveProgress();
+        }
+
+        // Mejorar el feedback: ocultar después de 4 segundos en lugar de 3.5
+        setTimeout(() => {
+            feedbackDiv.style.opacity = '0';
+            setTimeout(() => {
+                feedbackDiv.className = 'feedback';
+                feedbackDiv.style.opacity = '1';
+                feedbackDiv.innerHTML = '';
+            }, 300);
+        }, 4000);
+    }
+
+    function checkAllAnswered() {
+        if (score === tensesData.length) {
+            document.getElementById('congratsBanner').style.display = 'block';
+            document.getElementById('congratsBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    // ==================== RENDER ====================
+    function renderCards(filterCategory) {
+        const grid = document.getElementById('tensesGrid');
+        grid.innerHTML = '';
+
+        const categories = [
+            { name: "present",     label: "🟢 PRESENT TENSES", class: "bg-present" },
+            { name: "past",        label: "🔵 PAST TENSES",     class: "bg-past" },
+            { name: "future",      label: "🟣 FUTURE TENSES",   class: "bg-future" },
+            { name: "conditional", label: "🧠 CONDITIONALS",    class: "bg-cond" }
+        ];
+
+        let lastCategory = "";
+
+        tensesData.forEach((tense, idx) => {
+            if (filterCategory && filterCategory !== 'all' && tense.category !== filterCategory) return;
+
+            let currentCat = tense.category;
+            if (currentCat !== lastCategory) {
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'section-header';
+                const catInfo = categories.find(c => c.name === currentCat);
+                headerDiv.classList.add(catInfo.class);
+                headerDiv.innerText = catInfo.label;
+                grid.appendChild(headerDiv);
+                lastCategory = currentCat;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${idx}`;
+            let titleClass = `${tense.category}-title`;
+
+            card.innerHTML = `
+                <div class="card-content">
+                    <h3 class="${titleClass}">${tense.title}</h3>
+                    <div class="explanation">${tense.explanation}</div>
+                    <div class="formula">${tense.formula}</div>
+                    <div class="example-box">${tense.example}</div>
+                    <div class="practice-zone">
+                        <label>📝 ${tense.exercisePrompt}</label>
+                        <div class="options" id="options-${idx}"></div>
+                        <div id="fb-${idx}" class="feedback"></div>
+                        <div id="attempts-${idx}" class="attempt-badge"></div>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+
+            const optionsContainer = document.getElementById(`options-${idx}`);
+            const shuffledOptions = shuffleArray(tense.options);
+
+            shuffledOptions.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.dataset.answer = opt;
+                btn.className = 'option-btn';
+                btn.addEventListener('click', () => handleOptionClick(idx, opt, btn));
+                optionsContainer.appendChild(btn);
+            });
+
+            // Restaurar estado si ya fue respondida
+            if (answered[idx]) {
+                const allBtns = optionsContainer.querySelectorAll('.option-btn');
+                allBtns.forEach(btn => {
+                    if (btn.dataset.answer === tense.correctAnswer) {
+                        btn.classList.add('selected-correct');
+                    }
+                    // Desactivar todos los botones si ya se respondió correctamente
+                    btn.disabled = true;
+                    btn.style.cursor = 'not-allowed';
+                });
+                const attemptBadge = document.getElementById(`attempts-${idx}`);
+                if (attemptBadge && attempts[idx]) {
+                    attemptBadge.innerText = attempts[idx] === 1
+                        ? '⭐ Acertaste al primer intento'
+                        : `Intentos: ${attempts[idx]}`;
+                }
+            }
+        });
+
+        document.getElementById('totalExercises').innerText = tensesData.length;
+    }
+
+    // ==================== FILTROS ====================
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter'));
+            btn.classList.add('active-filter');
+            activeFilter = btn.dataset.filter;
+            renderCards(activeFilter);
+        });
+    });
+
+    // ==================== REINICIO ====================
+    document.getElementById('resetBtn').addEventListener('click', () => {
+        if (!confirm('¿Seguro que quieres reiniciar todos los ejercicios?')) return;
+        clearProgress();
+        document.getElementById('congratsBanner').style.display = 'none';
+        updateScoreUI();
+        renderCards(activeFilter);
+    });
+
+    // ==================== MODO OSCURO ====================
+    const darkToggle = document.getElementById('darkToggle');
+    const darkPref   = localStorage.getItem('dark_mode');
+    if (darkPref === '1') {
+        document.body.classList.add('dark-mode');
+        darkToggle.innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
+    }
+    darkToggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('dark_mode', isDark ? '1' : '0');
+        darkToggle.innerHTML = isDark
+            ? '<i class="fas fa-sun"></i> Modo Claro'
+            : '<i class="fas fa-moon"></i> Modo Oscuro';
+    });
+
+    // ==================== INIT ====================
+    loadProgress();
+    updateScoreUI();
+    renderCards(activeFilter);
+</script>
+</body>
+</html>

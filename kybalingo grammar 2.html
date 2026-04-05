@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GrammarPro — English Grammar Made Easy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #22c55e; --green-dark: #16a34a; --green-light: #dcfce7;
+    --blue: #3b82f6; --blue-light: #eff6ff; --purple: #9333ea; --purple-light: #f3e8ff;
+    --orange: #f97316; --orange-light: #fff7ed; --yellow: #f59e0b;
+    --red: #ef4444; --red-light: #fef2f2;
+    --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db;
+    --gray-400: #9ca3af; --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937;
+    --radius: 1rem;
+  }
+  /* Contenedor principal de las pestañas */
+/* Contenedor principal de las pestañas */
+.file-tabs {
+    display: flex;
+    flex-wrap: nowrap; /* Evita que las pestañas se bajen a la siguiente línea */
+    overflow-x: auto;  /* Permite deslizar si hay muchas pestañas */
+    gap: 8px;
+    margin-bottom: 2rem;
+    padding: 12px;
+    background: #f1f5f9; /* Un tono más suave que combina con tu fondo */
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    
+    /* Ocultar la barra de scroll para que se vea limpio */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Contenedor principal de las pestañas - Centrado y con nuevos colores */
+.file-tabs {
+    display: flex;
+    flex-wrap: nowrap; /* Mantiene todas las pestañas en una sola línea */
+    justify-content: center; /* ESTO CENTRA LAS PESTAÑAS */
+    align-items: center;
+    overflow-x: auto;  /* Permite scroll horizontal si no caben */
+    gap: 12px;         /* Espacio elegante entre pestañas */
+    margin: 0 auto 3rem auto; /* Centra el contenedor mismo y da margen abajo */
+    padding: 15px;
+    background-color: #f0f4f8; /* Un gris-azulado muy suave y limpio */
+    border-radius: 16px;       /* Bordes más redondeados y modernos */
+    border: 1px solid #d1d9e6; /* Borde sutil para dar definición */
+    max-width: fit-content;    /* Hace que el contenedor solo ocupe el espacio necesario */
+    
+    /* Ocultar barra de scroll para estética limpia */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03); /* Sombra interna suave */
+}
+
+/* Ocultar barra de scroll para Chrome/Safari/Edge */
+.file-tabs::-webkit-scrollbar {
+    display: none; 
+}
+
+/* Diseño de cada pestaña individual (enlaces) - Colores actualizados */
+.tab-link {
+    background-color: #ffffff; /* Fondo blanco puro para resaltar */
+    color: #4a5568;           /* Un gris oscuro azulado para el texto */
+    text-decoration: none;
+    padding: 12px 22px;       /* Relleno más generoso y cómodo */
+    border-radius: 10px;      /* Esquinas suavemente redondeadas */
+    font-size: 0.9rem;        /* Texto ligeramente más grande y legible */
+    font-weight: 600;
+    border: 1px solid #e2e8f0; /* Borde muy sutil */
+    transition: all 0.25s ease; /* Animación más suave */
+    white-space: nowrap;      /* Evita que el texto se rompa en dos líneas */
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.04); /* Sombra suave para elevación */
+}
+
+/* Efecto al pasar el mouse sobre una pestaña - Color Cian Suave */
+.tab-link:hover {
+    background-color: #e0f7fa; /* Fondo cian muy pálido */
+    color: #00838f !important;  /* Texto cian oscuro para contraste */
+    border-color: #b2ebf2;      /* Borde cian sutil */
+    transform: translateY(-3px); /* Pequeña elevación interactiva */
+    box-shadow: 0 5px 15px rgba(0, 131, 143, 0.1); /* Sombra cian suave */
+}
+
+/* Diseño de la pestaña que está activa - Color Azul Corporativo */
+.tab-link.active-file {
+    background-color: #2b6cb0;  /* Un azul corporativo sólido y serio */
+    color: #ffffff !important;  /* Texto blanco puro para máxima legibilidad */
+    border-color: #2c5282;      /* Borde azul más oscuro */
+    box-shadow: 0 5px 15px rgba(43, 108, 176, 0.3); /* Resonancia azul */
+}
+  body { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg,#f0fdf4,#f9fafb); min-height:100vh; color:var(--gray-800); line-height:1.5; }
+  @keyframes slideUp { from{transform:translateY(16px);opacity:0} to{transform:translateY(0);opacity:1} }
+  @keyframes bounceIn { 0%{transform:scale(.85);opacity:0} 60%{transform:scale(1.04);opacity:1} 100%{transform:scale(1)} }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
+  .slide-up{animation:slideUp .3s ease-out both} .bounce-in{animation:bounceIn .4s ease-out both} .shake{animation:shake .4s ease-out}
+  .container{max-width:640px;margin:0 auto;padding:0 16px}
+  .app-header{background:#fff;border-bottom:2px solid var(--gray-200);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+  .app-header .inner{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+  .logo{font-size:1.25rem;font-weight:900;color:var(--gray-800);display:flex;align-items:center;gap:8px}
+  .logo-sub{font-size:.75rem;color:var(--gray-400);margin-top:1px}
+  .header-stats{display:flex;gap:16px;align-items:center}
+  .stat{text-align:center} .stat-val{font-weight:800;font-size:1.1rem;line-height:1.2} .stat-lbl{font-size:.7rem;color:var(--gray-400)}
+  .progress-wrap{background:var(--gray-200);border-radius:99px;height:10px;overflow:hidden}
+  .progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),#10b981);transition:width .6s cubic-bezier(.4,0,.2,1)}
+  .home-body{padding:24px 0 40px} .section-title{font-size:1.1rem;font-weight:800;color:var(--gray-800);margin-bottom:4px}
+  .section-sub{font-size:.85rem;color:var(--gray-500);margin-bottom:16px} .lessons-list{display:flex;flex-direction:column;gap:14px}
+  .lesson-card{background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:18px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:transform .15s,box-shadow .15s;position:relative;text-align:left;width:100%;font-family:inherit}
+  .lesson-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+  .lesson-card.blue{background:var(--blue-light);border-color:#bfdbfe}
+  .lesson-card.purple{background:var(--purple-light);border-color:#d8b4fe}
+  .lesson-card.orange{background:var(--orange-light);border-color:#fed7aa}
+  .card-icon{width:56px;height:56px;background:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+  .card-body{flex:1;min-width:0} .card-title{font-weight:800;font-size:1rem;margin-bottom:2px}
+  .card-title.blue{color:var(--blue)} .card-title.purple{color:var(--purple)} .card-title.orange{color:var(--orange)}
+  .card-sub{font-size:.8rem;color:var(--gray-500)} .card-badges{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .badge{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:99px}
+  .badge-xp{background:#fef3c7;color:#92400e} .badge-done{background:var(--green-light);color:var(--green-dark)}
+  .card-arrow{font-size:1.3rem;color:var(--gray-400);flex-shrink:0;transition:transform .15s}
+  .lesson-card:hover .card-arrow{transform:translateX(4px)}
+  .done-mark{position:absolute;top:10px;right:10px;width:24px;height:24px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:900}
+  .info-box{background:linear-gradient(135deg,var(--green),#10b981);color:#fff;border-radius:var(--radius);padding:20px;margin-top:16px}
+  .info-box h3{font-weight:800;font-size:1rem;margin-bottom:6px} .info-box p{font-size:.85rem;opacity:.9;line-height:1.6}
+  .info-stats{display:flex;gap:20px;margin-top:14px} .info-stat{text-align:center}
+  .info-stat-val{font-size:1.4rem;font-weight:900} .info-stat-lbl{font-size:.7rem;opacity:.8}
+  #lesson-view{display:none}
+  .lesson-header{background:#fff;border-bottom:2px solid var(--gray-200);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+  .lesson-header-top{display:flex;align-items:center;gap:12px;padding:12px 16px}
+  .back-btn{background:var(--gray-100);border:none;border-radius:10px;padding:8px 14px;font-size:.85rem;font-weight:700;cursor:pointer;color:var(--gray-600);font-family:inherit;transition:background .15s;display:flex;align-items:center;gap:6px}
+  .back-btn:hover{background:var(--gray-200)}
+  .lesson-title-wrap{flex:1;min-width:0} .lesson-title{font-weight:800;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lesson-subtitle{font-size:.72rem;color:var(--gray-400)}
+  .lesson-xp{background:#fef3c7;color:#92400e;font-size:.8rem;font-weight:700;padding:5px 12px;border-radius:99px;white-space:nowrap}
+  .tabs{display:flex;gap:0;padding:0 16px;border-top:1px solid var(--gray-100)}
+  .tab-btn{background:none;border:none;font-family:inherit;font-size:.875rem;font-weight:700;color:var(--gray-400);padding:12px 16px;cursor:pointer;position:relative;transition:color .15s}
+  .tab-btn.active{color:var(--green)} .tab-btn.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:3px;background:var(--green);border-radius:99px}
+  .tab-btn:hover:not(.active){color:var(--gray-600)}
+  .lesson-body{padding:20px 0 40px}
+  .block{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:18px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .block-title{font-weight:800;font-size:.95rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .block-title-dot{width:20px;height:20px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem;font-weight:900;flex-shrink:0}
+  .block-text{font-size:.875rem;color:var(--gray-700);line-height:1.7}
+  .rule-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .rule-item{display:flex;align-items:flex-start;gap:10px;font-size:.875rem;color:var(--gray-700);line-height:1.5}
+  .rule-num{width:22px;height:22px;background:#dbeafe;color:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;flex-shrink:0;margin-top:1px}
+  .rule-item.wrong{color:#dc2626} .rule-item.right{color:#16a34a}
+  .rule-item.wrong .rule-num,.rule-item.right .rule-num{display:none}
+  .rule-item.wrong::before{content:'✗';font-weight:900;color:#dc2626;margin-top:1px;width:22px;text-align:center;flex-shrink:0}
+  .rule-item.right::before{content:'✓';font-weight:900;color:#16a34a;margin-top:1px;width:22px;text-align:center;flex-shrink:0}
+  .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--gray-200);box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:16px}
+  .table-title{font-weight:800;font-size:.95rem;margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.82rem}
+  thead tr{background:linear-gradient(90deg,#1f2937,#374151);color:#fff}
+  th{padding:11px 14px;text-align:left;font-weight:700}
+  td{padding:10px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700)}
+  tr:nth-child(even) td{background:var(--gray-50)} td:first-child{font-weight:700;color:var(--blue)}
+  .examples-title{font-weight:800;font-size:.95rem;margin-bottom:10px}
+  .example-item{background:#fff;border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .example-row{display:flex;flex-direction:column}
+  @media(min-width:480px){.example-row{flex-direction:row}}
+  .example-en{flex:1;padding:12px 14px} .example-es{flex:1;padding:12px 14px;background:var(--gray-50)}
+  @media(min-width:480px){.example-es{border-left:1px solid var(--gray-100)}}
+  .example-lang{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+  .example-lang.en{color:var(--blue)} .example-lang.es{color:var(--green)}
+  .example-text{font-size:.875rem;font-weight:600;color:var(--gray-800)}
+  .tip-block{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-left:4px solid var(--yellow);border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
+  .tip-icon{font-size:1.5rem;flex-shrink:0} .tip-label{font-size:.75rem;font-weight:800;color:#92400e;margin-bottom:3px}
+  .tip-text{font-size:.85rem;color:#78350f;line-height:1.6}
+  .comparison-item{background:#fff;border:2px solid var(--gray-200);border-radius:12px;overflow:hidden;margin-bottom:10px}
+  .comparison-note{background:#eef2ff;padding:7px 14px;font-size:.72rem;font-weight:700;color:#4338ca;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #c7d2fe}
+  .comparison-row{display:grid;grid-template-columns:1fr 1fr}
+  .comparison-a,.comparison-b{padding:12px 14px;font-size:.85rem;font-weight:600}
+  .comparison-a{border-right:1px solid var(--gray-100)} .comparison-b{background:#f0fdf4}
+  .comparison-label{font-size:.65rem;font-weight:700;text-transform:uppercase;color:var(--gray-400);margin-bottom:3px}
+  .btn-practice{display:block;width:100%;padding:16px;text-align:center;background:linear-gradient(135deg,var(--green),#10b981);color:#fff;border:none;border-radius:var(--radius);font-family:inherit;font-size:1.05rem;font-weight:800;cursor:pointer;margin-top:8px;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 14px rgba(34,197,94,.3)}
+  .btn-practice:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(34,197,94,.4)}
+  .quiz-progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.85rem;font-weight:700}
+  .quiz-score-badge{background:#fef3c7;color:#92400e;padding:4px 12px;border-radius:99px;font-size:.78rem}
+  .quiz-question-box{background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+  .quiz-question-text{font-size:1rem;font-weight:700;color:var(--gray-800);line-height:1.5}
+  .quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+  .quiz-option{background:#fff;border:2px solid var(--gray-200);border-radius:14px;padding:13px 16px;text-align:left;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:12px;color:var(--gray-800)}
+  .quiz-option:hover:not(:disabled){border-color:var(--blue);background:var(--blue-light)}
+  .quiz-option:disabled{cursor:default}
+  .quiz-option.correct{border-color:var(--green);background:var(--green-light);color:var(--green-dark)}
+  .quiz-option.wrong{border-color:var(--red);background:var(--red-light);color:#dc2626}
+  .quiz-option.dimmed{border-color:var(--gray-200);background:var(--gray-50);color:var(--gray-400)}
+  .option-letter{width:28px;height:28px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+  .feedback-box{border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;gap:12px;align-items:flex-start;border-left:4px solid}
+  .feedback-box.correct{background:var(--green-light);border-color:var(--green);color:var(--green-dark)}
+  .feedback-box.wrong{background:var(--red-light);border-color:var(--red);color:#dc2626}
+  .feedback-icon{font-size:1.3rem;flex-shrink:0} .feedback-title{font-weight:800;font-size:.9rem;margin-bottom:4px}
+  .feedback-text{font-size:.82rem;line-height:1.5}
+  .btn-next{display:block;width:100%;padding:15px;text-align:center;background:var(--green);color:#fff;border:none;border-radius:var(--radius);font-family:inherit;font-size:1rem;font-weight:800;cursor:pointer;transition:background .15s;box-shadow:0 4px 12px rgba(34,197,94,.25)}
+  .btn-next:hover{background:var(--green-dark)}
+  .quiz-result{text-align:center;padding:32px 0} .result-emoji{font-size:4rem;margin-bottom:12px}
+  .result-title{font-size:1.5rem;font-weight:900;color:var(--gray-800);margin-bottom:8px}
+  .result-sub{font-size:.9rem;color:var(--gray-500);margin-bottom:20px} .result-sub strong{color:var(--green)}
+  .btn-retry{display:inline-block;padding:12px 28px;background:var(--blue);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(59,130,246,.25)}
+  .btn-retry:hover{background:#2563eb}
+  @media(max-width:480px){.comparison-row{grid-template-columns:1fr}.comparison-a{border-right:none;border-bottom:1px solid var(--gray-100)}.info-stats{gap:12px}}
+</style>
+</head>
+<body>
+
+    <div class="file-tabs">
+            <a href="index.html" class="tab-link">Inicio</a>
+            <a href="Sentence Master Pro.html" class="tab-link">Index</a>
+            <a href="guia.html" class="tab-link">Guía</a>
+            <a href="guia 2.html" class="tab-link">Guía 2</a>
+            <a href="kybalingo grammar 2.html" class="tab-link active-file">Grammar 2</a>
+            <a href="more grammar.html" class="tab-link">App Interactiva de Pronunciación</a>
+            <a href="nykrolingo tiempos gramaticales.html" class="tab-link">Tiempos Gram.</a>
+            <a href="tiempos.html" class="tab-link">Tiempos</a>
+            <a href="phrasalverbs.html" class="tab-link">Phrasal Verbs</a>
+            <a href="libro - copia.html" class="tab-link">Libro</a>
+        </div>
+
+<div id="home-view">
+  <header class="app-header">
+    <div class="container inner">
+      <div><div class="logo">🌎 GrammarPro</div><div class="logo-sub">English Grammar Made Easy</div></div>
+      <div class="header-stats">
+        <div class="stat"><div class="stat-val" id="streak-val" style="color:#f97316">🔥 0</div><div class="stat-lbl">racha</div></div>
+        <div class="stat"><div class="stat-val" id="xp-val" style="color:#f59e0b">⚡ 0</div><div class="stat-lbl">XP total</div></div>
+      </div>
+    </div>
+  </header>
+  <div class="container home-body">
+    <div class="block" style="margin-bottom:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span style="font-size:.875rem;font-weight:800;color:var(--gray-700)">Tu progreso</span>
+        <span id="pct-label" style="font-size:.875rem;font-weight:800;color:var(--green)">0%</span>
+      </div>
+      <div class="progress-wrap"><div class="progress-fill" id="main-progress" style="width:0%"></div></div>
+      <p id="progress-sub" style="font-size:.75rem;color:var(--gray-400);margin-top:8px">0 de 3 lecciones completadas</p>
+    </div>
+    <div class="section-title">Lecciones</div>
+    <div class="section-sub">Aprende gramática inglesa de forma interactiva y divertida</div>
+    <div class="lessons-list" id="lessons-list"></div>
+    <div class="info-box" style="margin-top:20px">
+      <h3>¿Por qué aprender gramática?</h3>
+      <p>La gramática es la base del idioma. Con estas lecciones aprenderás las reglas fundamentales del inglés de forma clara, con ejemplos reales y práctica interactiva.</p>
+      <div class="info-stats">
+        <div class="info-stat"><div class="info-stat-val">3</div><div class="info-stat-lbl">Lecciones</div></div>
+        <div class="info-stat"><div class="info-stat-val">18+</div><div class="info-stat-lbl">Preguntas</div></div>
+        <div class="info-stat"><div class="info-stat-val">⚡180</div><div class="info-stat-lbl">XP total</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:.75rem;color:var(--gray-400);margin-top:20px;padding-bottom:8px">GrammarPro — Aprende inglés a tu ritmo</div>
+  </div>
+</div>
+
+<div id="lesson-view">
+  <div class="lesson-header">
+    <div class="lesson-header-top container">
+      <button class="back-btn" onclick="goHome()">← Volver</button>
+      <div class="lesson-title-wrap"><div class="lesson-title" id="lv-title"></div><div class="lesson-subtitle" id="lv-sub"></div></div>
+      <div class="lesson-xp" id="lv-xp"></div>
+    </div>
+    <div class="container tabs">
+      <button class="tab-btn active" id="tab-learn" onclick="switchTab('learn')">Aprender</button>
+      <button class="tab-btn" id="tab-practice" onclick="switchTab('practice')">Practicar</button>
+    </div>
+  </div>
+  <div class="container lesson-body">
+    <div id="tab-learn-content"></div>
+    <div id="tab-practice-content" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+const lessons=[{id:"subjects",title:"Sujetos en Inglés",subtitle:"Personal Pronouns as Subjects",icon:"👤",theme:"blue",xp:50,sections:[{type:"rule",title:"¿Qué es un sujeto?",content:"El sujeto es la persona, animal o cosa que realiza la acción del verbo. En inglés, siempre se coloca antes del verbo y nunca se puede omitir (a diferencia del español).",items:["En español puedes decir: 'Estoy bien' (sujeto implícito)","En inglés DEBES decir: 'I am fine' (sujeto obligatorio)"]},{type:"table",title:"Pronombres Personales como Sujeto",headers:["Pronombre","Significado","Ejemplo"],rows:[["I","Yo","I am a student."],["You","Tú / Usted","You are my friend."],["He","Él","He is tall."],["She","Ella","She is smart."],["It","Eso / Ello (cosas/animales)","It is cold today."],["We","Nosotros/as","We are happy."],["You","Ustedes / Vosotros","You are all welcome."],["They","Ellos/as","They are students."]]},{type:"tip",tip:"El pronombre 'I' (Yo) siempre se escribe con mayúscula en inglés, sin importar su posición en la oración."},{type:"examples",title:"Ejemplos con sustantivos como sujeto",pairs:[["My dog is happy.","Mi perro está feliz."],["The book is on the table.","El libro está en la mesa."],["Maria and John are friends.","María y Juan son amigos."],["London is a big city.","Londres es una ciudad grande."]]},{type:"rule",title:"Reglas Importantes",items:["El sujeto siempre va ANTES del verbo en oraciones afirmativas","En preguntas, el sujeto va entre el auxiliar y el verbo principal","'It' se usa para cosas, animales (sin género) y el tiempo/clima","Los nombres propios (María, London) funcionan como sujeto directamente","✗ Nunca uses dos sujetos: 'Maria she is...' — ✓ Correcto: 'Maria is...'"]}],quiz:[{q:"¿Cuál es el sujeto correcto para 'es un perro'?",opts:["He","It","She","They"],correct:1,exp:"'It' se usa para animales cuando no especificamos el género."},{q:"Completa: '___ am a teacher.'",opts:["He","You","I","We"],correct:2,exp:"'I am' es la única combinación correcta con el pronombre de primera persona singular."},{q:"¿Cuál de estas oraciones tiene sujeto INCORRECTO?",opts:["They are happy.","She is beautiful.","Maria she is my friend.","We are students."],correct:2,exp:"No se puede usar el nombre y el pronombre al mismo tiempo. Di solo 'Maria is my friend.'"},{q:"'___ is raining.' ¿Qué pronombre usamos para el clima?",opts:["He","She","It","This"],correct:2,exp:"Para el tiempo/clima, siempre usamos 'It': It is raining, It is sunny."},{q:"Mis amigos y yo somos estudiantes. ¿Cómo se dice?",opts:["My friends is students.","Me and my friends are students.","My friends and I are students.","I and my friends is students."],correct:2,exp:"En inglés formal, el 'I' siempre va al final. 'My friends and I are students.'"}]},{id:"verb-to-be",title:"Verbo To Be",subtitle:"Am, Is, Are — Present Tense",icon:"⚡",theme:"purple",xp:60,sections:[{type:"rule",title:"¿Qué es el Verbo To Be?",content:"El verbo 'to be' equivale a los verbos 'ser' y 'estar' en español. Es el verbo más importante e irregular del inglés y se conjuga de tres formas en presente: AM, IS, ARE."},{type:"table",title:"Conjugación en Presente",headers:["Sujeto","Verbo to be","Ejemplo","Contracción"],rows:[["I","am","I am a student.","I'm"],["You","are","You are my friend.","You're"],["He","is","He is tall.","He's"],["She","is","She is kind.","She's"],["It","is","It is big.","It's"],["We","are","We are happy.","We're"],["You","are","You are welcome.","You're"],["They","are","They are friends.","They're"]]},{type:"rule",title:"Regla de Oro",items:["I → siempre AM (nunca 'is' o 'are')","He / She / It → siempre IS","You / We / They → siempre ARE"]},{type:"tip",tip:"Las contracciones (I'm, She's, We're) son muy comunes en el habla cotidiana. En contextos formales usa la forma completa."},{type:"comparison",title:"Formas: Afirmativa, Negativa e Interrogativa",pairs:[["She is a doctor.","She is NOT a doctor. / She isn't a doctor.","Afirmativa → Negativa"],["They are happy.","They are NOT happy. / They aren't happy.","Afirmativa → Negativa"],["I am tired.","Am I tired?","Afirmativa → Interrogativa (invertir)"],["He is at home.","Is he at home?","Afirmativa → Interrogativa"]]},{type:"examples",title:"Usos del Verbo To Be",pairs:[["I am from Mexico. (origen/nacionalidad)","Soy de México."],["She is 25 years old. (edad)","Ella tiene 25 años."],["The water is cold. (descripción)","El agua está fría."],["We are at the park. (ubicación)","Estamos en el parque."],["They are doctors. (profesión)","Ellos son doctores."],["It is Monday. (tiempo/día)","Es lunes."]]},{type:"rule",title:"Pasado del Verbo To Be",items:["I / He / She / It → WAS (forma pasada singular)","You / We / They → WERE (forma pasada plural)","Ejemplo: I was happy yesterday.","Ejemplo: They were at school.","Negación: He wasn't here. / We weren't there."]}],quiz:[{q:"Selecciona la forma correcta: 'She ___ a nurse.'",opts:["am","are","is","be"],correct:2,exp:"Con He, She, It siempre usamos IS. 'She is a nurse.'"},{q:"¿Cuál es la contracción de 'I am'?",opts:["Im","I'm","Iam","I am'"],correct:1,exp:"La contracción correcta es I'm (con apóstrofe entre I y m)."},{q:"Forma la negación: 'They are students.'",opts:["They not are students.","They are not students.","They aren't students.","b y c son correctas"],correct:3,exp:"'They are not students.' y 'They aren't students.' son ambas correctas."},{q:"¿Cómo conviertes en pregunta: 'He is your brother.'?",opts:["He is your brother?","Is he your brother?","Does he is your brother?","Is your brother he?"],correct:1,exp:"En preguntas con 'to be', el verbo va al inicio: IS he your brother?"},{q:"Yesterday she ___ at school.",opts:["is","are","was","were"],correct:2,exp:"En pasado, She → WAS. 'She was at school yesterday.'"},{q:"¿Cuál tiene el uso CORRECTO del verbo to be?",opts:["I is happy.","You am my friend.","We is tired.","It is very hot."],correct:3,exp:"'It is' es correcto. I AM, You ARE, We ARE son las formas correctas."}]},{id:"although",title:"Although / Though",subtitle:"Expressing Contrast & Concession",icon:"🔄",theme:"orange",xp:70,sections:[{type:"rule",title:"¿Qué son estas palabras?",content:"Although, though, even though, y palabras similares expresan CONTRASTE o CONCESIÓN — se usan cuando la segunda parte de una oración es sorprendente o contraria a lo esperado. Equivalen a 'aunque' en español."},{type:"table",title:"Palabras de Contraste — Comparación Completa",headers:["Palabra","Registro","Posición","Significado"],rows:[["Although","Formal/Neutral","Inicio o medio","Aunque"],["Though","Informal/Neutral","Inicio, medio o final","Aunque / Sin embargo"],["Even though","Énfasis fuerte","Inicio o medio","Aunque (énfasis)"],["Even if","Hipotético","Inicio o medio","Incluso si"],["Despite","Formal","+ sustantivo/gerundio","A pesar de"],["In spite of","Formal","+ sustantivo/gerundio","A pesar de"],["However","Formal","Inicio de oración","Sin embargo"],["Nevertheless","Muy formal","Inicio de oración","No obstante"],["Yet","Literario","Inicio de oración","Sin embargo / Aún así"],["Still","Neutral","En medio de la oración","Aún así / Sin embargo"],["But","Informal","Conecta oraciones","Pero"]]},{type:"rule",title:"ALTHOUGH — Reglas de Uso",items:["Se usa al inicio de una cláusula subordinada (con sujeto + verbo)","Puede ir al INICIO o en el MEDIO de la oración","Es más formal que 'though'","Estructura: Although + [sujeto + verbo], [resultado]","O: [resultado], although + [sujeto + verbo]"]},{type:"examples",title:"Ejemplos con ALTHOUGH",pairs:[["Although it was raining, we went out.","Aunque estaba lloviendo, salimos."],["She passed the exam although she didn't study.","Aprobó el examen aunque no estudió."],["Although he is rich, he is not happy.","Aunque es rico, no es feliz."],["I like her although she can be difficult.","Me cae bien aunque a veces puede ser difícil."]]},{type:"rule",title:"THOUGH — Reglas de Uso",items:["Más informal y versátil que 'although'","Puede usarse al FINAL de la oración (¡'although' no puede!)","Al final equivale a 'sin embargo' o 'eso sí'","Puede usarse igual que 'although' al inicio o en el medio","Estructura final: [oración]. [contraria], though."]},{type:"examples",title:"Ejemplos con THOUGH (al final)",pairs:[["It was a great movie. I didn't like the ending, though.","Fue una película genial. No me gustó el final, eso sí."],["Though it was cold, she wore a dress.","Aunque hacía frío, llevó vestido."],["The food was expensive. It was delicious, though.","La comida era cara. Pero estaba deliciosa."],["I passed the test, though I almost failed.","Aprobé el examen, aunque casi no lo paso."]]},{type:"rule",title:"EVEN THOUGH — Énfasis Especial",items:["Más enfático que 'although' o 'though'","Indica un contraste MÁS FUERTE o sorprendente","Nunca va al final de la oración","Estructura: Even though + [sujeto + verbo], [resultado]"]},{type:"rule",title:"DESPITE / IN SPITE OF — Diferencia Clave",items:["Despite y in spite of son sinónimos (a pesar de)","¡NUNCA van seguidos de sujeto + verbo!","Van seguidos de: sustantivo, pronombre o gerundio (-ing)","Despite the rain, we played. (sustantivo)","In spite of being tired, she worked. (gerundio)","✗ INCORRECTO: Despite it was raining...","✓ CORRECTO: Despite the rain... / Despite it raining..."]},{type:"comparison",title:"Despite vs Although — La diferencia clave",pairs:[["Although it was raining, we went out.","Despite the rain, we went out.","Although + verbo → Despite + sustantivo"],["Although she was tired, she continued.","Despite being tired, she continued.","Although + verbo → Despite + gerundio"],["Although he had no money, he was happy.","Despite having no money, he was happy.","La misma idea con diferente estructura"]]},{type:"tip",tip:"'However' y 'Nevertheless' conectan ORACIONES SEPARADAS (van al inicio con coma). 'Although' conecta dentro de la misma oración. No se pueden intercambiar."}],quiz:[{q:"¿Cuál de estas oraciones es CORRECTA?",opts:["Despite it was raining, we left.","Although it was raining, we left.","Despite although it rained, we left.","Even though despite the rain, we left."],correct:1,exp:"'Although' va seguido de sujeto + verbo. 'Despite' no puede ir seguido de 'it was...' directamente."},{q:"¿Cuál es la diferencia entre 'although' y 'even though'?",opts:["Son exactamente iguales","'Even though' expresa un contraste más fuerte y enfático","'Although' es más informal","'Even though' solo se usa en pasado"],correct:1,exp:"'Even though' añade énfasis y muestra un contraste más sorprendente o inesperado."},{q:"Completa: 'I was nervous. I passed the exam, ___.'",opts:["although","even though","though","despite"],correct:2,exp:"'Though' puede ir al FINAL de la oración. Las otras opciones no funcionan al final."},{q:"¿Qué va después de 'Despite'?",opts:["Sujeto + verbo conjugado","Sustantivo, pronombre o gerundio (-ing)","Una oración completa","Siempre va al final"],correct:1,exp:"Despite + sustantivo o gerundio. NUNCA 'Despite it was...'"},{q:"'___ he tries hard, he never succeeds.' ¿Qué opción encaja mejor con énfasis?",opts:["Though","But","Even though","However"],correct:2,exp:"'Even though' — El contraste fuerte (esfuerzo vs fracaso) requiere énfasis."},{q:"¿Qué conector formal inicia una NUEVA oración separada?",opts:["Although","Though","Even though","However"],correct:3,exp:"'However' conecta ideas entre oraciones separadas: 'It was hard. However, we did it.'"},{q:"Elige: 'A pesar de estar cansada, ella estudió.'",opts:["Despite she was tired, she studied.","In spite of she was tired, she studied.","Despite being tired, she studied.","Although being tired, she studied."],correct:2,exp:"'Despite + gerundio (being)' es la estructura correcta."}]}];
+
+let progress=JSON.parse(localStorage.getItem('grammar_progress')||'{}');
+let currentLesson=null,currentTab='learn',quizState={};
+
+function renderHome(){
+  const totalXpMax=lessons.reduce((a,l)=>a+l.xp,0);
+  const totalXpEarned=Object.entries(progress).reduce((acc,[id,d])=>{const l=lessons.find(x=>x.id===id);return l?acc+Math.round((d.score/d.total)*l.xp):acc;},0);
+  const pct=totalXpMax>0?Math.round((totalXpEarned/totalXpMax)*100):0;
+  const done=Object.keys(progress).length;
+  document.getElementById('xp-val').textContent='⚡ '+totalXpEarned;
+  document.getElementById('streak-val').textContent='🔥 '+done;
+  document.getElementById('pct-label').textContent=pct+'%';
+  document.getElementById('main-progress').style.width=pct+'%';
+  document.getElementById('progress-sub').textContent=done+' de '+lessons.length+' lecciones completadas';
+  const list=document.getElementById('lessons-list');list.innerHTML='';
+  lessons.forEach(l=>{const comp=progress[l.id];const card=document.createElement('button');card.className='lesson-card '+l.theme+' slide-up';card.onclick=()=>openLesson(l.id);card.innerHTML=`${comp?'<div class="done-mark">✓</div>':''}<div class="card-icon">${l.icon}</div><div class="card-body"><div class="card-title ${l.theme}">${l.title}</div><div class="card-sub">${l.subtitle}</div><div class="card-badges"><span class="badge badge-xp">⚡ ${l.xp} XP</span>${comp?'<span class="badge badge-done">✓ Completado</span>':''}</div></div><div class="card-arrow">→</div>`;list.appendChild(card);});
+}
+
+function openLesson(id){currentLesson=lessons.find(l=>l.id===id);currentTab='learn';quizState={current:0,selected:null,answered:false,score:0,done:false};document.getElementById('home-view').style.display='none';document.getElementById('lesson-view').style.display='block';document.getElementById('lv-title').textContent=currentLesson.icon+' '+currentLesson.title;document.getElementById('lv-sub').textContent=currentLesson.subtitle;document.getElementById('lv-xp').textContent='⚡ '+currentLesson.xp+' XP';switchTab('learn');window.scrollTo(0,0);}
+
+function goHome(){document.getElementById('home-view').style.display='';document.getElementById('lesson-view').style.display='none';renderHome();window.scrollTo(0,0);}
+
+function switchTab(tab){currentTab=tab;document.getElementById('tab-learn').className='tab-btn'+(tab==='learn'?' active':'');document.getElementById('tab-practice').className='tab-btn'+(tab==='practice'?' active':'');document.getElementById('tab-learn-content').style.display=tab==='learn'?'':'none';document.getElementById('tab-practice-content').style.display=tab==='practice'?'':'none';if(tab==='learn')renderLearnContent();else renderQuiz();}
+
+function renderLearnContent(){const c=document.getElementById('tab-learn-content');let h='';currentLesson.sections.forEach(s=>{h+=renderSection(s);});h+=`<button class="btn-practice" onclick="switchTab('practice')">Ir a Practicar →</button>`;c.innerHTML=h;c.classList.add('slide-up');}
+
+function renderSection(s){switch(s.type){case'rule':return renderRule(s);case'table':return renderTable(s);case'examples':return renderExamples(s);case'tip':return renderTip(s);case'comparison':return renderComparison(s);default:return'';}}
+
+function renderRule(s){let items='';if(s.content)items+=`<p class="block-text" style="margin-bottom:${s.items?'12px':'0'}">${s.content}</p>`;if(s.items){items+='<ul class="rule-list">';s.items.forEach((item,i)=>{if(item.startsWith('✗')){items+=`<li class="rule-item wrong"><span>${item.slice(2)}</span></li>`;}else if(item.startsWith('✓')){items+=`<li class="rule-item right"><span>${item.slice(2)}</span></li>`;}else{items+=`<li class="rule-item"><span class="rule-num">${i+1}</span><span>${item}</span></li>`;}});items+='</ul>';}return`<div class="block"><div class="block-title"><div class="block-title-dot">!</div>${s.title||''}</div>${items}</div>`;}
+
+function renderTable(s){let h=`<div style="margin-bottom:16px">`;if(s.title)h+=`<div class="table-title">${s.title}</div>`;h+=`<div class="table-wrap"><table><thead><tr>${s.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;s.rows.forEach(row=>{h+=`<tr>${row.map(c=>`<td>${c}</td>`).join('')}</tr>`;});h+=`</tbody></table></div></div>`;return h;}
+
+function renderExamples(s){let h=`<div style="margin-bottom:16px">`;if(s.title)h+=`<div class="examples-title">${s.title}</div>`;s.pairs.forEach(([en,es])=>{h+=`<div class="example-item"><div class="example-row"><div class="example-en"><div class="example-lang en">English</div><div class="example-text">${en}</div></div><div class="example-es"><div class="example-lang es">Español</div><div class="example-text">${es}</div></div></div></div>`;});h+='</div>';return h;}
+
+function renderTip(s){return`<div class="tip-block"><div class="tip-icon">💡</div><div><div class="tip-label">Consejo</div><div class="tip-text">${s.tip}</div></div></div>`;}
+
+function renderComparison(s){let h=`<div style="margin-bottom:16px">`;if(s.title)h+=`<div class="examples-title">${s.title}</div>`;s.pairs.forEach(([a,b,note])=>{h+=`<div class="comparison-item">${note?`<div class="comparison-note">${note}</div>`:''}<div class="comparison-row"><div class="comparison-a"><div class="comparison-label">Opción A</div>${a}</div><div class="comparison-b"><div class="comparison-label">Opción B</div>${b}</div></div></div>`;});h+='</div>';return h;}
+
+function renderQuiz(){const c=document.getElementById('tab-practice-content');const qs=currentLesson.quiz;const state=quizState;if(state.done){const pct=Math.round((state.score/qs.length)*100);const emoji=pct===100?'🏆':pct>=60?'🎉':'💪';const title=pct===100?'¡Perfecto!':pct>=60?'¡Bien hecho!':'¡Sigue practicando!';c.innerHTML=`<div class="quiz-result bounce-in"><div class="result-emoji">${emoji}</div><h2 class="result-title">${title}</h2><p class="result-sub">Respondiste correctamente <strong>${state.score} de ${qs.length}</strong> preguntas</p><div class="progress-wrap" style="margin-bottom:20px"><div class="progress-fill" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=60?'var(--yellow)':'var(--red)'}"></div></div>${pct<100?`<button class="btn-retry" onclick="restartQuiz()">Intentar de nuevo</button>`:''}</div>`;return;}
+const q=qs[state.current];const letters=['A','B','C','D'];let opts='';q.opts.forEach((opt,i)=>{let cls='quiz-option';if(state.answered){if(i===q.correct)cls+=' correct';else if(i===state.selected)cls+=' wrong';else cls+=' dimmed';}opts+=`<button class="${cls}" onclick="selectOption(${i})" ${state.answered?'disabled':''}><span class="option-letter">${letters[i]}</span>${opt}</button>`;});let fb='';if(state.answered){const ok=state.selected===q.correct;fb=`<div class="feedback-box ${ok?'correct':'wrong'} bounce-in"><div class="feedback-icon">${ok?'✅':'❌'}</div><div><div class="feedback-title">${ok?'¡Correcto!':'No exactamente...'}</div><div class="feedback-text">${q.exp}</div></div></div>`;}
+c.innerHTML=`<div style="background:#fff7ed;border:2px solid #fed7aa;border-radius:var(--radius);padding:14px 16px;margin-bottom:20px"><p style="font-weight:800;color:var(--orange);font-size:.875rem">${currentLesson.icon} Cuestionario: ${currentLesson.title}</p><p style="font-size:.75rem;color:var(--gray-500);margin-top:3px">Responde todas las preguntas para ganar ⚡ ${currentLesson.xp} XP</p></div><div class="quiz-progress-row"><span style="color:var(--gray-500)">Pregunta ${state.current+1} de ${qs.length}</span><span class="quiz-score-badge">⚡ ${state.score} correctas</span></div><div class="progress-wrap" style="margin-bottom:16px"><div class="progress-fill" style="width:${(state.current/qs.length)*100}%"></div></div><div class="quiz-question-box"><p class="quiz-question-text">${q.q}</p></div><div class="quiz-options">${opts}</div>${fb}${state.answered?`<button class="btn-next" onclick="nextQuestion()">${state.current+1>=qs.length?'Ver Resultado':'Siguiente →'}</button>`:''}`;
+}
+
+function selectOption(idx){if(quizState.answered)return;quizState.selected=idx;quizState.answered=true;if(idx===currentLesson.quiz[quizState.current].correct)quizState.score++;renderQuiz();}
+
+function nextQuestion(){const qs=currentLesson.quiz;if(quizState.current+1>=qs.length){quizState.done=true;progress[currentLesson.id]={score:quizState.score,total:qs.length};localStorage.setItem('grammar_progress',JSON.stringify(progress));}else{quizState.current++;quizState.selected=null;quizState.answered=false;}renderQuiz();window.scrollTo(0,0);}
+
+function restartQuiz(){quizState={current:0,selected:null,answered:false,score:0,done:false};renderQuiz();}
+
+renderHome();
+</script>
+</body>
+</html>

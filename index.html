@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYBA STUDIO ENGLISH - Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            
+            /* --- FONDO PELAJE BLUE MERLE --- */
+            background-color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 12% 18%, rgba(26, 32, 44, 1) 0%, rgba(26, 32, 44, 0.9) 12%, transparent 18%),
+                radial-gradient(circle at 35% 82%, rgba(74, 85, 104, 1) 0%, rgba(74, 85, 104, 0.8) 20%, transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(26, 32, 44, 1) 0%, rgba(26, 32, 44, 0.95) 15%, transparent 20%),
+                radial-gradient(circle at 65% 58%, rgba(113, 128, 150, 1) 0%, rgba(113, 128, 150, 0.8) 25%, transparent 35%),
+                radial-gradient(circle at 92% 88%, rgba(26, 32, 44, 1) 0%, rgba(26, 32, 44, 0.9) 10%, transparent 15%),
+                radial-gradient(circle at 45% 38%, rgba(45, 55, 72, 1) 0%, rgba(45, 55, 72, 0.7) 18%, transparent 24%),
+                radial-gradient(circle at 18% 68%, rgba(26, 32, 44, 1) 0%, rgba(26, 32, 44, 0.9) 12%, transparent 16%),
+                radial-gradient(circle at 55% 15%, rgba(113, 128, 150, 0.9) 0%, rgba(113, 128, 150, 0.7) 18%, transparent 25%),
+                radial-gradient(circle at 75% 78%, rgba(26, 32, 44, 1) 0%, rgba(26, 32, 44, 0.85) 14%, transparent 19%);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        header {
+            background: var(--bg-gradient);
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 { margin: 0; font-size: 1.8rem; font-weight: 800; }
+        header p { margin: 0.2rem 0 0; opacity: 0.9; font-size: 0.9rem; }
+
+        main {
+            max-width: 1100px;
+            width: 95%;
+            margin: -1rem auto 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* --- ESTILO DE PESTAÑAS ULTRA-COMPACTO --- */
+        .tabs-menu {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 6px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+            gap: 4px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            scrollbar-width: none;
+        }
+
+        .tabs-menu::-webkit-scrollbar { display: none; }
+
+        .tab-link {
+            text-align: center;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+            border: 1px solid transparent;
+        }
+
+        .tab-link:hover { 
+            background: rgba(79, 70, 229, 0.05); 
+            color: var(--primary); 
+        }
+
+        .tab-link.active { 
+            background: white; 
+            color: var(--primary); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-color: #e2e8f0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e5e7eb;
+            min-height: 140px;
+        }
+
+        .card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon { font-size: 1.8rem; color: var(--primary); margin-bottom: 0.6rem; }
+        .card h3 { margin: 0; font-size: 1.1rem; }
+        .card p { color: var(--text-muted); font-size: 0.85rem; margin: 0.4rem 0 1rem; line-height: 1.4; }
+        .card-footer { font-size: 0.8rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 0.3rem; }
+
+        .promo-banner {
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+            min-height: 280px;
+        }
+
+        .promo-content {
+            padding: 2.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .promo-tag {
+            background: #eef2ff;
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            width: fit-content;
+        }
+
+        .promo-content h2 { margin: 0; font-size: 2rem; color: var(--text-color); line-height: 1.2; }
+        .promo-content p { color: var(--text-muted); font-size: 1rem; line-height: 1.5; margin: 0; }
+
+        .promo-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: fit-content;
+            transition: background 0.3s;
+        }
+
+        .promo-btn:hover { background: var(--primary-hover); }
+
+        .promo-image {
+            flex: 0 0 45%;
+            height: 280px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .promo-banner { flex-direction: column; }
+            .promo-image { width: 100%; height: 220px; order: -1; }
+            .promo-content { padding: 2rem; text-align: center; align-items: center; }
+            .tabs-menu { justify-content: flex-start; }
+        }
+
+        .mascot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            z-index: 1000;
+        }
+        .dog-svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
+        .dog-head { animation: breathe 4s ease-in-out infinite; transform-origin: center bottom; }
+        @keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        .speech-bubble {
+            position: absolute; top: -45px; right: 10px; background: white; padding: 8px 12px;
+            border-radius: 15px; border-bottom-right-radius: 2px; font-size: 12px; font-weight: 800;
+            color: var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.1); opacity: 0;
+            transition: 0.3s ease; white-space: nowrap; pointer-events: none; border: 1px solid #e5e7eb;
+        }
+        .mascot-container:hover .speech-bubble { opacity: 1; transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>KYBA STUDIO ENGLISH MENU DE INICIO</h1>
+        <p>¿Qué te apetece estudiar hoy?</p>
+    </header>
+
+    <main>
+        <nav class="tabs-menu">
+            <a href="index.html" class="tab-link active"><i class="fas fa-home"></i> inicio</a>
+            <a href="guia 2.html" class="tab-link"><i class="fas fa-book"></i> guia2IETS&TOEFL</a>
+            <a href="guia.html" class="tab-link"><i class="fas fa-bookmark"></i> guiaIETS&TOEFL</a>
+            <a href="Sentence Master Pro.html" class="tab-link"><i class="fas fa-file-code"></i> Sentence Pro</a>
+            <a href="kybalingo grammar 2.html" class="tab-link"><i class="fas fa-spell-check"></i> grammar 2</a>
+            <a href="libro - copia.html" class="tab-link"><i class="fas fa-copy"></i> libro</a>
+            <a href="more grammar.html" class="tab-link"><i class="fas fa-plus-circle"></i> PRONUNCIATION</a>
+            <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-gamepad"></i>tiME gramaR game</a>
+            <a href="phrasalverbs.html" class="tab-link"><i class="fas fa-bolt"></i> phrasal OPTION GAME</a>
+            <a href="tiempos.html" class="tab-link"><i class="fas fa-clock"></i> tiempos</a>
+        </nav>
+
+        <div class="grid-container">
+            <a href="guia 2.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-book-reader"></i></div>
+                    <h3>guia 2 IETS & TOEFL</h3>
+                    <p>Ejercicios prácticos de la segunda parte.</p>
+                </div>
+                <div class="card-footer">Estudiar <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="guia.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-book"></i></div>
+                    <h3>guia IETS & TOEFL</h3>
+                    <p>Teoría principal y conceptos básicos.</p>
+                </div>
+                <div class="card-footer">Estudiar <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="index.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-file-code"></i></div>
+                    <h3>Sentence Master Pro</h3>
+                    <p>Accede al índice de contenidos.</p>
+                </div>
+                <div class="card-footer">Ver índice <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="kybalingo grammar 2.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-spell-check"></i></div>
+                    <h3>kybalingo grammar 2</h3>
+                    <p>Dominio avanzado de estructuras gramaticales.</p>
+                </div>
+                <div class="card-footer">Practicar <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="libro - copia.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-copy"></i></div>
+                    <h3>libro</h3>
+                    <p>Consulta tu material de lectura.</p>
+                </div>
+                <div class="card-footer">Abrir copia <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="more grammar.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-plus-circle"></i></div>
+                    <h3>more grammar</h3>
+                    <p>Contenido extra y miscelánea de apoyo.</p>
+                </div>
+                <div class="card-footer">Explorar <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="nykrolingo tiempos gramaticales.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>Kybalingo tiempos gramaticales game</h3>
+                    <p>Juego interactivo de gramática.</p>
+                </div>
+                <div class="card-footer">¡Jugar! <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="phrasalverbs.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>phrasalverbs</h3>
+                    <p>Verbos compuestos comunes.</p>
+                </div>
+                <div class="card-footer">Aprender <i class="fas fa-arrow-right"></i></div>
+            </a>
+            
+            <a href="tiempos.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-clock"></i></div>
+                    <h3>tiempos</h3>
+                    <p>Pasado, presente y futuro.</p>
+                </div>
+                <div class="card-footer">Repasar <i class="fas fa-arrow-right"></i></div>
+            </a>
+        </div>
+
+        <section class="promo-banner">
+            <div class="promo-content">
+                <span class="promo-tag">Compañero Inteligente</span>
+                <h2>Domina el Inglés con <strong>KYBA STUDIO</strong></h2>
+                <p>Tu tutor IA está listo para guiarte. Mejora tu fluidez con un método diseñado para ti.</p>
+                <a href="nykrolingo tiempos gramaticales.html" class="promo-btn">
+                    ¡Comenzar ahora! <i class="fas fa-paw"></i>
+                </a>
+            </div>
+            <div class="promo-image">
+                <img src="kybalingo.png" alt="Nykro Tutor">
+            </div>
+        </section>
+    </main>
+
+    <div class="mascot-container">
+        <div class="speech-bubble">Ready? 🤓🐾</div>
+        <svg class="dog-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g class="dog-head">
+                <path d="M 25,120 Q 10,160 30,185 Q 60,205 100,195 Q 140,205 170,185 Q 190,160 175,120 C 150,160 50,160 25,120 Z" fill="#ffffff" />
+                <path d="M 45,90 L 5,10 L 85,50 Z" fill="#1f2937" /><path d="M 40,80 L 15,20 L 75,55 Z" fill="#374151" />
+                <path d="M 155,90 L 195,10 L 115,50 Z" fill="#1f2937" /><path d="M 160,80 L 185,20 L 125,55 Z" fill="#374151" />
+                <path d="M 30,105 C 15,140 30,175 100,175 C 170,175 185,140 170,105 C 170,40 30,40 30,105 Z" fill="#ffffff" />
+                <path d="M 30,105 C 15,120 40,150 70,135 C 80,120 85,85 80,45 C 50,40 30,65 30,105 Z" fill="#1f2937" />
+                <path d="M 170,105 C 185,120 160,150 130,135 C 120,120 115,85 120,45 C 150,40 170,65 170,105 Z" fill="#1f2937" />
+                <ellipse cx="65" cy="95" rx="12" ry="8" fill="#ffffff" /><circle cx="65" cy="95" r="6" fill="#67e8f9" /><circle cx="65" cy="95" r="6" fill="#67e8f9" /><circle cx="65" cy="95" r="3" fill="#000000" /><circle cx="63" cy="93" r="1.5" fill="#ffffff" />
+                <ellipse cx="135" cy="95" rx="12" ry="8" fill="#ffffff" /><circle cx="135" cy="95" r="6" fill="#d97706" /><circle cx="135" cy="95" r="3" fill="#000000" /><circle cx="133" cy="93" r="1.5" fill="#ffffff" />
+                <ellipse cx="100" cy="130" rx="35" ry="30" fill="#ffffff" />
+                <path d="M 88,125 C 88,118 112,118 112,125 C 115,132 105,138 100,138 C 95,138 85,132 88,125 Z" fill="#111827" />
+                <path d="M 82,142 C 90,160 110,160 118,142 Z" fill="#1f2937" /><path d="M 86,145 C 86,175 114,175 114,145 Z" fill="#fca5a5" />
+                <path d="M 75,138 Q 88,145 100,142 Q 112,145 125,138" fill="none" stroke="#111827" stroke-width="2" stroke-linecap="round" />
+            </g>
+        </svg>
+    </div>
+
+</body>
+</html>

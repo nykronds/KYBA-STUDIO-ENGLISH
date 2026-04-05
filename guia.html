@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>IELTS & TOEFL Pro Studio Ultimate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root { 
+        --primary: #1e6f5c; 
+        --secondary: #2c5f8a; 
+        --accent: #f59e0b; 
+        --bg: #f0f4f8; 
+        --card-bg: #ffffff;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --hover-bg: #f8fafc;
+        --tab-active-bg: #1e6f5c;
+        --tab-inactive-bg: #e2e8f0;
+        --help-bg: #fef9e3;
+    }
+
+    body.dark {
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --border: #334155;
+        --hover-bg: #27364b;
+        --tab-active-bg: #0f766e;
+        --tab-inactive-bg: #1e293b;
+        --help-bg: #2d3a2c;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); transition: 0.3s; padding: 20px; }
+    
+    .container { max-width: 1400px; margin: auto; }
+
+    /* Header & Theme Toggle */
+    .header-main { text-align: center; margin-bottom: 20px; position: relative; }
+    .header-main h1 { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 10px;}
+    .dark .header-main h1 { color: #34d399; }
+    .theme-toggle { position: absolute; top: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); font-size: 1.2rem; cursor: pointer; border-radius: 50%; width: 45px; height: 45px; color: var(--text-main); transition: 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);}
+    .theme-toggle:hover { transform: scale(1.1); }
+
+    /* Navegación entre HTML */
+    .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--border);
+    }
+    .tab-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        background: var(--tab-inactive-bg);
+        border-radius: 40px;
+        font-weight: 600;
+        color: var(--text-main);
+        text-decoration: none;
+        transition: 0.2s;
+        font-size: 0.95rem;
+        border: 1px solid transparent;
+    }
+    .tab-link i { font-size: 1.1rem; }
+    .tab-link.active {
+        background: var(--tab-active-bg);
+        color: white;
+        border-color: var(--primary);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .tab-link:hover:not(.active) {
+        background: var(--hover-bg);
+        transform: translateY(-2px);
+    }
+
+    /* Exam Tabs */
+    .exam-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+    .exam-btn { padding: 12px 25px; border-radius: 50px; border: none; font-weight: 700; cursor: pointer; background: var(--card-bg); color: var(--text-main); border: 2px solid var(--border); transition: 0.3s; font-size: 1rem; }
+    .exam-btn.active.ielts { background: var(--primary); color: white; border-color: var(--primary); }
+    .exam-btn.active.toefl { background: var(--secondary); color: white; border-color: var(--secondary); }
+
+    /* Layout principal */
+    .dashboard-layout { display: grid; grid-template-columns: 1fr 340px; gap: 25px; align-items: start; margin-bottom: 30px; }
+    @media (max-width: 950px) { .dashboard-layout { grid-template-columns: 1fr; } }
+
+    /* Cards */
+    .card { background: var(--card-bg); border-radius: 24px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+    
+    /* Skill Tabs */
+    .skill-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
+    .skill-btn { padding: 8px 18px; border-radius: 12px; border: none; cursor: pointer; font-weight: 600; background: var(--hover-bg); color: var(--text-muted); transition: 0.3s; }
+    .skill-btn.active { background: var(--primary); color: white; }
+
+    /* Question Content */
+    .content-box { background: var(--hover-bg); padding: 20px; border-radius: 15px; border-left: 5px solid var(--accent); margin-bottom: 20px; font-size: 1.05rem; line-height: 1.6; max-height: 300px; overflow-y: auto; }
+    
+    /* Audio */
+    .audio-controls { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; background: var(--card-bg); padding: 15px; border-radius: 15px; border: 1px solid var(--border); flex-wrap: wrap;}
+    .speed-select { background: var(--bg); color: var(--text-main); border: 1px solid var(--border); border-radius: 8px; padding: 5px 10px; cursor: pointer; }
+
+    /* Options */
+    .option { padding: 16px; border: 2px solid var(--border); border-radius: 15px; margin-bottom: 12px; cursor: pointer; transition: 0.2s; font-weight: 500; background: var(--card-bg); }
+    .option:hover { border-color: var(--primary); transform: translateX(5px); }
+    .answered .option { pointer-events: none; opacity: 0.6; }
+    .option.correct { border-color: #10b981; background: rgba(16, 185, 129, 0.1); color: #10b981; opacity: 1 !important; }
+    .option.wrong { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); color: #ef4444; opacity: 1 !important; }
+
+    /* Writing & Speaking */
+    .writing-area { width: 100%; height: 250px; padding: 15px; border: 2px solid var(--border); border-radius: 15px; background: var(--bg); color: var(--text-main); font-family: inherit; resize: vertical; margin-bottom: 10px; line-height: 1.5; }
+    .record-btn { background: #ef4444; color: white; border: none; width: 80px; height: 80px; border-radius: 50%; font-size: 2rem; cursor: pointer; transition: 0.3s; display: block; margin: 30px auto; box-shadow: 0 4px 15px rgba(239,68,68,0.4); }
+    .record-btn.recording { animation: pulse 1.5s infinite; background: #dc2626; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 70% { box-shadow: 0 0 0 20px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
+
+    /* Buttons */
+    .action-row { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; flex-wrap: wrap; gap: 10px; }
+    .btn { padding: 10px 20px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+    .btn-hint { background: rgba(245, 158, 11, 0.2); color: #d97706; }
+    .btn-translate { background: rgba(44, 95, 138, 0.2); color: var(--secondary); }
+    .btn-next { background: var(--primary); color: white; }
+    .btn-next:hover { opacity: 0.9; transform: translateY(-2px); }
+    .dark .btn-hint { color: #fcd34d; }
+    .dark .btn-translate { color: #bae6fd; }
+
+    /* Feedback & Hints */
+    .feedback-box { background: rgba(16, 185, 129, 0.1); border-left: 5px solid #10b981; padding: 15px; border-radius: 12px; margin-bottom: 20px; display: none; color: var(--text-main); }
+    .hint-box { background: rgba(245, 158, 11, 0.1); border-left: 5px solid var(--accent); padding: 15px; border-radius: 12px; margin-bottom: 20px; display: none; color: var(--text-main); }
+
+    /* Sidebar Progress & Timer */
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 600; font-size: 0.95rem; }
+    .xp-badge { background: var(--accent); color: white; padding: 5px 12px; border-radius: 50px; font-size: 0.85rem; }
+    .progress-container { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; margin: 15px 0; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), #34d399); width: 0%; transition: 0.8s; }
+    
+    .timer-panel { background: var(--hover-bg); border-radius: 15px; padding: 15px; margin-bottom: 20px; text-align: center; border: 1px solid var(--border); }
+    .timer-display { font-family: monospace; font-size: 2.2rem; font-weight: 700; color: var(--primary); margin: 10px 0; display: block; }
+    .dark .timer-display { color: #34d399; }
+    .timer-btn { background: var(--border); border: none; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--text-main); margin: 0 5px; transition: 0.2s;}
+    .timer-btn:hover { background: var(--primary); color: white; }
+
+    /* Panel de ayuda contextual (mejorado didácticamente) */
+    .help-panel {
+        margin-top: 30px;
+        background: var(--card-bg);
+        border-radius: 24px;
+        padding: 20px;
+        border: 1px solid var(--border);
+    }
+    .help-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 12px;
+    }
+    .help-header h3 {
+        font-size: 1.3rem;
+        color: var(--primary);
+    }
+    .help-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .help-card {
+        background: var(--hover-bg);
+        border-radius: 18px;
+        padding: 15px;
+    }
+    .help-card h4 {
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .tip-text, .vocab-text {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    .tool-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .tool-btn:hover {
+        opacity: 0.9;
+        transform: scale(0.98);
+    }
+    .random-topic {
+        background: var(--card-bg);
+        padding: 10px;
+        border-radius: 14px;
+        margin: 10px 0;
+        font-size: 0.9rem;
+        border-left: 3px solid var(--accent);
+    }
+    .badge {
+        background: var(--accent);
+        color: white;
+        border-radius: 20px;
+        padding: 2px 8px;
+        font-size: 0.7rem;
+        margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header-main">
+        <h1><i class="fas fa-graduation-cap"></i> Pro Studio Ultimate</h1>
+        <p style="color: var(--text-muted);">Aprende con ejercicios reales + guía didáctica paso a paso</p>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+    </header>
+
+    <!-- Pestañas de navegación entre páginas -->
+    <nav class="nav-tabs">
+    <a href="index.html" class="tab-link"></i>  INICIO 🎮</a>
+    <a href="guia.html" class="tab-link active"><i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL</a>
+    <a href="guia%202.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL</a>
+    <a href="Sentence Master Pro.html" class="tab-link"><i class="fas fa-home"></i> 🏠 Phrasal Verbs Sentence Pro</a>
+    <a href="phrasalverbs.html" class="tab-link"><i class="fas fa-language"></i> 🔤 Phrasal Verbs Option Master</a>
+    <a href="libro - copia.html" class="tab-link"><i class="fas fa-bookmark"></i> 📑 LIBRO Advanced_Student</a>
+    <a href="tiempos.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
+    <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
+    
+</nav>
+
+
+    <div class="exam-tabs">
+        <button class="exam-btn active ielts" onclick="setExam('ielts', this)"><i class="fab fa-british"></i> IELTS Academic</button>
+        <button class="exam-btn toefl" onclick="setExam('toefl', this)"><i class="fas fa-laptop-code"></i> TOEFL iBT</button>
+    </div>
+
+    <div class="dashboard-layout">
+        <main class="card">
+            <div class="skill-tabs" id="skillTabs">
+                <button class="skill-btn active" onclick="setSkill('listening', this)">🎧 Listening</button>
+                <button class="skill-btn" onclick="setSkill('reading', this)">📖 Reading</button>
+                <button class="skill-btn" onclick="setSkill('writing', this)">✍️ Writing</button>
+                <button class="skill-btn" onclick="setSkill('speaking', this)">🎙️ Speaking</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">
+                <span id="questionCounter">Question 1 of X</span>
+            </div>
+
+            <div id="hintArea" class="hint-box"></div>
+            <div id="feedbackArea" class="feedback-box"></div>
+            
+            <div id="content-area"></div>
+
+            <div class="action-row">
+                <div>
+                    <button class="btn btn-hint" onclick="showHint()"><i class="fas fa-lightbulb"></i> Hint (-5 XP)</button>
+                    <button class="btn btn-translate" onclick="toggleTranslation()"><i class="fas fa-language"></i> Translate</button>
+                </div>
+                <button class="btn btn-next" onclick="nextQuestion()">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </main>
+
+        <aside class="card">
+            <h3 style="margin-bottom: 20px;"><i class="fas fa-chart-line"></i> Your Progress</h3>
+            <div class="stat-row"><span>Level:</span> <span id="userLevel" style="color: var(--primary);">Beginner</span></div>
+            <div class="stat-row"><span>Total XP:</span> <span class="xp-badge"><i class="fas fa-bolt"></i> <span id="xpCount">0</span></span></div>
+            <div class="stat-row"><span>Streak:</span> <span id="streakCount">0 Days 🔥</span></div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0;">
+
+            <div class="timer-panel">
+                <div style="font-weight: 600; color: var(--text-muted);"><i class="fas fa-stopwatch"></i> Practice Timer</div>
+                <span class="timer-display" id="timerDisplay">00:00</span>
+                <div>
+                    <button class="timer-btn" onclick="startTimer()">Start</button>
+                    <button class="timer-btn" onclick="pauseTimer()">Pause</button>
+                    <button class="timer-btn" onclick="resetTimer()">Reset</button>
+                </div>
+            </div>
+
+            <div style="background: var(--hover-bg); padding: 15px; border-radius: 12px; font-size: 0.9rem; border: 1px solid var(--border); line-height: 1.5;">
+                <strong style="color: var(--accent); display: block; margin-bottom: 5px;"><i class="fas fa-info-circle"></i> Pro Tip:</strong>
+                <span id="proTip">Consistent daily practice builds neural pathways faster than cramming.</span>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Panel de ayuda contextual (tips, vocabulario, mini herramienta) -->
+    <div class="help-panel" id="helpPanel">
+        <div class="help-header">
+            <i class="fas fa-graduation-cap" style="font-size: 1.8rem; color: var(--accent);"></i>
+            <h3>📚 Aprende mientras practicas</h3>
+        </div>
+        <div class="help-grid" id="helpGrid">
+            <!-- Contenido dinámico según la habilidad -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // ==================== ESTADO GLOBAL ====================
+    let currentExam = 'ielts';
+    let currentSkill = 'listening';
+    let currentIndex = 0;
+    let isTranslated = false;
+    let xp = parseInt(localStorage.getItem('studio_xp')) || 0;
+    let streak = parseInt(localStorage.getItem('studio_streak')) || 1;
+    let isDarkMode = localStorage.getItem('studio_theme') === 'dark';
+    const proTips = [
+        "En Listening, no escuches palabra por palabra; busca la idea general y los sinónimos.",
+        "En Reading, escanea (scan) buscando nombres propios, fechas y números antes de leer a detalle.",
+        "Para el Speaking, la fluidez es más importante que usar un vocabulario perfecto pero pausado.",
+        "En el Writing, dedica siempre 3-5 minutos iniciales a estructurar tu ensayo en papel.",
+        "Los audios de TOEFL suelen tener acentos norteamericanos, IELTS mezcla británicos, australianos y más.",
+        "Toma notas rápidas usando símbolos e iniciales, nunca oraciones completas."
+    ];
+
+    // ==================== BASE DE DATOS MEJORADA (muchas más preguntas) ====================
+    const db = {
+        ielts: {
+            listening: [
+                { text: "Section 1: Conversation at a travel agency. Agent explains ticket options.", text_es: "Sección 1: Conversación agencia viajes.", script: "Agent: The flexible fare allows you to change dates without penalty. Customer: I'll take that.", question: "What is the main advantage of the flexible fare?", question_es: "¿Principal ventaja de tarifa flexible?", options: ["It is cheaper", "Free meals", "Can change dates without penalty", "Fully refundable"], options_es: ["Más barata", "Comidas gratis", "Cambiar fechas sin multa", "Reembolsable"], correct: 2, hint: "Listen for 'change dates'.", explanation: "The agent says change dates without penalty." },
+                { text: "Section 2: Tour of a sports center.", text_es: "Sección 2: Centro deportivo.", script: "Guide: Turn right past reception for squash courts.", question: "Where are squash courts?", question_es: "¿Dónde están las canchas?", options: ["Next to pool", "Right past reception", "Outside", "Straight ahead"], options_es: ["Junto piscina", "Derecha pasando recepción", "Afuera", "Todo recto"], correct: 1, hint: "Direction relative to reception.", explanation: "Turn right past reception." },
+                { text: "Section 3: Two students discussing renewable energy project.", text_es: "Sección 3: Estudiantes proyecto energías renovables.", script: "John: The data on solar costs is outdated. Sarah: I found a 2023 report.", question: "What problem did John have?", question_es: "¿Qué problema tuvo John?", options: ["Expensive panels", "Outdated data", "Missing textbooks", "Sarah didn't help"], options_es: ["Paneles caros", "Datos desactualizados", "Faltan libros", "Sarah no ayudó"], correct: 1, hint: "What does 'outdated' mean?", explanation: "Outdated means not current." },
+                { text: "Section 4: Lecture about ancient civilizations.", text_es: "Sección 4: Conferencia civilizaciones antiguas.", script: "Professor: The Mayans developed a complex writing system called glyphs.", question: "What writing system did the Mayans use?", question_es: "¿Qué sistema de escritura usaban los mayas?", options: ["Alphabet", "Glyphs", "Cuneiform", "Hieroglyphs"], options_es: ["Alfabeto", "Glifos", "Cuneiforme", "Jeroglíficos"], correct: 1, hint: "Listen for the specific name.", explanation: "Professor says 'glyphs'." },
+                { text: "Section 5: Conversation at a university library.", text_es: "Sección 5: Conversación biblioteca universitaria.", script: "Librarian: Reference books cannot be borrowed, but you can photocopy pages.", question: "What can the student do with reference books?", question_es: "¿Qué puede hacer el estudiante con libros de referencia?", options: ["Borrow them", "Photocopy pages", "Take home", "Read only in library"], options_es: ["Tomar prestados", "Fotocopiar páginas", "Llevar a casa", "Leer solo en biblioteca"], correct: 1, hint: "Listen for 'photocopy'.", explanation: "Librarian suggests photocopying." }
+            ],
+            reading: [
+                { text: "Skyscrapers evolved thanks to elevators and steel frames. Before these, load-bearing walls limited height.", text_es: "Rascacielos gracias a ascensores y acero.", question: "Why were older buildings short?", question_es: "¿Por qué antiguos edificios bajos?", options: ["People preferred short", "Steel expensive", "Limitations of load-bearing walls", "Elevators slow"], options_es: ["Preferencia", "Acero caro", "Limitaciones muros carga", "Ascensores lentos"], correct: 2, hint: "Look at 'load-bearing walls'.", explanation: "Masonry walls limited height." },
+                { text: "Cacao was consumed as a bitter, spicy drink by Mayans and Aztecs, unlike today's sweet chocolate.", text_es: "Cacao bebida amarga por Mayas y Aztecas.", question: "How did Mayans consume cacao?", question_es: "¿Cómo consumían cacao los Mayas?", options: ["Sweet bars", "Bitter spicy drink", "Medicine", "With milk"], options_es: ["Barras dulces", "Bebida amarga picante", "Medicina", "Con leche"], correct: 1, hint: "Find the description.", explanation: "They drank it as a bitter, spicy drink." },
+                { text: "Sleep deprivation in teens: circadian rhythm shift delays sleep onset, making early school start times problematic.", text_es: "Falta de sueño en adolescentes.", question: "What makes early school start times problematic?", question_es: "¿Qué hace problemático el inicio temprano?", options: ["Too much homework", "Circadian rhythm delay", "Screen time", "Lack of exercise"], options_es: ["Mucha tarea", "Retraso ritmo circadiano", "Pantallas", "Falta ejercicio"], correct: 1, hint: "Biologically incompatible.", explanation: "Natural delay in circadian rhythms." },
+                { text: "The Industrial Revolution caused urbanization as people moved to cities for factory work.", text_es: "Revolución Industrial causó urbanización.", question: "What caused urbanization?", question_es: "¿Qué causó la urbanización?", options: ["Better farming", "Factory jobs", "Government laws", "Population decrease"], options_es: ["Mejor agricultura", "Trabajos en fábricas", "Leyes", "Disminución población"], correct: 1, hint: "Why did people flock to cities?", explanation: "Seeking factory work." },
+                { text: "Photosynthesis stores energy in carbohydrate molecules like sugars.", text_es: "Fotosíntesis almacena energía en carbohidratos.", question: "Where is energy stored?", question_es: "¿Dónde se almacena energía?", options: ["Sunlight", "CO2", "Carbohydrate molecules", "Water"], options_es: ["Luz solar", "CO2", "Moléculas carbohidratos", "Agua"], correct: 2, hint: "'stored in' phrase.", explanation: "In carbohydrate molecules." }
+            ],
+            writing: [
+                { text: "Task 1: The chart shows number of men and women in further education in Britain.", text_es: "Tarea 1: Gráfico educación superior.", hint: "Start with an overview. No personal opinion.", type: "writing" },
+                { text: "Task 2: Some believe unpaid community service should be compulsory in high school. Discuss.", text_es: "Tarea 2: Servicio comunitario obligatorio.", hint: "250 words, intro, 2 body, conclusion.", type: "writing" },
+                { text: "Task 2: Technology has made our lives easier, but also more stressful. To what extent do you agree?", text_es: "Tarea 2: Tecnología facilita pero estresa.", hint: "Give examples of both sides.", type: "writing" },
+                { text: "Task 1: The table below shows the percentage of households with internet access in five countries.", text_es: "Tarea 1: Tabla acceso a internet.", hint: "Compare highest and lowest.", type: "writing" },
+                { text: "Task 2: Some people think that governments should spend more money on railways than roads. Do you agree?", text_es: "Tarea 2: ¿Más dinero en trenes que carreteras?", hint: "Use conditional structures.", type: "writing" }
+            ],
+            speaking: [
+                { text: "Part 1: Let's talk about your hometown. Where is it? What is it known for?", text_es: "Parte 1: Tu ciudad natal.", hint: "Answer with 2-3 sentences.", type: "speaking" },
+                { text: "Part 2: Describe a book that influenced you. You should say: what, when, why.", text_es: "Parte 2: Libro que te influenció.", hint: "Speak for 1.5-2 minutes.", type: "speaking" },
+                { text: "Part 1: Do you prefer to work in a team or alone? Why?", text_es: "Parte 1: ¿Trabajo en equipo o solo?", hint: "Give two reasons.", type: "speaking" },
+                { text: "Part 2: Describe a memorable trip you took.", text_es: "Parte 2: Viaje memorable.", hint: "Include details about place, activities, feelings.", type: "speaking" },
+                { text: "Part 3: How has technology changed the way people communicate?", text_es: "Parte 3: ¿Cómo ha cambiado la tecnología la comunicación?", hint: "Compare past and present.", type: "speaking" }
+            ]
+        },
+        toefl: {
+            listening: [
+                { text: "Biology Lecture: Dolphin echolocation used for social interactions.", text_es: "Clase: Ecolocalización delfines.", script: "Professor: Echolocation helps identify emotional states.", question: "Besides hunting, what is echolocation used for?", question_es: "¿Otro uso de ecolocalización?", options: ["Navigation", "Social interactions", "Avoid boats", "Find water"], options_es: ["Navegación", "Interacciones sociales", "Evitar barcos", "Encontrar agua"], correct: 1, hint: "Listen for 'complex social interactions'.", explanation: "Professor mentions social interactions." },
+                { text: "Campus Conversation: Student needs reference books.", text_es: "Conversación: Libros de referencia.", script: "Librarian: Reference books cannot leave, but you can make copies.", question: "What is the solution?", question_es: "¿Solución?", options: ["Borrow one day", "Buy online", "Make copies", "Ask professor"], options_es: ["Prestar un día", "Comprar online", "Hacer copias", "Preguntar profesor"], correct: 2, hint: "Listen for 'copies'.", explanation: "Make copies in library." },
+                { text: "Art History: Oil paint allowed blending colors.", text_es: "Historia del arte: Pintura al óleo.", script: "Professor: Oil dries slowly, enabling gradients.", question: "Why was oil paint a breakthrough?", question_es: "¿Por qué avance?", options: ["Cheaper", "Dried instantly", "Allowed blending", "Easier to make"], options_es: ["Más barata", "Secado instantáneo", "Permitía mezclar", "Más fácil"], correct: 2, hint: "Advantage of slow drying.", explanation: "Blending colors." },
+                { text: "Geology Lecture: Plate tectonics cause earthquakes.", text_es: "Geología: Tectónica de placas.", script: "Professor: When plates grind against each other, energy is released as earthquakes.", question: "What causes earthquakes?", question_es: "¿Qué causa terremotos?", options: ["Volcanoes", "Plate movement", "Erosion", "Human activity"], options_es: ["Volcanes", "Movimiento placas", "Erosión", "Actividad humana"], correct: 1, hint: "Plates grinding.", explanation: "Release of energy from plate movement." },
+                { text: "Psychology: Short-term memory can hold 7±2 items.", text_es: "Psicología: Memoria a corto plazo.", script: "Professor: George Miller's theory says 7 plus or minus 2 chunks.", question: "How many items can short-term memory hold?", question_es: "¿Cuántos elementos?", options: ["3-5", "5-9", "10-12", "1-3"], options_es: ["3-5", "5-9", "10-12", "1-3"], correct: 1, hint: "7±2.", explanation: "5 to 9 items." }
+            ],
+            reading: [
+                { text: "Photosynthesis stores energy in carbohydrate molecules.", text_es: "Fotosíntesis almacena energía.", question: "Where is chemical energy stored?", question_es: "¿Dónde se almacena?", options: ["Sunlight", "CO2", "Carbohydrate molecules", "Roots"], options_es: ["Luz solar", "CO2", "Moléculas carbohidratos", "Raíces"], correct: 2, hint: "'stored in'", explanation: "In carbohydrate molecules." },
+                { text: "The Industrial Revolution increased urbanization due to factory jobs.", text_es: "Revolución Industrial urbanización.", question: "What caused urbanization?", question_es: "¿Causa de urbanización?", options: ["Better tools", "Factory work", "Government", "Population drop"], options_es: ["Mejores herramientas", "Trabajo en fábricas", "Gobierno", "Caída población"], correct: 1, hint: "Why people moved to cities.", explanation: "Seeking factory work." },
+                { text: "Bird migration optimizes food and breeding habitats.", text_es: "Migración de aves optimiza alimento.", question: "Primary reason for migration?", question_es: "¿Razón principal?", options: ["Escape predators", "Optimize food/breeding", "Avoid humans", "Practice flying"], options_es: ["Escapar depredadores", "Optimizar alimento/cría", "Evitar humanos", "Practicar vuelo"], correct: 1, hint: "What they optimize.", explanation: "Food and breeding habitats." },
+                { text: "Climate change is causing sea levels to rise due to thermal expansion and melting ice.", text_es: "Cambio climático sube nivel del mar.", question: "What are two causes of sea level rise?", question_es: "¿Dos causas?", options: ["Wind and waves", "Thermal expansion and ice melt", "Rain and evaporation", "Tides and currents"], options_es: ["Viento y olas", "Expansión térmica y deshielo", "Lluvia y evaporación", "Mareas y corrientes"], correct: 1, hint: "Thermal expansion, ice melt.", explanation: "Both contribute." },
+                { text: "Renewable energy sources like solar and wind are intermittent.", text_es: "Energías renovables intermitentes.", question: "What does 'intermittent' mean in this context?", question_es: "¿Qué significa 'intermittent'?", options: ["Constant", "Unreliable", "Not continuous", "Cheap"], options_es: ["Constante", "No confiable", "No continuo", "Barato"], correct: 2, hint: "Not always available.", explanation: "Energy production varies." }
+            ],
+            writing: [
+                { text: "Independent: Is it better to work in teams or alone? Use reasons.", text_es: "Independiente: ¿Trabajo en equipo o solo?", hint: "Clear stance, 300 words.", type: "writing" },
+                { text: "Academic Discussion: Most significant invention of 20th century? Computer vs airplane.", text_es: "Discusión: Invento más significativo.", hint: "Acknowledge others, add your view.", type: "writing" },
+                { text: "Integrated Writing: Summarize a lecture and reading about urban planning.", text_es: "Escritura integrada: Planificación urbana.", hint: "Compare points from both sources.", type: "writing" },
+                { text: "Independent: Do you agree that university education should be free for all?", text_es: "Independiente: ¿Educación universitaria gratuita?", hint: "Discuss economic and social impacts.", type: "writing" },
+                { text: "Academic Discussion: Should companies allow remote work permanently?", text_es: "Discusión: ¿Trabajo remoto permanente?", hint: "Give two specific examples.", type: "writing" }
+            ],
+            speaking: [
+                { text: "Independent: Prefer small town or big city? Why?", text_es: "Independiente: ¿Pueblo o ciudad?", hint: "15 sec prep, 45 sec speak.", type: "speaking" },
+                { text: "Integrated: University plans to pave dirt path. Summarize and give opinion.", text_es: "Integrado: Pavimentar camino.", hint: "State opinion with reasons.", type: "speaking" },
+                { text: "Independent: What is the most important quality in a friend?", text_es: "Independiente: Cualidad importante en amigo.", hint: "Give personal example.", type: "speaking" },
+                { text: "Integrated: Campus announcement about new cafeteria hours. Do you agree?", text_es: "Integrado: Nuevo horario cafetería.", hint: "Summarize then agree/disagree.", type: "speaking" },
+                { text: "Independent: Describe a skill you would like to learn and why.", text_es: "Independiente: Habilidad que te gustaría aprender.", hint: "Explain benefits.", type: "speaking" }
+            ]
+        }
+    };
+
+    // ==================== FUNCIONES PRINCIPALES ====================
+    function init() { 
+        if(isDarkMode) document.body.classList.add('dark'); 
+        updateStatsUI(); 
+        updateProTip(); 
+        render(); 
+        updateHelpPanel();
+    }
+
+    function render() { 
+        const list = db[currentExam][currentSkill]; 
+        if(!list || !list[currentIndex]) return; 
+        const q = list[currentIndex]; 
+        document.getElementById('questionCounter').innerText = `Question ${currentIndex+1} of ${list.length}`; 
+        const area = document.getElementById('content-area'); 
+        document.getElementById('hintArea').style.display = 'none'; 
+        document.getElementById('feedbackArea').style.display = 'none'; 
+        area.classList.remove('answered'); 
+        let html = ''; 
+        if(q.text) html += `<div class="content-box"><i class="${currentSkill === 'listening' ? 'fas fa-headphones' : (currentSkill === 'reading' ? 'fas fa-book-open' : 'fas fa-pen-nib')}" style="color:var(--accent); margin-right:8px;"></i> <strong>${isTranslated && q.text_es ? q.text_es : q.text}</strong></div>`; 
+        if(q.options) { 
+            if(currentSkill === 'listening' && q.script) html += `<div class="audio-controls"><button class="btn" style="background:var(--primary);color:white;" onclick="playAudio('${q.script.replace(/'/g, "\\'")}')"><i class="fas fa-play"></i> Play Audio</button><select id="audioSpeed" class="speed-select"><option value="0.8">0.8x</option><option value="1.0" selected>1.0x</option><option value="1.2">1.2x</option></select></div>`; 
+            html += `<p style="font-weight:700; margin-bottom:15px;">${isTranslated && q.question_es ? q.question_es : q.question}</p>`; 
+            const opts = isTranslated && q.options_es ? q.options_es : q.options; 
+            opts.forEach((opt,i) => { html += `<div class="option" onclick="checkAnswer(this, ${i}, ${q.correct})">${opt}</div>`; }); 
+        } else if(q.type === 'writing') { 
+            html += `<textarea class="writing-area" placeholder="${isTranslated ? 'Escribe tu respuesta aquí...' : 'Type your answer here...'}" onkeyup="countWords(this)"></textarea><div style="text-align:right; font-size:0.85rem;">Word Count: <span id="wordCount">0</span></div><button class="btn btn-next" style="margin-top:10px; width:100%; justify-content:center;" onclick="addXP(15); showFeedback('✅ Borrador guardado. ¡Buen trabajo practicando escritura!');"><i class="fas fa-save"></i> Submit Draft</button>`; 
+        } else if(q.type === 'speaking') { 
+            html += `<div style="text-align:center; padding:20px;"><div style="font-size:3rem;"><i class="fas fa-microphone-alt"></i></div><button class="record-btn" id="recordBtn" onclick="toggleRecording()"><i class="fas fa-microphone"></i></button><p id="recordStatus">Click to start recording</p></div>`; 
+        } 
+        area.innerHTML = html; 
+        updateHelpPanel();
+    }
+
+    function updateHelpPanel() {
+        const helpData = {
+            listening: { tips: "🎧 Tip: Antes de escuchar, lee las preguntas y subraya palabras clave. Escucha sinónimos, no las mismas palabras.", vocab: "📌 Señales de audio: 'however', 'but', 'therefore', 'firstly'.", tool: "🔧 Mini-ejercicio: Escucha 30s de un podcast en inglés y escribe 3 palabras nuevas." },
+            reading: { tips: "📖 Tip: Usa 'skimming' para idea general y 'scanning' para datos específicos. No leas cada palabra.", vocab: "📌 Conectores: 'in contrast', 'moreover', 'consequently'.", tool: "🔧 Práctica: Toma un texto y en 1 minuto identifica la idea principal de cada párrafo." },
+            writing: { tips: "✍️ Tip: Planifica tu ensayo: Introducción (parafrasea), 2 párrafos (idea + ejemplo), Conclusión (resumen).", vocab: "📌 Frases útiles: 'It is widely believed that...', 'From my perspective...'", tool: "🔧 Generador: Escribe 3 conectores y crea una oración con cada uno." },
+            speaking: { tips: "🎙️ Tip: La fluidez es clave. Si olvidas una palabra, parafrasea. Grábate y escucha.", vocab: "📌 Expresiones: 'Well, that's an interesting question...', 'Let me think...'", tool: "🔧 Reto: Responde 'Describe your favorite hobby' durante 45 segundos." }
+        };
+        const data = helpData[currentSkill];
+        if (data) {
+            document.getElementById('helpGrid').innerHTML = `
+                <div class="help-card"><h4><i class="fas fa-lightbulb"></i> Tip de estudio</h4><div class="tip-text">${data.tips}</div></div>
+                <div class="help-card"><h4><i class="fas fa-book"></i> Vocabulario útil</h4><div class="vocab-text">${data.vocab}</div></div>
+                <div class="help-card"><h4><i class="fas fa-tools"></i> Mini herramienta</h4><div class="vocab-text">${data.tool}</div><button class="tool-btn" onclick="useMiniTool('${currentSkill}')">🎯 Aplicar ahora</button></div>
+            `;
+        }
+    }
+
+    function useMiniTool(skill) {
+        let msg = "";
+        if (skill === 'listening') msg = "🎧 Escucha 30 segundos de audio (usa el botón Play) y escribe 3 palabras clave.";
+        else if (skill === 'reading') msg = "📖 En el texto actual, identifica la palabra más importante de cada párrafo en 1 minuto.";
+        else if (skill === 'writing') msg = "✍️ Escribe 3 conectores y una oración de ejemplo para cada uno.";
+        else if (skill === 'speaking') msg = "🎙️ Grábate respondiendo 'What is your favorite place in your city?' durante 45 segundos.";
+        alert(msg);
+        addXP(2);
+        showFeedback("✨ +2 XP por practicar con la mini herramienta.");
+    }
+
+    function setExam(exam, el) { currentExam = exam; currentIndex = 0; document.querySelectorAll('.exam-btn').forEach(btn => btn.classList.remove('active','ielts','toefl')); el.classList.add('active', exam); updateProTip(); render(); }
+    function setSkill(skill, el) { currentSkill = skill; currentIndex = 0; document.querySelectorAll('.skill-btn').forEach(btn => btn.classList.remove('active')); el.classList.add('active'); updateProTip(); render(); }
+    function toggleTranslation() { isTranslated = !isTranslated; render(); }
+    function updateProTip() { document.getElementById('proTip').innerText = proTips[Math.floor(Math.random() * proTips.length)]; }
+    
+    function playAudio(text) { window.speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(text); utterance.lang = currentExam === 'ielts' ? 'en-GB' : 'en-US'; const speed = document.getElementById('audioSpeed')?.value; if (speed) utterance.rate = parseFloat(speed); window.speechSynthesis.speak(utterance); }
+
+    let isRecording = false, recordingTimeout;
+    function toggleRecording() { const btn = document.getElementById('recordBtn'); const status = document.getElementById('recordStatus'); isRecording = !isRecording; if (isRecording) { btn.classList.add('recording'); btn.innerHTML = '<i class="fas fa-stop"></i>'; status.innerText = "Recording... Speak clearly."; recordingTimeout = setTimeout(() => { if (isRecording) toggleRecording(); }, 60000); } else { clearTimeout(recordingTimeout); btn.classList.remove('recording'); btn.innerHTML = '<i class="fas fa-microphone"></i>'; status.innerText = "Audio saved! +10 XP"; addXP(10); setTimeout(() => { status.innerText = "Click to record again"; }, 3000); } }
+
+    function countWords(textarea) { const text = textarea.value.trim(); const count = text === '' ? 0 : text.split(/\s+/).length; if (document.getElementById('wordCount')) document.getElementById('wordCount').innerText = count; }
+
+    function checkAnswer(el, selected, correct) { const area = document.getElementById('content-area'); if (area.classList.contains('answered')) return; const q = db[currentExam][currentSkill][currentIndex]; area.classList.add('answered'); if (selected === correct) { el.classList.add('correct'); addXP(15); showFeedback(`✨ <strong>Correcto! (+15 XP)</strong><br><br>${q.explanation || '¡Bien hecho! Sigue así.'}`); } else { el.classList.add('wrong'); const options = area.querySelectorAll('.option'); options[correct].classList.add('correct'); showFeedback(`❌ <strong>Incorrecto.</strong><br><br>${q.explanation || 'La respuesta correcta es la opción ' + (correct+1) + '. Revisa la explicación.'}`); } }
+
+    function addXP(amount) { xp = Math.max(0, xp + amount); localStorage.setItem('studio_xp', xp); updateStatsUI(); }
+    function updateStatsUI() { document.getElementById('xpCount').innerText = xp; document.getElementById('streakCount').innerText = `${streak} Days 🔥`; let progress = (xp % 100); document.getElementById('progressBar').style.width = progress + "%"; let level = "Beginner"; if (xp >= 100) level = "Intermediate"; if (xp >= 300) level = "Advanced"; if (xp >= 600) level = "Pro Mastery"; document.getElementById('userLevel').innerText = level; }
+    function showHint() { const q = db[currentExam][currentSkill][currentIndex]; if (q && q.hint) { document.getElementById('hintArea').innerHTML = `<strong>💡 Hint:</strong> ${q.hint}`; document.getElementById('hintArea').style.display = 'block'; addXP(-5); } }
+    function showFeedback(msg) { const fb = document.getElementById('feedbackArea'); fb.innerHTML = msg; fb.style.display = 'block'; }
+    function nextQuestion() { currentIndex++; const max = db[currentExam][currentSkill].length; if (currentIndex >= max) { currentIndex = 0; alert("🎉 ¡Completaste todas las preguntas de esta sección! Volvemos al inicio para repasar."); } updateProTip(); render(); }
+    function toggleTheme() { isDarkMode = !isDarkMode; document.body.classList.toggle('dark', isDarkMode); localStorage.setItem('studio_theme', isDarkMode ? 'dark' : 'light'); const icon = document.querySelector('#themeToggle i'); icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon'; }
+    let timerInterval, seconds = 0;
+    function updateTimerDisplay() { const m = String(Math.floor(seconds / 60)).padStart(2, '0'); const s = String(seconds % 60).padStart(2, '0'); document.getElementById('timerDisplay').innerText = `${m}:${s}`; }
+    function startTimer() { if (!timerInterval) timerInterval = setInterval(() => { seconds++; updateTimerDisplay(); }, 1000); }
+    function pauseTimer() { clearInterval(timerInterval); timerInterval = null; }
+    function resetTimer() { pauseTimer(); seconds = 0; updateTimerDisplay(); }
+    if (isDarkMode) document.querySelector('#themeToggle i').className = 'fas fa-sun';
+    
+    init();
+</script>
+</body>
+</html>

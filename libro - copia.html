@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>English File Advanced — Desglose completo + Frases por tiempos + Tests dinámicos</title>
+  <style>
+    /* --- MÓDULO DE PESTAÑAS PROFESIONALES --- */
+:root {
+    --tab-bg: #ffffff;          /* Color de fondo de pestaña inactiva */
+    --tab-hover: #f8fafc;      /* Color al pasar el mouse */
+    --tab-active: #3498db;     /* Color de la pestaña donde estás (Azul) */
+    --tab-text: #555555;       /* Color del texto */
+}
+
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;           /* Se ajusta en celulares */
+    justify-content: center;   /* Centra las pestañas */
+    gap: 12px;                 /* Espacio entre pestañas */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 0 0 20px 20px; /* Bordes redondeados abajo */
+    backdrop-filter: blur(10px); /* Efecto de vidrio (Glassmorphism) */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    position: sticky;          /* Se queda pegado al subir */
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 30px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.tab-link {
+    text-decoration: none;     /* Quita el subrayado */
+    color: var(--tab-text);
+    padding: 12px 22px;
+    border-radius: 14px;       /* Bordes muy suaves */
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;                 /* Espacio entre icono y texto */
+    background: var(--tab-bg);
+    border: 1px solid transparent;
+}
+
+/* Efecto al pasar el mouse */
+.tab-link:hover {
+    background: var(--tab-hover);
+    color: var(--tab-active);
+    transform: translateY(-3px); /* Pequeño salto hacia arriba */
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+/* Estilo de la pestaña Activa */
+.tab-link.active {
+    background: var(--tab-active);
+    color: white !important;
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4); /* Brillo azul */
+}
+
+/* Ajuste para iconos */
+.tab-link i {
+    font-size: 1.1rem;
+}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: linear-gradient(145deg, #f4f8fe 0%, #eef2f8 100%);
+      color: #0a2a3b;
+      padding: 2rem 1.5rem;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      padding: 1.8rem 2.2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 12px 28px -8px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e3c72, #2b5f8a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 0.5rem;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      padding: 0.8rem 1rem;
+      border-radius: 60px;
+      z-index: 10;
+    }
+
+    .nav-pills a {
+      background: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1f4a7a;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+      border: 1px solid #e2edff;
+    }
+
+    .nav-pills a:hover {
+      background: #1f4a7a;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .unit-card {
+      background: #ffffff;
+      border-radius: 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 1px solid #eef3fc;
+    }
+
+    .unit-header {
+      background: #ffffff;
+      padding: 1.5rem 2rem 0.8rem 2rem;
+      border-bottom: 2px solid #eef2f9;
+    }
+
+    .unit-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0c4e6e;
+      margin-bottom: 0.2rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.8rem;
+      padding: 1.8rem 2rem 2rem 2rem;
+    }
+
+    @media (max-width: 880px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+    }
+
+    .main-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e4663;
+      margin: 1.2rem 0 0.6rem 0;
+      border-left: 5px solid #2b6e9e;
+      padding-left: 1rem;
+    }
+
+    .main-content h3:first-of-type {
+      margin-top: 0;
+    }
+
+    /* Estilos para las secciones de frases modelo organizadas */
+    .model-group {
+      margin: 1rem 0 1.5rem 0;
+      background: #fafdff;
+      border-radius: 1rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e9f0f8;
+    }
+    .model-group h4 {
+      color: #2b6e9e;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #cde0f0;
+      display: inline-block;
+    }
+    .model-list {
+      columns: 2;
+      column-gap: 1.8rem;
+      list-style: decimal;
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0 1.2rem;
+    }
+    .model-list li {
+      margin-bottom: 0.3rem;
+      break-inside: avoid;
+    }
+
+    .exercise-box {
+      background: #fef7e8;
+      border-left: 6px solid #f5a623;
+      padding: 1.2rem 1.5rem;
+      border-radius: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .sidebar {
+      background: #f8fbfe;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #e4edf8;
+      height: fit-content;
+    }
+
+    .sidebar h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: #1c4e70;
+    }
+
+    .pronunciation-tip {
+      background: #eef4ff;
+      border-left: 4px solid #f5a623;
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .interactive-quiz {
+      background: #f1f6fd;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0 0.5rem 0;
+      border: 1px solid #dce8f2;
+    }
+
+    .quiz-question {
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dashed #cbdbe0;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-input, .quiz-select {
+      width: 100%;
+      max-width: 280px;
+      padding: 0.5rem 0.8rem;
+      border-radius: 60px;
+      border: 1px solid #cbd5e1;
+      background: white;
+      font-family: inherit;
+      margin-right: 0.8rem;
+    }
+
+    .quiz-check {
+      background: #2b6e9e;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+
+    .quiz-feedback {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      padding: 0.3rem 0;
+    }
+
+    .quiz-feedback.correct {
+      color: #1f7b4d;
+    }
+    .quiz-feedback.incorrect {
+      color: #c2410c;
+    }
+
+    .checklist-interactive {
+      background: #eef3ea;
+      border-radius: 1.2rem;
+      padding: 1rem 1.4rem;
+      margin-top: 1.2rem;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.6rem 0;
+    }
+    .checklist-item label {
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem;
+      color: #4a627a;
+      font-size: 0.85rem;
+      border-top: 1px solid #dce5f0;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+    <nav class="nav-tabs">
+      <a href="index.html" class="tab-link">Inicio</a>
+        <a href="Sentence Master Pro.html" class="tab-link">📝Phrasal Verbs Sentence Pro</a>
+        <a href="phrasalverbs.html" class="tab-link">🎮Phrasal Verbs Option Master</a>
+        <a href="guia.html" class="tab-link"><i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL</a>
+        <a href="guia%202.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL</a>
+        <a href="tiempos.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
+        <a href="libro - copia.html" class="tab-link active"><i class="fas fa-bookmark"></i> 📑 LIBRO  Advanced_Student</a>
+        <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
+    </nav>
+<div class="container">
+  <div class="hero">
+    <h1>📘 English File Advanced — Desglose Extremo + Frases por Tiempos + Tests Dinámicos</h1>
+    <p>Análisis gramatical profundo, 40 frases modelo organizadas por tiempos gramaticales, recursos de pronunciación, ejercicios prácticos y tests interactivos (opción múltiple / respuesta escrita).</p>
+  </div>
+
+  <div class="nav-pills" id="dynamicToc"></div>
+
+  <!-- ================= UNIDAD 1 (con frases organizadas por tiempos) ================= -->
+  <section id="unit1" class="unit-card">
+    <div class="unit-header"><h2>📌 Unidad 1 — We are family / A job for life?</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>🎯 Objetivo comunicativo</h3>
+        <p>Describir relaciones familiares y trayectorias profesionales con precisión léxica y cohesión; dominar los usos de <strong>have</strong> en contextos léxicos, perfectos y causativos; usar marcadores discursivos para enlazar ideas.</p>
+        
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Have</strong> tiene tres roles principales: verbo léxico (posesión, experiencias), auxiliar en perfectos (resultado/experiencia) y causativa <em>have + object + past participle</em>. Contraste pragmático y registro.</p>
+        
+        <h3>⚠️ Problemas de uso y matices</h3>
+        <ul><li>Diferenciar resultado vs. experiencia en perfectos.</li><li>Evitar <em>get</em> en contextos formales donde la pasiva es preferible.</li><li>Entonación y foco en frases con <em>have</em>.</li></ul>
+        
+        <h3>📝 40 Frases modelo organizadas por tiempos gramaticales</h3>
+        <div class="model-group"><h4>📌 Presente simple (have como verbo léxico)</h4><ol class="model-list" start="1"><li>I have two sisters and we meet every Sunday.</li><li>She has a strong sense of responsibility.</li><li>Do you have time to talk now?</li><li>They have a close-knit family.</li><li>She has a good command of English.</li><li>I have a feeling this will work out.</li><li>She has a habit of arriving late.</li><li>I have a lot on my plate this week.</li><li>He has a strong work ethic.</li></ol></div>
+        <div class="model-group"><h4>📌 Present perfect (experiencia / resultado)</h4><ol class="model-list" start="10"><li>I've had that experience before.</li><li>They have been friends since childhood.</li><li>He has been promoted twice this year.</li><li>They have made significant progress.</li><li>I've had the flu twice this winter.</li><li>She has been working remotely since March.</li><li>I have never seen that film.</li><li>He has had several different jobs.</li><li>We have been invited to their house.</li><li>They have been married for ten years.</li><li>I've had similar experiences before.</li></ol></div>
+        <div class="model-group"><h4>📌 Causativa (have + object + past participle)</h4><ol class="model-list" start="21"><li>He had his car repaired last week.</li><li>She had her hair dyed for the wedding.</li><li>We had the house painted last month.</li><li>He had his phone stolen on the train.</li><li>They had their wedding in a small chapel.</li><li>We had the documents translated professionally.</li></ol></div>
+        <div class="model-group"><h4>📌 Pasado simple (eventos concretos)</h4><ol class="model-list" start="27"><li>We had dinner at my parents' house.</li><li>I've had enough of this noise.</li><li>I've had enough time to prepare.</li><li>He had his doubts but accepted the offer.</li><li>She had her doubts about the plan.</li></ol></div>
+        <div class="model-group"><h4>📌 Otras expresiones con have (obligación, coloquial)</h4><ol class="model-list" start="32"><li>We have to consider the long-term effects.</li><li>Do you have any siblings?</li><li>I have a meeting at nine tomorrow.</li><li>I have to finish this report by Friday.</li></ol></div>
+        
+        <div class="exercise-box" id="exercise1">
+          <strong>🎓 Ejercicio práctico final — Portafolio "Mi familia y mi carrera"</strong><br>
+          <strong>Objetivo:</strong> demostrar dominio de los usos de <em>have</em>, collocations de personalidad y ritmo.<br>
+          <strong>Pasos:</strong>
+          <ol><li>Grabar presentación de 3 minutos sobre familia y trayectoria profesional. Transcribir y anotar cada <em>have</em>.</li><li>Lista de 20 collocations de personalidad + oraciones originales.</li><li>Reescribir la presentación aplicando 5 marcadores discursivos y una inversión.</li><li>Entregar portafolio con audio, transcripción anotada y reflexión de 150 palabras.</li></ol>
+          <strong>Criterios:</strong> precisión gramatical 30%, collocations 25%, pronunciación/ritmo 20%, cohesión 25%.
+        </div>
+      </div>
+      <aside class="sidebar">
+        <h4>⚡ Resumen rápido</h4>
+        <p><span style="background:#eef2ff; padding:0.2rem 0.6rem; border-radius:20px;">Foco</span> usos de <em>have</em>, personalidad, ritmo.</p>
+        <div class="pronunciation-tip">
+          <strong>🎙️ Recurso rápido (Pronunciación)</strong><br>
+          • <strong>Ritmo del inglés</strong>: acentúa palabras de contenido; reduce las funcionales.<br>
+          • Practica: <em>I have to go to the doctor</em> → "I hafta go t' th' doctor".<br>
+          • Sílaba tónica: <em>personality</em> (peRSoNAlity).
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 2 (frases organizadas por pasado habitual vs puntual) -->
+  <section id="unit2" class="unit-card">
+    <div class="unit-header"><h2>🧠 Unidad 2 — Do you remember...? / On the tip of my tongue</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>🎯 Objetivo comunicativo</h3>
+        <p>Narrar hábitos pasados y anécdotas puntuales; formar sustantivos abstractos; mejorar recuperación léxica y estrés en sufijos.</p>
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Pasado habitual vs. incidentes específicos</strong>: <em>used to</em> (hábitos ya terminados), <em>would</em> (acciones repetidas), <em>past simple</em> (eventos puntuales). Pronombres anafóricos y generalizaciones.</p>
+        <h3>📝 40 Frases modelo organizadas</h3>
+        <div class="model-group"><h4>🔄 Hábitos pasados con "used to / would"</h4><ol class="model-list" start="1"><li>When I was a child I used to play outside every day.</li><li>She would always bring homemade cakes to the office.</li><li>I used to smoke, but I quit five years ago.</li><li>We used to have family dinners every Sunday.</li><li>They would meet at the café after work.</li><li>He used to be very shy as a teenager.</li><li>When I was young, we would spend hours reading.</li><li>We used to travel every summer when we were students.</li><li>He would always tell the same joke at parties.</li><li>I used to collect stamps as a child.</li><li>They would often argue about trivial things.</li><li>He used to practice the piano for hours.</li><li>When we were kids, we would build forts in the garden.</li><li>They used to live next door to us.</li><li>He would always arrive early to prepare.</li><li>I used to write letters to my pen pal.</li><li>They would spend weekends hiking in the hills.</li><li>He used to tell stories about his travels.</li><li>We would often go to the cinema on Fridays.</li></ol></div>
+        <div class="model-group"><h4>⚡ Eventos puntuales (past simple / anécdotas)</h4><ol class="model-list" start="20"><li>Last summer I visited my grandparents for a week.</li><li>On that day, everything changed.</li><li>She remembered the exact moment she met him.</li><li>Yesterday I saw an old friend from school.</li><li>She recalled the smell of her grandmother's kitchen.</li><li>He remembered the song but not the lyrics.</li><li>Last week I had an unforgettable experience.</li><li>She suddenly remembered where she had left her keys.</li><li>On that evening, the lights went out.</li><li>She remembered the face but not the name.</li><li>Last month I attended a reunion of old classmates.</li><li>She remembered the exact words he said.</li><li>He suddenly remembered an important appointment.</li><li>She remembered the route perfectly.</li><li>Last year I learned to cook traditional dishes.</li><li>She remembered the taste of the dessert vividly.</li><li>On that morning, the phone rang twice.</li><li>Last night I dreamt about my childhood home.</li></ol></div>
+        <div class="exercise-box" id="exercise2"><strong>🎓 Taller "Hábitos y recuerdos"</strong><br>Escribir dos textos (hábitos vs anécdota), crear 15 derivados con sustantivos abstractos, reescribir cambiando foco temporal, presentar anécdota con 5 frases modelo.</div>
+      </div>
+      <aside class="sidebar">
+        <div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Acento con sufijos: <em>biology → biological</em>.<br>• Practica <em>education, personality, scientific</em>.</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 3 (get y marcadores) -->
+  <section id="unit3" class="unit-card">
+    <div class="unit-header"><h2>❤️ Unidad 3 — A love-hate relationship / Dramatic licence</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Get polisémico</strong>: cambio de estado, obtención, pasiva coloquial, causativo. <strong>Marcadores adverbiales</strong>: posición, pausa y entonación modifican la fuerza del mensaje.</p>
+        <h3>📝 40 frases modelo organizadas (usos de get)</h3>
+        <div class="model-group"><h4>🔄 Cambio de estado / emoción</h4><ol class="model-list"><li>She got angry when she heard the news.</li><li>We got lost on the way to the museum.</li><li>She got used to the new schedule quickly.</li><li>He got into trouble at school.</li><li>I got the impression that she was tired.</li><li>I got the feeling something was wrong.</li><li>She got over her fear of flying.</li><li>I got the hang of the new software.</li></ol></div>
+        <div class="model-group"><h4>📦 Obtención / recepción</h4><ol class="model-list"><li>I got a new laptop for my birthday.</li><li>He got promoted last month.</li><li>They got married in a small ceremony.</li><li>She got the joke immediately.</li><li>I got the job I applied for.</li><li>They got the results yesterday.</li><li>He got the idea from a documentary.</li><li>I got the chance to travel last year.</li><li>They got the contract signed on time.</li><li>She got the award for best performance.</li><li>We got the tickets in advance.</li><li>I got the message loud and clear.</li><li>They got the funding they needed.</li><li>She got the chance to study abroad.</li></ol></div>
+        <div class="model-group"><h4>🔧 Causativo / hacer que algo se haga</h4><ol class="model-list"><li>He got his car fixed at the garage.</li><li>They got the message across despite the noise.</li><li>They got the house painted last week.</li><li>She got the children ready for school.</li><li>He got his point across with a clear example.</li><li>They got the team motivated before the match.</li><li>She got the book translated into three languages.</li><li>He got the idea across using a diagram.</li><li>They got the project underway last month.</li><li>She got the children to behave during the trip.</li><li>He got the house in order before the guests arrived.</li><li>He got the job done despite the obstacles.</li><li>They got the community involved in the project.</li></ol></div>
+        <div class="exercise-box" id="exercise3"><strong>🎓 Debate "Conflicto y resolución"</strong><br>Usar 3 usos distintos de get + 4 marcadores discursivos.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Stress shift: <em>compete → competition</em>.<br>• Entonación en marcadores: pausa antes de <em>basically</em>.</div></aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 4 (inversión y deducción) -->
+  <section id="unit4" class="unit-card">
+    <div class="unit-header"><h2>📖 Unidad 4 — An open book / The sound of silence</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Inversión para énfasis</strong>: <em>Never have I…, Not only did she…</em>. <strong>Especulación y deducción</strong>: modales + infinitivo perfecto.</p>
+        <h3>📝 40 frases modelo organizadas</h3>
+        <div class="model-group"><h4>🔁 Inversión negativa / enfática</h4><ol class="model-list"><li>Never have I read a novel so gripping.</li><li>Not only did the film win awards, but it also inspired a generation.</li><li>Rarely had she seen such a moving performance.</li><li>Not until the end did the audience understand the twist.</li><li>Never before had the gallery been so crowded.</li><li>Not only was the script clever, but the direction was flawless.</li><li>Rarely had the audience reacted so strongly.</li><li>Not until later did critics appreciate the film's nuance.</li><li>Never had the theatre seen such a turnout.</li><li>Not only did the book sell well, but it also sparked debate.</li></ol></div>
+        <div class="model-group"><h4>🔍 Deducción (modales)</h4><ol class="model-list"><li>The critic must have been impressed by the acting.</li><li>It could be that the director intended a different meaning.</li><li>We can deduce from the clues that he left voluntarily.</li><li>She must have rehearsed for months.</li><li>He speculated that the author based the character on real life.</li><li>We might infer that the setting is symbolic.</li><li>It must be the case that the plot is non-linear.</li><li>He could have chosen a different ending.</li><li>We can deduce the protagonist's motive from the diary entries.</li><li>He must have been influenced by classical literature.</li><li>It could be argued that the ending is ambiguous.</li><li>She must have studied the role intensively.</li><li>We might infer a political subtext in the dialogue.</li></ol></div>
+        <div class="model-group"><h4>🎬 Descripción de obras culturales</h4><ol class="model-list"><li>She described the protagonist as complex and flawed.</li><li>The sound of silence in the scene created tension.</li><li>He had his voice recorded for the documentary.</li><li>The book was translated into several languages.</li><li>The actor's voice conveyed subtle emotion.</li><li>She had her lines memorized perfectly.</li><li>The film's soundtrack enhanced the atmosphere.</li><li>He had his performance reviewed by a specialist.</li><li>She described the novel as a masterpiece of subtlety.</li><li>The silence between scenes was deliberately long.</li><li>She had her voice trained by a vocal coach.</li><li>The film's imagery suggested multiple interpretations.</li><li>She described the cinematography as breathtaking.</li><li>He had his performance captured on high-definition video.</li><li>The director's choices created a haunting mood.</li></ol></div>
+        <div class="exercise-box" id="exercise4"><strong>🎓 Reseña crítica con inversión y deducción</strong><br>Redactar reseña de 250 palabras con dos inversiones y tres modales de deducción.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Consonant clusters: <em>street, splash, scream</em>.<br>• Linking: <em>an apple</em> → /əˈnæpəl/.</div></aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 5 (distanciamiento y unreal past) -->
+  <section id="unit5" class="unit-card">
+    <div class="unit-header"><h2>⏳ Unidad 5 — No time for anything / Not for profit?</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Distancing language</strong>: eufemismos, mitigación. <strong>Usos irreales del pasado</strong>: <em>wish + past perfect, if only, third conditional</em>.</p>
+        <h3>📝 40 frases modelo organizadas</h3>
+        <div class="model-group"><h4>😔 Deseos y arrepentimientos (wish / if only)</h4><ol class="model-list"><li>I wish I had more time to travel.</li><li>If only I had studied harder, I would have passed.</li><li>She regrets not having taken the opportunity.</li><li>He wished he had listened to the advice.</li><li>If only we had known earlier, we could have acted.</li><li>I wish I hadn't said that.</li><li>He wished he had taken the job offer.</li><li>If only she had told us, we would have helped.</li><li>I wish I had learned to manage my time better.</li><li>She wished she had apologized sooner.</li><li>If only they had consulted an expert, the outcome might differ.</li><li>I wish I had taken that course when I had the chance.</li><li>If only we had more data, we could decide confidently.</li><li>I wish I had known about the deadline.</li><li>She wished she had taken a different approach.</li><li>If only he had asked for help, things might have changed.</li><li>I wish I had saved more money earlier.</li><li>He wished he had been more careful with his investments.</li><li>If only we had planned for contingencies, we would be better prepared.</li><li>I wish I had prioritized my health sooner.</li></ol></div>
+        <div class="model-group"><h4>🔮 Condicionales contrafactuales (third conditional / mixed)</h4><ol class="model-list"><li>They would have succeeded if they had planned better.</li><li>They would have arrived on time if the train hadn't been delayed.</li><li>They would have avoided the mistake with better planning.</li><li>They would have saved money by negotiating earlier.</li><li>They would have succeeded if they had communicated better.</li><li>They would have avoided the issue with better oversight.</li><li>They would have completed the task if they had collaborated.</li></ol></div>
+        <div class="model-group"><h4>📉 Distanciamiento (it seems, it appears)</h4><ol class="model-list"><li>It seems that we need to reprioritize our tasks.</li><li>She distanced herself from the controversy.</li><li>It appears that funding is limited this quarter.</li><li>It seems unlikely that the project will finish early.</li><li>We need to allocate time more effectively.</li><li>We must consider long-term consequences.</li><li>It appears that the market is shifting rapidly.</li><li>We need to set clearer priorities.</li><li>It seems that the proposal needs revision.</li><li>We must balance short-term gains with long-term goals.</li><li>It appears that the team is under-resourced.</li><li>We need to manage our time more strategically.</li></ol></div>
+        <div class="exercise-box" id="exercise5"><strong>🎓 Negociación presupuestaria</strong><br>Simulación usando distancing language y contrafactuales.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Consonantes mudas: <em>knee, debt, calm</em>.<br>• Homófonos: <em>waste/waist, peace/piece</em>.</div></aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 6 (verb + object + infinitive/gerund, condicionales) -->
+  <section id="unit6" class="unit-card">
+    <div class="unit-header"><h2>🆘 Unidad 6 — Help, I need somebody! / Can't give it up</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Verb + object + infinitive/gerund</strong>: verbos como <em>make, let, help</em> (infinitivo sin to); <em>persuade, encourage</em> (to). <strong>Condicionales mixtos</strong>.</p>
+        <h3>📝 40 frases modelo organizadas</h3>
+        <div class="model-group"><h4>🔧 Verbos que rigen infinitivo (con o sin to)</h4><ol class="model-list"><li>I persuaded him to try the new app.</li><li>He made me laugh with his story.</li><li>They let us access the beta version.</li><li>She promised to update the software.</li><li>We arranged to meet next Tuesday.</li><li>He encouraged me to apply for the role.</li><li>They decided to postpone the release.</li><li>She refused to disclose the details.</li><li>He helped me to set up the device.</li><li>He arranged for the technician to come tomorrow.</li><li>We agreed to test the feature with users.</li><li>He promised to fix the bug by Friday.</li><li>He persuaded the team to adopt the new workflow.</li><li>We decided to run a pilot next month.</li></ol></div>
+        <div class="model-group"><h4>📝 Verbos que rigen gerundio</h4><ol class="model-list"><li>She admitted having used the service before.</li><li>I regret having shared my password.</li><li>He avoided answering the question directly.</li><li>She can't give up checking her phone.</li><li>I remember being excited about the launch.</li><li>I enjoy using that platform for work.</li><li>We considered switching providers last month.</li><li>She admitted to having a problem with screen time.</li><li>They recommended updating the app regularly.</li><li>I can't imagine living without my phone.</li><li>She suggested trying a digital detox.</li><li>She avoided answering directly to protect privacy.</li><li>I enjoy learning new productivity tools.</li><li>She admitted having trouble sleeping because of notifications.</li><li>They recommended limiting screen time before bed.</li><li>She can't give up checking social media during work.</li></ol></div>
+        <div class="model-group"><h4>⚡ Condicionales (reales e irreales)</h4><ol class="model-list"><li>If I had more time, I would learn to code.</li><li>If he had known, he would have acted differently.</li><li>If only I had backed up my files, I wouldn't have lost them.</li><li>If we had more resources, we could scale faster.</li><li>If he had prepared earlier, the demo would have gone smoothly.</li></ol></div>
+        <div class="exercise-box" id="exercise6"><strong>🎓 Presentación "App y sociedad"</strong><br>Usar verb+obj+inf/gerund y condicionales.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• /eɪ/ vs /ɪ/: <em>wait/wit</em>.<br>• Acento principal/secundario: <em>self-control</em>.</div></aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 7 (permiso, obligación, verbos de percepción) -->
+  <section id="unit7" class="unit-card">
+    <div class="unit-header"><h2>🎨 Unidad 7 — As a matter of fact... / A masterpiece?</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p>Matices de <em>must, have to, need to, be allowed to</em>. Verbos de percepción + infinitivo sin to / -ing.</p>
+        <h3>📝 40 frases modelo organizadas</h3>
+        <div class="model-group"><h4>🔐 Permiso, obligación, necesidad</h4><ol class="model-list"><li>You must wear a helmet on the site.</li><li>She has to submit the report by Monday.</li><li>You should consider the ethical implications.</li><li>They need to be informed about the changes.</li><li>He is allowed to leave early today.</li><li>You mustn't ignore safety procedures.</li><li>She had to cancel her trip due to illness.</li><li>You should apologize for the misunderstanding.</li><li>They need to improve their communication.</li><li>He was allowed to present his findings.</li><li>You must follow the guidelines strictly.</li><li>She had to adapt quickly to the new role.</li><li>You should seek professional advice.</li><li>They need to allocate more resources.</li><li>He was allowed to access the archive.</li><li>You must respect copyright laws.</li><li>She had to revise the manuscript several times.</li><li>You should consider alternative perspectives.</li><li>They need to address the root cause.</li><li>He was allowed to speak at the conference.</li><li>You must ensure data protection.</li><li>She had to negotiate with multiple stakeholders.</li><li>You should prioritize user experience.</li><li>They need to monitor progress regularly.</li><li>He was allowed to review the documents.</li></ol></div>
+        <div class="model-group"><h4>👁️ Verbos de percepción (see/hear/feel + object + bare infinitive / -ing)</h4><ol class="model-list"><li>I saw her cross the street.</li><li>I heard him singing in the corridor.</li><li>I felt the ground shake during the storm.</li><li>I saw the artist paint the mural.</li><li>I heard the audience gasp at the finale.</li><li>I felt a sense of relief after the meeting.</li><li>I saw the light change in the painting.</li><li>I heard the subtle use of percussion in the score.</li><li>I felt moved by the performance.</li><li>I saw the brushstrokes up close.</li><li>I heard the whisper of the audience.</li><li>I felt the texture of the sculpture.</li><li>I saw the composition come together.</li><li>I heard the harmony resolve beautifully.</li><li>I felt inspired by the exhibition.</li></ol></div>
+        <div class="exercise-box" id="exercise7"><strong>🎓 Crítica de arte con percepción y modales</strong><br>Describir una obra usando verbos de percepción y matices de obligación/permiso.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Entonación en exclamaciones.<br>• Sonido /-ure/: <em>measure, pleasure</em>.</div></aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 8 (gerundios/infinitivos, futuro) -->
+  <section id="unit8" class="unit-card">
+    <div class="unit-header"><h2>🏥 Unidad 8 — The best medicine? / A 'must-see' attraction</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p>Gerundios e infinitivos avanzados (cambio de significado). Formas de futuro: <em>will, going to, present continuous</em>.</p>
+        <h3>📝 40 frases modelo organizadas</h3>
+        <div class="model-group"><h4>🏃 Gerundio como sujeto / objeto</h4><ol class="model-list"><li>Going hiking is the best way to relax.</li><li>She enjoys swimming every morning.</li><li>She prefers taking a short nap to drinking coffee.</li><li>He suggested trying the local cuisine.</li><li>They recommend avoiding strenuous exercise after surgery.</li><li>He enjoys exploring off-the-beaten-track places.</li><li>She suggested visiting the viewpoint at sunrise.</li><li>They recommend taking travel insurance.</li><li>She enjoys learning about local traditions.</li><li>He suggested booking tickets in advance.</li><li>They recommend resting for at least a week.</li><li>He enjoys photographing landscapes at dawn.</li><li>She suggested taking a guided tour for context.</li><li>They recommend gradual increases in exercise intensity.</li><li>She enjoys sampling street food responsibly.</li><li>He suggested visiting during the off-season.</li><li>They recommend staying hydrated in hot climates.</li><li>He enjoys comparing traditional remedies across cultures.</li><li>She suggested booking a local guide for authenticity.</li><li>They recommend consulting a doctor before strenuous activities.</li></ol></div>
+        <div class="model-group"><h4>🔮 Planes y arreglos futuros (going to / present continuous / will)</h4><ol class="model-list"><li>I'm going to book the trip next week.</li><li>He decided to study medicine at university.</li><li>They are planning to visit the museum tomorrow.</li><li>We will arrange the itinerary by Friday.</li><li>I'm going to see a specialist next month.</li><li>She plans to volunteer at the clinic.</li><li>We will confirm the bookings by email.</li><li>I'm going to start a new fitness routine.</li><li>He decided to change his diet for health reasons.</li><li>We will meet the guide at the hotel lobby.</li><li>I'm going to try the recommended treatment.</li><li>She plans to visit three cities on the trip.</li><li>We will finalize the schedule tomorrow.</li><li>I'm going to consult a nutritionist next month.</li><li>He decided to learn the local language basics.</li><li>We will check the weather forecast before leaving.</li><li>I'm going to keep a travel journal.</li><li>She plans to document the trip with photos.</li><li>We will arrange transport between sites.</li><li>I'm going to prioritize rest during the trip.</li></ol></div>
+        <div class="exercise-box" id="exercise8"><strong>🎓 Itinerario y campaña de salud</strong><br>Diseñar itinerario y folleto usando gerundios/infinitivos y marcadores de futuro.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Schwa /ə/ en palabras átonas: <em>about, support, system</em>.<br>• Homophones: <em>their/there</em>.</div></aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 9 (elipsis, formas compuestas, cocina) -->
+  <section id="unit9" class="unit-card">
+    <div class="unit-header"><h2>🐾 Unidad 9 — Pet hates / How to cook, how to eat</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Elipsis</strong>: verbal, nominal, clausal. <strong>Formas compuestas y posesivas</strong> para evitar ambigüedad.</p>
+        <h3>📝 40 frases modelo (instrucciones de cocina con imperativos y elipsis)</h3>
+        <div class="model-group"><h4>🍳 Secuencia de acciones (imperativos)</h4><ol class="model-list"><li>Chop the onions, fry until golden, add tomatoes and simmer.</li><li>Preheat the oven to 180 degrees.</li><li>Mix the flour and sugar in a bowl.</li><li>Beat the eggs until fluffy.</li><li>Season to taste with salt and pepper.</li><li>Let the dough rest for 30 minutes.</li><li>Serve immediately while hot.</li><li>Wash the vegetables thoroughly before use.</li><li>Slice the bread thinly for toasts.</li><li>Stir continuously to avoid lumps.</li><li>Boil the pasta for eight minutes.</li><li>Drain and toss with olive oil.</li><li>Grill the fish for three minutes each side.</li><li>Marinate the chicken overnight for flavor.</li><li>Garnish with fresh herbs before serving.</li><li>Preheat the pan before adding oil.</li><li>Reduce the sauce until it thickens.</li><li>Fold the egg whites gently into the batter.</li><li>Let the cake cool on a wire rack.</li><li>Toast the seeds lightly for extra aroma.</li><li>Peel and dice the potatoes evenly.</li><li>Simmer the stock for at least an hour.</li><li>Blend until smooth for a creamy texture.</li><li>Season the salad just before serving.</li><li>Use fresh ingredients for best results.</li><li>Preheat the grill to high heat.</li><li>Rest the meat before slicing to retain juices.</li><li>Whisk the dressing until emulsified.</li><li>Caramelize the onions slowly for sweetness.</li><li>Toast the bread until golden brown.</li><li>Chill the dessert for two hours before serving.</li><li>Use a sharp knife for precise cuts.</li><li>Measure ingredients accurately for consistency.</li><li>Keep the workspace clean and organized.</li><li>Adjust seasoning at the end of cooking.</li><li>Serve with a side of seasonal vegetables.</li><li>Use a thermometer to check doneness.</li><li>Let the sauce rest to develop flavor.</li><li>Finish with a squeeze of lemon for brightness.</li><li>Enjoy your meal with friends and family.</li></ol></div>
+        <div class="exercise-box" id="exercise9"><strong>🎓 Recetario multimedia</strong><br>Grabar receta aplicando elipsis y compuestos posesivos.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Sílabas mudas: <em>vegetable, chocolate</em>.<br>• Reducción de auxiliares: <em>I've, he's</em>.</div></aside>
+    </div>
+  </section>
+
+  <!-- UNIDAD 10 (relative clauses, cleft sentences) -->
+  <section id="unit10" class="unit-card">
+    <div class="unit-header"><h2>🏁 Unidad 10 — On your marks, set, go! / No direction home</h2></div>
+    <div class="grid-2col">
+      <div class="main-content">
+        <h3>📖 Análisis gramatical profundo</h3>
+        <p><strong>Relative clauses</strong>: definitorias / no definitorias, reducción, preposiciones. <strong>Cleft sentences</strong> para énfasis: <em>It was X who…, What X did was…</em>.</p>
+        <h3>📝 40 frases modelo organizadas</h3>
+        <div class="model-group"><h4>🔗 Relative clauses (definitorias y no definitorias)</h4><ol class="model-list"><li>The athlete who won the race trained for years.</li><li>The book that I recommended is out of print.</li><li>The house where I grew up has been renovated.</li><li>The person whom I met yesterday is a scientist.</li><li>The car which he bought is electric.</li><li>The reason why they left early was the storm.</li><li>The restaurant where we ate serves local dishes.</li><li>The student whose essay won the prize is from Spain.</li><li>The film that won the award was controversial.</li><li>The city where she studied is known for its culture.</li><li>The museum which opened last year is impressive.</li><li>The author whose book I read is a historian.</li><li>The route which we took avoided traffic.</li><li>The team whose work was recognized celebrated together.</li><li>The café where we met has excellent coffee.</li><li>The policy which was introduced affected many people.</li><li>The bridge which spans the river is historic.</li><li>The musician whose concert I attended played brilliantly.</li><li>The park where children play is well maintained.</li><li>The scientist whose research changed the field received an award.</li></ol></div>
+        <div class="model-group"><h4>✨ Cleft sentences (énfasis)</h4><ol class="model-list"><li>It was the coach who motivated the team to win.</li><li>What she did was change the whole strategy.</li><li>It was the timing that made the difference.</li><li>What impressed me was the attention to detail.</li><li>It was the design that attracted customers.</li><li>What surprised us was the turnout.</li><li>It was the teamwork that secured the victory.</li><li>What mattered most was the evidence presented.</li><li>It was the clarity of the argument that convinced them.</li><li>What he achieved was beyond expectations.</li><li>It was the timing of the announcement that caused confusion.</li><li>What they appreciated was the honesty of the speaker.</li><li>It was the simplicity of the solution that impressed me.</li><li>What she proposed was a practical alternative.</li><li>It was the persistence that led to success.</li><li>What made it memorable was the atmosphere.</li><li>It was the clarity of the instructions that helped everyone.</li><li>What they needed was more time and resources.</li><li>It was the community support that sustained the project.</li></ol></div>
+        <div class="exercise-box" id="exercise10"><strong>🎓 Proyecto final "Historia con foco"</strong><br>Narración de 600 palabras con relative clauses y cleft sentences.</div>
+      </div>
+      <aside class="sidebar"><div class="pronunciation-tip"><strong>🎙️ Pronunciación</strong><br>• Homógrafos: <em>lead (metal) vs lead (to guide)</em>.<br>• Entonación en cleft sentences: voz más alta en el elemento focalizado.</div></aside>
+    </div>
+  </section>
+
+  <!-- Recursos transversales -->
+  <section class="unit-card" style="background:#fbfeff">
+    <div class="grid-2col" style="padding: 2rem;">
+      <div><h3>📚 Recursos transversales y sugerencias</h3><ul><li>Secuenciación: combinar Colloquial English y Revise and Check.</li><li>Evaluación formativa continua: micro-tests, rúbricas, feedback grabado.</li><li>Autoestudio diario: 15 min de pronunciación + flashcards + word-building.</li></ul></div>
+      <div><h3>🎯 Proyectos integradores</h3><p>Portafolio "Mi evolución lingüística", podcast con inversión/cleft sentences, mapas de familias léxicas.</p></div>
+    </div>
+  </section>
+  <footer>English File Advanced — Frases organizadas por tiempos + Tests dinámicos (múltiple opción y respuesta escrita). Todos los contenidos originales se conservan.</footer>
+</div>
+
+<script>
+  // Generar navegación
+  const units = document.querySelectorAll('.unit-card');
+  const tocContainer = document.getElementById('dynamicToc');
+  if (tocContainer && units.length) {
+    tocContainer.innerHTML = '';
+    units.forEach((unit, idx) => {
+      const id = unit.id || `unit${idx+1}`;
+      const titleElem = unit.querySelector('.unit-header h2');
+      let title = titleElem ? titleElem.innerText.substring(0, 40) : `Unidad ${idx+1}`;
+      const link = document.createElement('a');
+      link.href = `#${id}`;
+      link.textContent = title;
+      tocContainer.appendChild(link);
+    });
+  }
+
+  // ========== TESTS DINÁMICOS COMPLETOS (múltiple opción + escritura) ==========
+  const fullQuizzes = {
+    1: [
+      { text: "¿Cuál es la forma correcta de la causativa? 'I need to have my car ______'.", type: "text", correct: "serviced" },
+      { text: "¿Qué expresión usarías para indicar que alguien te hizo un servicio? (ejemplo: cortar el pelo)", type: "select", options: [{value:"have it cut", label:"have it cut"},{value:"get cut it", label:"get cut it"},{value:"had cut", label:"had cut"}], correct: "have it cut" },
+      { text: "¿Cuál de estas oraciones muestra un uso de 'have' como auxiliar en present perfect?", type: "select", options: [{value:"I have a car", label:"I have a car"},{value:"I have had enough", label:"I have had enough"},{value:"I had my hair done", label:"I had my hair done"}], correct: "I have had enough" }
+    ],
+    2: [
+      { text: "¿Qué estructura usamos para hábitos pasados que ya no ocurren?", type: "text", correct: "used to" },
+      { text: "Completa: 'When I was a child, I ______ (play) in the park every day.'", type: "text", correct: "used to play" },
+      { text: "¿Cuál de estas opciones NO es correcta para un estado en el pasado?", type: "select", options: [{value:"used to be", label:"used to be"},{value:"would be", label:"would be"},{value:"was", label:"was"}], correct: "would be" }
+    ],
+    3: [
+      { text: "En 'He got arrested', ¿qué función tiene 'get'?", type: "text", correct: "pasiva coloquial" },
+      { text: "¿Cuál es un sinónimo formal de 'get promoted'?", type: "text", correct: "be promoted" },
+      { text: "Selecciona la oración donde 'get' indica cambio de estado:", type: "select", options: [{value:"I got a present", label:"I got a present"},{value:"She got angry", label:"She got angry"},{value:"They got the car fixed", label:"They got the car fixed"}], correct: "She got angry" }
+    ],
+    4: [
+      { text: "Completa la inversión: 'Never ______ I seen such beauty.'", type: "text", correct: "have" },
+      { text: "¿Qué modal expresa deducción lógica (casi certeza) en pasado?", type: "text", correct: "must have" },
+      { text: "Selecciona la opción correcta: 'Not only ______ the film, but it also broke records.'", type: "select", options: [{value:"did win", label:"did win"},{value:"won", label:"won"},{value:"win", label:"win"}], correct: "did win" }
+    ],
+    5: [
+      { text: "Estructura para arrepentimiento: 'I wish I ______ (study) harder.'", type: "text", correct: "had studied" },
+      { text: "¿Cuál es un ejemplo de distancing language?", type: "select", options: [{value:"I'm sure", label:"I'm sure"},{value:"It seems that", label:"It seems that"},{value:"Definitely", label:"Definitely"}], correct: "It seems that" },
+      { text: "Completa: 'If only we ______ (know) the truth earlier.'", type: "text", correct: "had known" }
+    ],
+    6: [
+      { text: "Verbo que rige infinitivo sin 'to': 'She made me ______ (laugh).'", type: "text", correct: "laugh" },
+      { text: "Selecciona la oración correcta con 'avoid':", type: "select", options: [{value:"He avoided to answer", label:"He avoided to answer"},{value:"He avoided answering", label:"He avoided answering"},{value:"He avoided answer", label:"He avoided answer"}], correct: "He avoided answering" },
+      { text: "Condicional mixto: 'If I had studied, I ______ (be) an expert now.'", type: "text", correct: "would be" }
+    ],
+    7: [
+      { text: "Verbo de percepción: 'I saw him ______ (cross) the street.'", type: "text", correct: "cross" },
+      { text: "¿Cuál expresa obligación externa (regla)?", type: "select", options: [{value:"must", label:"must"},{value:"have to", label:"have to"},{value:"should", label:"should"}], correct: "have to" },
+      { text: "Completa: 'You ______ better not be late.'", type: "text", correct: "had" }
+    ],
+    8: [
+      { text: "Gerundio como sujeto: '______ (swim) is good for health.'", type: "text", correct: "swimming" },
+      { text: "¿Cuál es la forma correcta de futuro para un plan fijo?", type: "select", options: [{value:"will", label:"will"},{value:"present continuous", label:"present continuous"},{value:"might", label:"might"}], correct: "present continuous" },
+      { text: "Completa: 'I remember ______ (meet) her before.'", type: "text", correct: "meeting" }
+    ],
+    9: [
+      { text: "Elipsis: 'I hope ______' (respuesta corta afirmativa)", type: "text", correct: "so" },
+      { text: "Forma compuesta correcta: 'the mother of my wife' →", type: "text", correct: "mother-in-law" },
+      { text: "Selecciona la instrucción con elipsis natural:", type: "select", options: [{value:"Peel the potatoes, then boil them", label:"Peel the potatoes, then boil them"},{value:"Peel and boil the potatoes", label:"Peel and boil the potatoes"},{value:"Peel the potatoes, after that boil the potatoes", label:"Peel the potatoes, after that boil the potatoes"}], correct: "Peel and boil the potatoes" }
+    ],
+    10: [
+      { text: "Pronombre relativo para posesión: 'The man ______ car was stolen.'", type: "text", correct: "whose" },
+      { text: "Cleft sentence con 'what': '______ she did was amazing.'", type: "text", correct: "what" },
+      { text: "Selecciona la relative clause no definitoria correcta:", type: "select", options: [{value:"The book that is on the table is mine", label:"The book that is on the table is mine"},{value:"My brother, who lives in Paris, is a chef", label:"My brother, who lives in Paris, is a chef"},{value:"The car which he bought is red", label:"The car which he bought is red"}], correct: "My brother, who lives in Paris, is a chef" }
+    ]
+  };
+
+  function addDynamicTest(unitElement, unitNumber) {
+    const exerciseDiv = unitElement.querySelector('.exercise-box');
+    if (!exerciseDiv) return;
+    if (unitElement.querySelector('.interactive-quiz')) return;
+
+    const quizDiv = document.createElement('div');
+    quizDiv.className = 'interactive-quiz';
+    quizDiv.innerHTML = `<strong>📌 Mini test completo (autoevaluación)</strong><br><small>Responde las preguntas para comprobar tu comprensión</small><div id="quiz-${unitNumber}"></div>`;
+    const quizContainer = quizDiv.querySelector(`#quiz-${unitNumber}`);
+    const questions = fullQuizzes[unitNumber] || [{ text: "Repasa la unidad.", type: "text", correct: "ok" }];
+    
+    questions.forEach((q, idx) => {
+      const qDiv = document.createElement('div');
+      qDiv.className = 'quiz-question';
+      qDiv.innerHTML = `<p>${idx+1}. ${q.text}</p>`;
+      let input;
+      if (q.type === 'select') {
+        input = document.createElement('select');
+        input.className = 'quiz-select';
+        q.options.forEach(opt => {
+          const option = document.createElement('option');
+          option.value = opt.value;
+          option.textContent = opt.label;
+          input.appendChild(option);
+        });
+      } else {
+        input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'Escribe tu respuesta...';
+        input.className = 'quiz-input';
+      }
+      const checkBtn = document.createElement('button');
+      checkBtn.textContent = 'Verificar';
+      checkBtn.className = 'quiz-check';
+      const feedbackSpan = document.createElement('div');
+      feedbackSpan.className = 'quiz-feedback';
+      checkBtn.onclick = () => {
+        let userAnswer;
+        if (q.type === 'select') {
+          userAnswer = input.selectedOptions[0]?.value.toLowerCase() || '';
+        } else {
+          userAnswer = input.value.trim().toLowerCase();
+        }
+        const isCorrect = userAnswer === q.correct.toLowerCase();
+        feedbackSpan.innerHTML = isCorrect ? '✅ ¡Correcto!' : `❌ Incorrecto. Respuesta: ${q.correct}`;
+        feedbackSpan.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+      };
+      qDiv.appendChild(input);
+      qDiv.appendChild(checkBtn);
+      qDiv.appendChild(feedbackSpan);
+      quizContainer.appendChild(qDiv);
+    });
+
+    const checklistDiv = document.createElement('div');
+    checklistDiv.className = 'checklist-interactive';
+    checklistDiv.innerHTML = `<strong>✅ Checklist del ejercicio práctico</strong><br><small>Marca los pasos realizados</small>`;
+    const steps = exerciseDiv.querySelectorAll('ol li');
+    if (steps.length) {
+      steps.forEach((step, i) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'checklist-item';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.id = `check-unit${unitNumber}-step${i}`;
+        const label = document.createElement('label');
+        label.htmlFor = cb.id;
+        label.textContent = step.innerText.substring(0, 120);
+        itemDiv.appendChild(cb);
+        itemDiv.appendChild(label);
+        checklistDiv.appendChild(itemDiv);
+      });
+    } else {
+      checklistDiv.innerHTML += '<p>✓ Sigue los pasos descritos y márcalos al completar.</p>';
+    }
+    exerciseDiv.insertAdjacentElement('afterend', quizDiv);
+    exerciseDiv.insertAdjacentElement('afterend', checklistDiv);
+  }
+
+  const allCards = document.querySelectorAll('.unit-card');
+  allCards.forEach((card, idx) => {
+    addDynamicTest(card, idx+1);
+  });
+</script>
+</body>
+</html>

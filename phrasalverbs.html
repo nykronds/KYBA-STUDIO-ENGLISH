@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phrasal Verbs Master - Pro Edition</title>
+    <style>
+        :root { 
+            --bg: #0f172a; --text: #f1f5f9; --green: #22c55e; --red: #ef4444; 
+            --card: #1e293b; --accent: #38bdf8; --yellow: #eab308;
+            --purple: #a855f7; --orange: #f97316; --bronze: #cd7f32;
+            --silver: #c0c0c0; --gold: #ffd700;
+            --unlocked-bg: rgba(34, 197, 94, 0.08);
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--bg); color: var(--text); padding: 20px; line-height: 1.5; 
+        }
+        /* --- CONTENEDOR PRINCIPAL --- */
+/* --- ESTILO NANO-TABS (MÁXIMA COMPRESIÓN) --- */
+
+.container { 
+    max-width: 100%; /* Aprovecha todo el ancho disponible */
+    margin: auto; 
+    padding: 0 10px;
+}
+
+/* --- CONTENEDOR DE PESTAÑAS AUTO-AJUSTABLE --- */
+
+.nav-tabs {
+    display: flex;
+    justify-content: space-between; /* Distribuye las pestañas en todo el ancho */
+    align-items: stretch;
+    gap: 2px;                       /* Espacio mínimo entre ellas */
+    margin-bottom: 25px;
+    padding: 3px;
+    background: #0f172a;            /* Fondo oscuro para que resalten */
+    border-radius: 8px;
+    width: 100%;                    /* Ocupa todo el contenedor */
+    box-sizing: border-box;
+}
+
+.tab-link {
+    flex: 1;                        /* ESTA ES LA CLAVE: hace que todas midan lo mismo y rellenen el hueco */
+    text-decoration: none;
+    color: #94a3b8;
+    padding: 6px 4px;               /* Padding vertical cómodo, horizontal mínimo */
+    border-radius: 6px;
+    
+    /* TIPOGRAFÍA TÉCNICA (Basada en tus capturas) */
+    font-size: 9px; 
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    
+    display: flex;
+    flex-direction: column;         /* Icono arriba, texto abajo para ahorrar ancho */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.2s ease;
+    min-width: 0;                   /* Evita que el texto rompa el diseño */
+}
+
+.tab-link i {
+    font-size: 11px;                /* Icono ligeramente más grande que el texto */
+    margin-bottom: 2px;
+}
+
+/* EFECTOS */
+.tab-link:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-link.active {
+    color: #ffffff;
+    background: #4f46e5;            /* El azul de tu interfaz KYBA */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* RESPONSIVE: Si son demasiadas para una sola fila en móvil */
+@media (max-width: 768px) {
+    .nav-tabs {
+        flex-wrap: wrap;            /* Se acomodan en dos filas si es necesario */
+    }
+    .tab-link {
+        flex: 1 1 20%;              /* Mínimo 5 pestañas por fila en móvil */
+        font-size: 8px;
+    }
+}
+
+        
+        .progress-container {
+            width: 100%; height: 8px; background: #1e293b;
+            position: fixed; top: 0; left: 0; z-index: 1000;
+        }
+        #progressBar {
+            height: 100%; width: 0%; background: linear-gradient(90deg, var(--green), var(--accent));
+            transition: width 0.5s ease;
+        }
+
+        .search-container {
+            margin-top: 20px; margin-bottom: 20px; text-align: center;
+            display: flex; flex-direction: column; align-items: center; gap: 15px;
+        }
+
+        .difficulty-selector {
+            display: flex; gap: 10px; background: #020617; padding: 5px; 
+            border-radius: 12px; border: 1px solid #334155; margin-bottom: 10px;
+        }
+        .diff-btn {
+            padding: 8px 15px; border-radius: 8px; border: none; cursor: pointer;
+            font-weight: bold; color: #64748b; background: transparent; transition: 0.3s;
+        }
+        .diff-btn.active[data-diff="multiple"] { background: var(--yellow); color: #000; }
+        .diff-btn.active[data-diff="write"] { background: var(--orange); color: #fff; }
+        .diff-btn.active[data-diff="context"] { background: var(--accent); color: #000; }
+
+        #verbSearch {
+            width: 100%; max-width: 500px; padding: 12px 20px; border-radius: 25px;
+            border: 2px solid var(--accent); background: var(--card); color: white; outline: none;
+        }
+
+        .stats-bar {
+            background: #020617; padding: 10px 30px; border-radius: 50px;
+            border: 2px solid var(--green); font-weight: bold;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+            display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center;
+        }
+
+        #rankDisplay { border-left: 2px solid #334155; padding-left: 20px; font-style: italic; }
+
+        .controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        
+        .btn {
+            padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer;
+            font-weight: bold; transition: 0.2s; display: flex; align-items: center; gap: 8px;
+        }
+        .btn:active { transform: scale(0.95); }
+
+        .btn-main { background: var(--green); color: #000; font-size: 1.1em; border: 2px solid white; }
+        .btn-blind { background: var(--purple); color: white; }
+        .btn-timer { background: transparent; color: var(--orange); border: 1px solid var(--orange); }
+        .btn-timer.active { background: var(--orange); color: white; }
+        .btn-filter { background: var(--card); color: var(--text); border: 1px solid var(--accent); }
+        .btn-error { background: transparent; color: var(--red); border: 1px solid var(--red); }
+        .btn-reset { background: transparent; color: #64748b; border: 1px solid #334155; margin-top: 10px; font-size: 0.8em; }
+
+        #quizModal {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: var(--card); padding: 30px; border-radius: 20px; border: 2px solid var(--accent);
+            width: 90%; max-width: 500px; text-align: center; position: relative;
+        }
+        
+        #timerRing { 
+            font-size: 4em; 
+            color: var(--orange); 
+            font-weight: 800; 
+            margin-bottom: 10px; 
+            display: block;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+            transition: 0.2s;
+        }
+        .timer-warning { color: var(--red) !important; transform: scale(1.2); }
+
+        .option-btn {
+            display: block; width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px;
+            border: 1px solid #334155; background: #0f172a; color: white; cursor: pointer; text-align: left;
+        }
+        .option-btn:hover { background: var(--accent); color: #000; }
+        #quizInput { 
+            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--accent);
+            background: #0f172a; color: white; margin-top: 15px; font-size: 1.1em;
+        }
+
+        .box { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #334155; height: 750px; overflow-y: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #111827; }
+        th { position: sticky; top: 0; background: #334155; color: var(--accent); z-index: 10; padding: 12px; }
+        td { text-align: left; padding: 12px; border-bottom: 1px solid #334155; }
+        
+        tr.highlight { outline: 3px solid var(--yellow); background: #334155 !important; }
+        
+        tr.level-1 { border-left: 5px solid var(--bronze); background: var(--unlocked-bg) !important; }
+        tr.level-2 { border-left: 5px solid var(--silver); background: var(--unlocked-bg) !important; }
+        tr.mastered { border-left: 5px solid var(--gold); background: rgba(34, 197, 94, 0.18) !important; }
+        
+        .reveal {
+            background: transparent; color: var(--text); border-radius: 4px; padding: 2px 8px; transition: 0.3s;
+        }
+        .reveal.unlocked { background: transparent !important; color: var(--text) !important; }
+
+        .blind-mode td:nth-child(2), .blind-mode td:nth-child(3), .blind-mode .reveal {
+            color: transparent !important; background: transparent !important;
+            user-select: none !important;
+        }
+
+        .blind-mode tr[class*="level-"]:hover td, 
+        .blind-mode tr.mastered:hover td,
+        .blind-mode tr[class*="level-"]:hover .reveal,
+        .blind-mode tr.mastered:hover .reveal {
+            color: var(--text) !important;
+            background: transparent !important;
+            user-select: auto !important;
+        }
+        
+        .verb-name { cursor: volume-up; border-bottom: 1px dashed var(--accent); color: var(--accent); }
+        .flex-container { display: flex; gap: 20px; align-items: flex-start; }
+        .flex-item { flex: 1; min-width: 450px; }
+
+        .particle-chips { display: flex; gap: 5px; margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+        .chip { padding: 4px 10px; background: #1e293b; border: 1px solid #334155; border-radius: 15px; font-size: 0.7em; cursor: pointer; }
+
+        @media (max-width: 1000px) { .flex-container { flex-direction: column; } .flex-item { min-width: 100%; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab-link">Inicio</a>
+        <a href="Sentence Master Pro.html" class="tab-link">📝Phrasal Verbs Sentence Pro</a>
+        <a href="phrasalverbs.html" class="tab-link active">🎮Phrasal Verbs Option Master</a>
+        <a href="guia.html" class="tab-link"><i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL</a>
+        <a href="guia%202.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL</a>
+        <a href="tiempos.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
+        <a href="libro - copia.html" class="tab-link"><i class="fas fa-bookmark"></i> 📑 LIBRO Advanced_Student</a>
+        <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
+    </nav>
+
+<div class="progress-container"><div id="progressBar"></div></div>
+
+<div id="quizModal">
+    <div class="modal-content">
+        <span id="timerRing">10</span>
+        <h2 id="modalTitle">Pregunta</h2>
+        <div id="optionsArea"></div>
+        <input type="text" id="quizInput" placeholder="Escribe aquí..." style="display:none">
+        <button id="submitBtn" class="btn btn-main" style="display:none; margin: 20px auto;">Enviar</button>
+    </div>
+</div>
+
+<audio id="failSound" src="https://www.soundjay.com/misc/sounds/fail-buzzer-04.mp3"></audio>
+
+<div class="container">
+    <h1 style="text-align: center;">🎮 Phrasal Verbs Option Master (70 Verbs)</h1>
+    
+    <div class="search-container">
+        <div class="stats-bar">
+            <span>🏆 COMPLETADO: <span id="learnedCount" style="color: var(--gold);">0</span> / 70</span>
+            <span>🔥 RACHA: <span id="streakCount" style="color: var(--yellow);">0</span></span>
+            <span id="rankDisplay">🎖️ Novato</span>
+        </div>
+
+        <div class="difficulty-selector">
+            <button class="diff-btn active" data-diff="multiple" onclick="setDiff('multiple')">🥉 OPCIONES</button>
+            <button class="diff-btn" data-diff="write" onclick="setDiff('write')">🥈 ESCRITURA</button>
+            <button class="diff-btn" data-diff="context" onclick="setDiff('context')">🥇 CONTEXTO</button>
+        </div>
+        
+        <input type="text" id="verbSearch" onkeyup="searchFunction()" placeholder="🔍 Buscar verbo o partícula...">
+        
+        <div class="controls">
+            <button class="btn btn-main" onclick="quizByDiff()">⚡ EXAMEN INTELIGENTE</button>
+            <button class="btn btn-timer" id="timerBtn" onclick="toggleTimer()">⏱️ RELOJ DESACTIVADO</button>
+            <button class="btn btn-blind" id="blindBtn" onclick="toggleBlind()">👁️ MODO JUEGO</button>
+            <button class="btn btn-filter" onclick="filterBy('all')">📚 TODO</button>
+            <button class="btn btn-filter" onclick="filterBy('pending')">⏳ PENDIENTES</button>
+            <button class="btn btn-error" onclick="filterBy('errors')">🔥 FALLOS</button>
+        </div>
+
+        <div class="particle-chips" id="chipsContainer"></div>
+        <button class="btn btn-reset" onclick="resetProgress()">⚠️ REINICIAR PROGRESO</button>
+    </div>
+
+    <div class="flex-container">
+        <div class="box flex-item">
+            <h2 style="color: var(--green);">📂 SEPARABLES (35)</h2>
+            <table id="tableSep">
+                <thead><tr><th>Verbo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                <tbody id="bodySep"></tbody>
+            </table>
+        </div>
+        <div class="box flex-item">
+            <h2 style="color: var(--red);">🚫 INSEPARABLES (35)</h2>
+            <table id="tableInsep">
+                <thead><tr><th>Verbo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                <tbody id="bodyInsep"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+const sepData = [
+    ["Back up", "Respaldar", "Back him up"], ["Blow up", "Explotar", "Blow it up"], ["Bring up", "Mencionar", "Bring it up"],
+    ["Call off", "Cancelar", "Call it off"], ["Carry on", "Continuar", "Carry it on"], ["Cheer up", "Animar", "Cheer her up"],
+    ["Clean up", "Limpiar", "Clean it up"], ["Cut off", "Interrumpir", "Cut him off"], ["Fill out", "Rellenar", "Fill it out"],
+    ["Find out", "Descubrir", "Find it out"], ["Give away", "Regalar", "Give it away"], ["Give up", "Rendirse", "Give it up"],
+    ["Hand in", "Entregar", "Hand it in"], ["Hang up", "Colgar", "Hang it up"], ["Hold up", "Retrasar", "Don't hold us up"],
+    ["Keep up", "Mantener ritmo", "Keep it up"], ["Leave out", "Excluir", "Leave him out"], ["Let down", "Decepcionar", "Don't let me down"],
+    ["Look up", "Buscar info", "Look it up"], ["Make up", "Inventar", "Make it up"], ["Pass out", "Desmayarse", "Pass them out"],
+    ["Pick up", "Recoger", "Pick me up"], ["Put off", "Posponer", "Put it off"], ["Put on", "Ponerse ropa", "Put it on"],
+    ["Set up", "Configurar", "Set it up"], ["Take off", "Quitarse", "Take it off"], ["Throw away", "Tirar", "Throw it away"],
+    ["Try on", "Probarse", "Try it on"], ["Turn down", "Rechazar", "Turn it down"], ["Turn off", "Apagar", "Turn it off"],
+    ["Turn on", "Encender", "Turn it on"], ["Wake up", "Despertar", "Wake him up"], ["Write down", "Anotar", "Write it down"],
+    ["Shut down", "Cerrar", "Shut it down"], ["Wrap up", "Terminar", "Wrap it up"]
+];
+
+const insepData = [
+    ["Believe in", "Creer en", "Believe in you"], ["Call on", "Visitar", "Call on them"], ["Check in", "Registrarse", "Check in now"],
+    ["Come across", "Encontrar", "I came across it"], ["Count on", "Contar con", "Count on me"], ["Deal with", "Lidiar con", "Deal with it"],
+    ["Depend on", "Depender de", "Depend on us"], ["Focus on", "Enfocarse en", "Focus on this"], ["Get along", "Llevarse bien", "Get along with him"],
+    ["Get over", "Superar", "Get over it"], ["Go over", "Repasar", "Go over it"], ["Listen to", "Escuchar a", "Listen to me"],
+    ["Look after", "Cuidar de", "Look after her"], ["Look for", "Buscar", "Look for it"], ["Look into", "Investigar", "Look into it"],
+    ["Pay for", "Pagar por", "Pay for that"], ["Run into", "Toparse con", "Run into them"], ["Run out of", "Quedarse sin", "Run out of it"],
+    ["Stand by", "Apoyar", "Stand by me"], ["Take after", "Parecerse a", "Take after him"], ["Wait for", "Esperar a", "Wait for it"],
+    ["Watch out", "Tener cuidado", "Watch out there"], ["Abide by", "Cumplir (ley)", "Abide by rules"], ["Apply for", "Solicitar", "Apply for job"],
+    ["Care for", "Cuidar/Querer", "Care for him"], ["Consist of", "Consistir en", "Consist of this"], ["Heal from", "Sanar de", "Heal from it"],
+    ["Object to", "Objetar", "Object to that"], ["Recover from", "Recuperarse", "Recover from it"], ["Rely on", "Confiar en", "Rely on me"],
+    ["Agree with", "Acordar con", "Agree with you"], ["Allow for", "Tener en cuenta", "Allow for errors"], ["Ask for", "Pedir", "Ask for help"],
+    ["Break into", "Entrar a fuerza", "Break into house"], ["Call for", "Exigir", "Call for justice"]
+];
+
+let masteryData = {};
+let streak = 0;
+let currentDiff = 'multiple';
+let timerActive = false;
+let globalTimer = null;
+let currentQuestion = null;
+
+window.onload = () => {
+    renderVerbs();
+    const saved = localStorage.getItem('phrasalMasteryDataV4');
+    if (saved) {
+        masteryData = JSON.parse(saved);
+        updateVisuals();
+    }
+};
+
+function renderVerbs() {
+    const buildRow = (v) => `<tr id="tr-${v[0].replace(/\s/g, '')}">
+        <td><b class="verb-name" onclick="speak(this)">${v[0]}</b></td>
+        <td><span class="reveal">${v[1]}</span></td>
+        <td>${v[2]}</td>
+    </tr>`;
+    document.getElementById('bodySep').innerHTML = sepData.map(buildRow).join('');
+    document.getElementById('bodyInsep').innerHTML = insepData.map(buildRow).join('');
+    const particles = ["UP", "OUT", "OFF", "ON", "IN", "BACK", "DOWN", "AWAY"];
+    document.getElementById('chipsContainer').innerHTML = particles.map(p => 
+        `<span class="chip" onclick="searchByParticle('${p}')">#${p}</span>`).join('');
+}
+
+function setDiff(diff) {
+    currentDiff = diff;
+    document.querySelectorAll('.diff-btn').forEach(b => b.classList.toggle('active', b.dataset.diff === diff));
+}
+
+function quizByDiff() { randomQuiz(currentDiff); }
+
+function toggleTimer() {
+    timerActive = !timerActive;
+    const btn = document.getElementById('timerBtn');
+    btn.classList.toggle('active');
+    btn.innerText = timerActive ? "⏱️ RELOJ ACTIVADO (10s)" : "⏱️ RELOJ DESACTIVADO";
+}
+
+function randomQuiz(mode) {
+    document.querySelectorAll('tr').forEach(r => r.classList.remove('highlight'));
+    
+    // FILTRO ESTRICTO: Solo tomamos verbos que NO tengan aciertos (score === 0)
+    const allRows = Array.from(document.querySelectorAll('tbody tr')).filter(row => {
+        const verbName = row.cells[0].innerText;
+        const data = masteryData[verbName] || { score: 0 };
+        const isVisible = row.style.display !== 'none';
+        
+        // Si el score es mayor a 0, significa que ya lo acertó una vez, así que se ignora
+        return isVisible && data.score === 0; 
+    });
+
+    if (allRows.length === 0) {
+        return alert("🎉 ¡FELICIDADES HARLEY! Has completado los 70 verbos de esta sesión. No quedan más por preguntar.");
+    }
+    
+    let randomRow = allRows[Math.floor(Math.random() * allRows.length)];
+    const correctVerb = randomRow.cells[0].innerText;
+    const correctMeaning = randomRow.cells[1].innerText.trim();
+    const exampleText = randomRow.cells[2].innerText.trim();
+    
+    randomRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    randomRow.classList.add('highlight');
+    speak(randomRow.cells[0].querySelector('.verb-name'));
+
+    currentQuestion = { verb: correctVerb, meaning: correctMeaning, example: exampleText, mode: mode };
+    showQuizModal(currentQuestion);
+}
+
+function showQuizModal(q) {
+    const modal = document.getElementById('quizModal');
+    const timerRing = document.getElementById('timerRing');
+    const optionsArea = document.getElementById('optionsArea');
+    const quizInput = document.getElementById('quizInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const modalTitle = document.getElementById('modalTitle');
+    const failSound = document.getElementById('failSound');
+
+    modal.style.display = 'flex';
+    optionsArea.innerHTML = '';
+    quizInput.style.display = 'none';
+    submitBtn.style.display = 'none';
+    
+    timerRing.style.display = timerActive ? 'block' : 'none';
+    timerRing.classList.remove('timer-warning');
+    let timeLeft = 10;
+    timerRing.innerText = timeLeft;
+
+    if (timerActive) {
+        if (globalTimer) clearInterval(globalTimer);
+        globalTimer = setInterval(() => {
+            timeLeft--;
+            timerRing.innerText = timeLeft;
+            
+            if(timeLeft <= 3) timerRing.classList.add('timer-warning');
+
+            if (timeLeft <= 0) {
+                clearInterval(globalTimer);
+                failSound.play();
+                finishQuiz(false, true);
+            }
+        }, 1000);
+    }
+
+    if (q.mode === 'multiple') {
+        modalTitle.innerText = `¿Qué significa "${q.verb.toUpperCase()}"?`;
+        let others = Array.from(document.querySelectorAll('tbody td:nth-child(2)'))
+            .map(td => td.innerText).filter(m => m.toLowerCase() !== q.meaning.toLowerCase());
+        let opts = [q.meaning];
+        for(let i=0; i<3; i++) opts.push(others.splice(Math.floor(Math.random()*others.length), 1)[0]);
+        opts.sort(() => Math.random() - 0.5);
+
+        opts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                const isCorrect = opt.toLowerCase().trim() === q.meaning.toLowerCase().trim();
+                if(!isCorrect) failSound.play();
+                finishQuiz(isCorrect);
+            };
+            optionsArea.appendChild(btn);
+        });
+    } else {
+        modalTitle.innerText = q.mode === 'write' ? 
+            `Escribe el significado de "${q.verb.toUpperCase()}"` : 
+            `Escribe el ejemplo para "${q.verb.toUpperCase()}"`;
+        quizInput.style.display = 'block';
+        quizInput.value = '';
+        submitBtn.style.display = 'block';
+        setTimeout(() => quizInput.focus(), 100);
+        
+        submitBtn.onclick = () => {
+            const val = quizInput.value.toLowerCase().trim();
+            const correct = q.mode === 'write' ? q.meaning.toLowerCase().trim() : q.example.toLowerCase().trim();
+            const isCorrect = val === correct;
+            if(!isCorrect) failSound.play();
+            finishQuiz(isCorrect);
+        };
+        quizInput.onkeypress = (e) => { if(e.key === 'Enter') submitBtn.click(); };
+    }
+}
+
+function finishQuiz(isCorrect, isTimeOut = false) {
+    if (globalTimer) clearInterval(globalTimer);
+    document.getElementById('quizModal').style.display = 'none';
+    
+    const verb = currentQuestion.verb;
+    
+    if (isTimeOut) {
+        streak = 0;
+        masteryData[verb] = masteryData[verb] || { score: 0, errors: 0 };
+        masteryData[verb].errors++;
+        triggerFeedback(false);
+        saveAndRefresh();
+        alert("⏰ ¡TIEMPO AGOTADO!");
+    } else if (isCorrect) {
+        streak++;
+        masteryData[verb] = masteryData[verb] || { score: 0, errors: 0 };
+        // LOGICA DE COMPLETADO RAPIDO: Al acertar, ponemos score en 3 directamente para que se pinte de oro y salga de la tómbola
+        masteryData[verb].score = 3; 
+        triggerFeedback(true);
+        saveAndRefresh();
+        alert("✨ ¡CORRECTO!");
+    } else {
+        streak = 0;
+        masteryData[verb] = masteryData[verb] || { score: 0, errors: 0 };
+        masteryData[verb].errors++; 
+        triggerFeedback(false);
+        saveAndRefresh();
+        const msg = currentQuestion.mode === 'context' ? currentQuestion.example : currentQuestion.meaning;
+        alert(`❌ INCORRECTO\n\nRespuesta: ${msg.toUpperCase()}`);
+    }
+}
+
+function updateVisuals() {
+    let masteredCount = 0;
+    const allVerbs = [...sepData, ...insepData];
+    allVerbs.forEach(v => {
+        const verb = v[0];
+        const row = document.getElementById(`tr-${verb.replace(/\s/g, '')}`);
+        if (!row) return;
+        const data = masteryData[verb] || { score: 0, errors: 0 };
+        row.classList.remove('level-1', 'level-2', 'mastered');
+        const reveal = row.querySelector('.reveal');
+        if (data.score >= 3) {
+            row.classList.add('mastered');
+            reveal.classList.add('unlocked');
+            masteredCount++;
+        }
+    });
+    document.getElementById('learnedCount').innerText = masteredCount;
+    document.getElementById('progressBar').style.width = (masteredCount / 70 * 100) + "%";
+    checkAchievements(masteredCount);
+}
+
+function checkAchievements(count) {
+    let rank = "🎖️ Novato", color = "#cbd5e1";
+    if (count >= 70) { rank = "💎 PHRASAL MASTER"; color = "#f87171"; }
+    else if (count >= 50) { rank = "🏆 Experto"; color = "#fbbf24"; }
+    else if (count >= 25) { rank = "🥇 Avanzado"; color = "#38bdf8"; }
+    const rd = document.getElementById('rankDisplay');
+    rd.innerText = rank; rd.style.color = color;
+}
+
+function triggerFeedback(isCorrect) {
+    if (navigator.vibrate) isCorrect ? navigator.vibrate(50) : navigator.vibrate([100, 50, 100]);
+}
+
+function saveAndRefresh() {
+    localStorage.setItem('phrasalMasteryDataV4', JSON.stringify(masteryData));
+    updateVisuals();
+    document.getElementById('streakCount').innerText = streak;
+}
+
+function searchFunction() {
+    let f = document.getElementById("verbSearch").value.toUpperCase();
+    document.querySelectorAll("tbody tr").forEach(row => {
+        row.style.display = row.innerText.toUpperCase().includes(f) ? "" : "none";
+    });
+}
+
+function searchByParticle(p) { document.getElementById("verbSearch").value = p; searchFunction(); }
+
+function filterBy(type) {
+    document.querySelectorAll("tbody tr").forEach(row => {
+        const v = row.cells[0].innerText;
+        const d = masteryData[v] || { score: 0, errors: 0 };
+        if (type === 'all') row.style.display = "";
+        else if (type === 'pending') row.style.display = d.score < 3 ? "" : "none";
+        else if (type === 'errors') row.style.display = d.errors > 0 ? "" : "none";
+    });
+}
+
+function speak(el) {
+    const u = new SpeechSynthesisUtterance(el.innerText);
+    u.lang = 'en-US'; window.speechSynthesis.speak(u);
+}
+
+function toggleBlind() {
+    document.querySelector('.container').classList.toggle('blind-mode');
+    const isBlind = document.querySelector('.container').classList.contains('blind-mode');
+    document.getElementById('blindBtn').innerText = isBlind ? "👁️ DESACTIVAR MODO JUEGO" : "👁️ ACTIVAR MODO JUEGO";
+}
+
+function resetProgress() {
+    if (confirm("¿Borrar todo?")) {
+        masteryData = {}; streak = 0;
+        localStorage.removeItem('phrasalMasteryDataV4');
+        saveAndRefresh();
+    }
+}
+</script>
+</body>
+</html>

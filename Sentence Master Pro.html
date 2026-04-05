@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Master Pro - 70 Phrasal Challenges</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root { 
+            --bg: #0f172a; --text: #f1f5f9; --green: #22c55e; --red: #ef4444; 
+            --card: #1e293b; --accent: #a855f7; --yellow: #eab308;
+            --blue: #38bdf8; --gray: #64748b; --orange: #fb923c;
+            --rank-color: var(--blue);
+        }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: var(--bg); color: var(--text); padding: 20px; 
+            transition: background 0.5s;
+        }
+        /* --- CONTENEDOR FLEXIBLE --- */
+.container { 
+    max-width: 1200px; /* Un poco más ancho para que quepan más pestañas */
+    margin: auto; 
+    text-align: center; 
+    position: relative; 
+    padding: 0 15px;
+}
+
+/* --- BARRA DE NAVEGACIÓN INTELIGENTE --- */
+.nav-tabs {
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap;          /* Permite que las pestañas bajen si no hay espacio */
+    gap: 6px;                 /* Espacio reducido para máxima eficiencia */
+    margin-bottom: 30px; 
+    padding: 10px;
+    background: #0f172a;      /* Fondo más profundo y moderno */
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+}
+
+/* --- ENLACES DE PESTAÑA ESTILO BOTÓN --- */
+.tab-link {
+    text-decoration: none; 
+    color: #94a3b8;           /* Gris suave para estados inactivos */
+    padding: 6px 14px;        /* Padding optimizado */
+    border-radius: 8px;       /* Bordes redondeados completos para un look moderno */
+    font-weight: 800; 
+    font-size: 10px;          /* Tamaño compacto pero legible */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    background: #1e293b;
+    white-space: nowrap;      /* Evita que el texto se rompa en 2 líneas */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid transparent;
+}
+
+.tab-link:hover {
+    color: #f8fafc;
+    background: #334155;
+    transform: translateY(-1px);
+}
+
+/* --- ESTADO ACTIVO (SIN MARGENES NEGATIVOS) --- */
+.tab-link.active {
+    color: #ffffff; 
+    background: #4f46e5;      /* Tu color azul característico */
+    border-color: #6366f1;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+    pointer-events: none;     /* Desactiva el click en la pestaña actual */
+}
+
+/* Ajuste para pantallas pequeñas (Móvil) */
+@media (max-width: 600px) {
+    .nav-tabs {
+        gap: 4px;
+        padding: 5px;
+    }
+    .tab-link {
+        font-size: 9px;
+        padding: 5px 10px;
+        flex: 1 1 auto;       /* Hace que los botones crezcan para llenar el ancho */
+        justify-content: center;
+    }
+}
+        
+        /* PROGRESO Y RANGO */
+        .progress-bar {
+            width: 100%; height: 12px; background: #1e293b;
+            border-radius: 10px; overflow: hidden; border: 1px solid #334155; margin: 20px 0;
+        }
+        #progressFill {
+            height: 100%; width: 0%; background: linear-gradient(90deg, var(--rank-color), var(--accent));
+            transition: width 0.5s ease, background 0.5s;
+        }
+        .rank-tag {
+            font-weight: 900; color: var(--rank-color); text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* CARD PRINCIPAL */
+        .quiz-card {
+            background: var(--card); padding: 30px; border-radius: 20px;
+            border: 2px solid var(--rank-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 20px; min-height: 400px; transition: border 0.5s;
+        }
+
+        .sentence { font-size: 1.6em; margin-bottom: 25px; line-height: 1.4; }
+        .blank { color: var(--yellow); font-weight: bold; border-bottom: 3px dashed var(--yellow); }
+
+        /* EXPLICACIÓN POST-RESPUESTA */
+        .explanation-box {
+            background: #0f172a; padding: 20px; border-radius: 12px;
+            margin: 20px 0; display: none; border-left: 4px solid var(--accent);
+            text-align: left; animation: fadeIn 0.4s;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .lang-label { font-size: 0.65em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; margin-right: 8px; font-weight: 800; }
+        .label-en { background: var(--blue); color: #0f172a; }
+        .label-es { background: var(--gray); color: white; }
+        
+        /* BOTONES */
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .opt-btn {
+            padding: 15px; border-radius: 12px; border: 1px solid #334155;
+            background: #0f172a; color: white; cursor: pointer; font-size: 1.1em; transition: 0.2s;
+            position: relative;
+        }
+        .opt-btn::before {
+            content: attr(data-key);
+            position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+            background: #334155; color: #cbd5e1; font-size: 0.7em; padding: 2px 6px; border-radius: 4px;
+        }
+        .opt-btn:hover:not(:disabled) { border-color: var(--rank-color); transform: translateY(-2px); }
+        .opt-btn.correct { background: var(--green) !important; color: white; border-color: var(--green); }
+        .opt-btn.wrong { background: var(--red) !important; color: white; border-color: var(--red); }
+
+        /* Animación para error */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+        .shake { animation: shake 0.4s; }
+
+        .btn-next {
+            padding: 15px 40px; border-radius: 12px; background: var(--green);
+            color: black; font-weight: 900; border: none; cursor: pointer; display: none; margin: 20px auto;
+        }
+
+        .mistake-tracker {
+            margin-top: 40px; text-align: left; background: #1e293b; padding: 20px; border-radius: 15px;
+            border: 1px solid var(--red); display: none;
+        }
+        .audio-btn { background: var(--accent); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; margin-bottom: 15px; display: none; }
+        
+        .reset-btn {
+            background: none; border: 1px solid #334155; color: #64748b; padding: 5px 10px; 
+            border-radius: 5px; cursor: pointer; font-size: 0.8em; margin-top: 30px; transition: 0.3s;
+        }
+        .reset-btn:hover { color: var(--red); border-color: var(--red); }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab-link">Inicio</a>
+        <a href="Sentence Master Pro.html" class="tab-link active">📝Phrasal Verbs Sentence Pro</a>
+        <a href="phrasalverbs.html" class="tab-link">🎮Phrasal Verbs Option Master</a>
+        <a href="guia.html" class="tab-link"><i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL</a>
+        <a href="guia%202.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL</a>
+        <a href="tiempos.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
+        <a href="libro - copia.html" class="tab-link"><i class="fas fa-bookmark"></i> 📑 LIBRO Advanced_Student</a>
+        <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
+    </nav>
+
+<div class="container">
+    <h1 style="margin-bottom: 5px;">📝 Sentence Master Pro</h1>
+    <div style="margin-bottom: 20px;">Rango: <span id="rankDisplay" class="rank-tag">Novato 🌱</span></div>
+    
+    <div class="progress-bar"><div id="progressFill"></div></div>
+
+    <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; font-size: 0.9em;">
+        <div>✅ Dominados: <span id="learnedCount" style="font-weight:bold;">0</span>/70</div>
+        <div>🔥 Racha: <span id="streakCount" style="font-weight:bold;">0</span></div>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+        <button id="audioBtn" class="audio-btn" onclick="speakSentence()">🔊 Listen</button>
+        <div class="sentence" id="sentenceText">Cargando desafío...</div>
+        
+        <div id="explanationBox" class="explanation-box">
+            <div style="margin-bottom: 12px;">
+                <span class="lang-label label-en">Review</span> <i id="fullSentenceEn" style="color: var(--blue)"></i><br>
+                <span class="lang-label label-es">Traducción</span> <span id="translationText" style="color: #cbd5e1"></span>
+            </div>
+
+            <div style="border-top: 1px solid #334155; padding-top: 10px; margin-top: 10px;">
+                <div style="color: var(--orange); font-size: 0.9em; margin-bottom: 5px;"><b>💡 Lógica de la partícula:</b></div>
+                <div id="particleLogicText" style="font-style: italic; color: #94a3b8;"></div>
+            </div>
+
+            <div style="background: rgba(168, 85, 247, 0.1); padding: 10px; border-radius: 8px; margin-top: 15px;">
+                <span class="lang-label label-en" style="background: var(--accent)">Extra Context</span>
+                <div id="extraExampleText" style="font-size: 0.9em; margin-top: 5px;"></div>
+            </div>
+        </div>
+
+        <div class="options-grid" id="optionsArea"></div>
+        <button class="btn-next" id="nextBtn" onclick="generateQuestion()">CONTINUAR (Enter) ➔</button>
+    </div>
+
+    <div id="mistakeTracker" class="mistake-tracker">
+        <h3 style="color: var(--red); margin-top: 0;">⚠️ Repasar: <button onclick="startReviewMode()" style="background: var(--red); color: white; border:none; padding: 4px 8px; border-radius: 4px; cursor: pointer; float: right; font-size: 0.7em;">PRACTICAR ESTOS</button></h3>
+        <ul id="mistakeList" style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; font-size: 0.85em;"></ul>
+    </div>
+    
+    <button class="reset-btn" onclick="resetGame()">Resetear Progreso</button>
+</div>
+
+<script>
+const sentenceData = [
+    { q: "Please ___ the TV; I am trying to study.", a: "Turn off", opts: ["Turn off", "Go on", "Get in", "Set up"], tEs: "Apaga la TV, por favor.", logic: "OFF ⬇️: Desconexión o apagado de un aparato.", extra: "Always turn off the lights before leaving." },
+    { q: "He decided to ___ smoking last year.", a: "Give up", opts: ["Give up", "Take up", "Hold on", "Look for"], tEs: "Decidió dejar de fumar.", logic: "UP ⬆️: Rendirse o abandonar un hábito por completo.", extra: "Don't give up on your goals!" },
+    { q: "You need to ___ this application form.", a: "Fill out", opts: ["Fill out", "Call off", "Run into", "Take off"], tEs: "Debes completar este formulario.", logic: "OUT 🚪: Sacar la información de tu cabeza para ponerla en papel.", extra: "Please fill out the survey." },
+    { q: "The boss had to ___ the meeting.", a: "Call off", opts: ["Call off", "Put on", "Carry on", "Get over"], tEs: "El jefe tuvo que cancelar la reunión.", logic: "OFF ⬇️: Cancelar algo, quitarlo de la agenda.", extra: "The concert was called off due to rain." },
+    { q: "She really ___ her mother.", a: "Takes after", opts: ["Takes after", "Looks for", "Goes by", "Backs up"], tEs: "Se parece mucho a su madre.", logic: "AFTER ⬅️: Venir 'después' en la línea familiar (heredar rasgos).", extra: "He takes after his father." },
+    { q: "We have ___ milk; I need to go to the shop.", a: "Run out of", opts: ["Run out of", "Get along", "Hold up", "Check in"], tEs: "Nos quedamos sin leche.", logic: "OUT OF 🚪➡️: El contenedor se quedó vacío; se agotó.", extra: "We ran out of time during the test." },
+    { q: "Please ___ your coat before you sit down.", a: "Take off", opts: ["Take off", "Put on", "Try on", "Get off"], tEs: "Quítate el abrigo.", logic: "OFF ⬇️: Separar algo de tu cuerpo (ropa).", extra: "The plane takes off at noon." },
+    { q: "I am ___ my lost keys.", a: "Looking for", opts: ["Looking for", "Looking up", "Looking after", "Looking into"], tEs: "Estoy buscando mis llaves.", logic: "FOR 🎯: Indica el objetivo de tu búsqueda.", extra: "Are you still looking for a job?" },
+    { q: "I ___ an old friend at the mall.", a: "Ran into", opts: ["Ran into", "Ran away", "Ran over", "Ran out"], tEs: "Me encontré con un viejo amigo.", logic: "INTO 💥: Chocar o coincidir inesperadamente con alguien.", extra: "I ran into my ex at the cinema." },
+    { q: "Never ___ a task until tomorrow.", a: "Put off", opts: ["Put off", "Put on", "Put out", "Put away"], tEs: "No pospongas una tarea.", logic: "OFF ⬇️: Alejar una obligación en la línea del tiempo (posponer).", extra: "Don't put off your happiness." },
+    { q: "Can you ___ me ___ at 8 AM?", a: "Pick up", opts: ["Pick up", "Take up", "Get up", "Look up"], tEs: "¿Puedes recogerme a las 8?", logic: "UP ⬆️: Elevar a alguien físicamente (para subir a un auto).", extra: "Pick up your toys, please." },
+    { q: "Don't ___ that sensitive topic now.", a: "Bring up", opts: ["Bring up", "Bring down", "Bring back", "Bring in"], tEs: "No menciones ese tema ahora.", logic: "UP ⬆️: Sacar a flote un tema para conversarlo.", extra: "She was brought up in Madrid." },
+    { q: "I need to ___ these shoes before I buy them.", a: "Try on", opts: ["Try on", "Put on", "Take off", "Get on"], tEs: "Necesito probarme estos zapatos.", logic: "ON 👕: Poner una prenda sobre tu cuerpo para probarla.", extra: "Try on the red dress." },
+    { q: "I don't ___ my new boss.", a: "Get along with", opts: ["Get along with", "Get over", "Get by", "Get through"], tEs: "No me llevo bien con mi jefe.", logic: "ALONG 🤝: Fluir y avanzar sin chocar con alguien.", extra: "Do you get along with your sister?" },
+    { q: "It took him a year to ___ the breakup.", a: "Get over", opts: ["Get over", "Get up", "Get in", "Get out"], tEs: "Le tomó un año superar la ruptura.", logic: "OVER 🎢: Pasar 'por encima' de un obstáculo emocional (superar).", extra: "I finally got over my cold." },
+    { q: "Please ___ the music; I love this song!", a: "Turn up", opts: ["Turn up", "Turn down", "Turn on", "Turn off"], tEs: "Sube el volumen.", logic: "UP ⬆️: Incrementar el nivel, intensidad o volumen.", extra: "Turn up the heater, it's cold." },
+    { q: "The washing machine ___ again.", a: "Broke down", opts: ["Broke down", "Broke up", "Broke out", "Broke into"], tEs: "La lavadora se averió.", logic: "DOWN ⬇️: Colapso mecánico; dejó de funcionar.", extra: "She broke down after the news." },
+    { q: "We need to ___ who stole the money.", a: "Find out", opts: ["Find out", "Find in", "Look out", "Take out"], tEs: "Necesitamos descubrir quién robó.", logic: "OUT 🚪: Sacar la verdad a la luz (descubrir).", extra: "I found out the truth." },
+    { q: "Please ___ the lights when you leave.", a: "Switch off", opts: ["Switch off", "Switch on", "Go off", "Put off"], tEs: "Apaga las luces.", logic: "OFF ⬇️: Cortar la corriente.", extra: "Switch off the engine." },
+    { q: "I am ___ the weekend.", a: "Looking forward to", opts: ["Looking forward to", "Looking for", "Looking at", "Looking after"], tEs: "Ansío el fin de semana.", logic: "FORWARD ⏩: Mirar hacia el futuro con emoción.", extra: "I look forward to meeting you." },
+    { q: "They had to ___ his job application.", a: "Turn down", opts: ["Turn down", "Turn up", "Turn off", "Turn on"], tEs: "Rechazaron su solicitud.", logic: "DOWN ⬇️: Bajar el pulgar; rechazar una oferta.", extra: "Turn down the volume." },
+    { q: "Please ___ your essays by Friday.", a: "Hand in", opts: ["Hand in", "Hand out", "Hand over", "Hand back"], tEs: "Entreguen sus ensayos.", logic: "IN 📥: Entregar algo al control del profesor o autoridad.", extra: "Hand in your keys at the desk." },
+    { q: "We are going to ___ a new company.", a: "Set up", opts: ["Set up", "Set off", "Set in", "Set back"], tEs: "Vamos a fundar una empresa.", logic: "UP ⬆️: Construir algo desde cero; establecer.", extra: "Set up the equipment." },
+    { q: "Could you ___ for a moment, please?", a: "Hold on", opts: ["Hold on", "Hold up", "Hold back", "Hold in"], tEs: "¿Podría esperar?", logic: "ON ⏳: Mantenerte 'aferrado' a la línea mientras esperas.", extra: "Hold on, I'm coming!" },
+    { q: "The teacher started to ___ the exams.", a: "Hand out", opts: ["Hand out", "Hand in", "Hand over", "Hand back"], tEs: "Empezó a repartir los exámenes.", logic: "OUT 🚪: Repartir desde un punto central hacia los demás.", extra: "Hand out the menus." },
+    { q: "Only ten people ___ for the class.", a: "Showed up", opts: ["Showed up", "Showed off", "Showed in", "Showed around"], tEs: "Solo diez aparecieron.", logic: "UP ⬆️: Aparecer físicamente en un lugar (hacerse visible).", extra: "He never shows up for work." },
+    { q: "You should ___ the word in a dictionary.", a: "Look up", opts: ["Look up", "Look for", "Look after", "Look into"], tEs: "Busca la palabra.", logic: "UP ⬆️: Buscar un dato en una lista, índice o libro.", extra: "Look up the address online." },
+    { q: "Please ___ the blanks in the form.", a: "Fill in", opts: ["Fill in", "Fill out", "Fill up", "Fill with"], tEs: "Completa los espacios.", logic: "IN 📥: Introducir datos dentro de huecos específicos.", extra: "Fill in the gaps." },
+    { q: "They decided to ___ after five years.", a: "Break up", opts: ["Break up", "Break down", "Break in", "Break out"], tEs: "Terminaron su relación.", logic: "UP ⬆️: Romper una relación sentimental por completo.", extra: "The group broke up in 1970." },
+    { q: "I need to ___ my bedroom.", a: "Clean up", opts: ["Clean up", "Clean off", "Clean out", "Clean in"], tEs: "Necesito limpiar mi cuarto.", logic: "UP ⬆️: Limpieza total y profunda ('Up' maximiza la acción).", extra: "Clean up this mess!" },
+    { q: "The alarm will ___ at 6 AM.", a: "Go off", opts: ["Go off", "Go on", "Go out", "Go up"], tEs: "La alarma sonará.", logic: "OFF ⬇️: Dispararse o sonar repentinamente (una alarma o bomba).", extra: "The milk went off (se agrió)." },
+    { q: "I can't ___ with your fast pace.", a: "Keep up", opts: ["Keep up", "Keep on", "Keep out", "Keep away"], tEs: "No sigo tu ritmo.", logic: "UP ⬆️: Mantener un ritmo alto y no quedarse atrás.", extra: "Keep up the good work!" },
+    { q: "We will ___ on our journey at dawn.", a: "Set off", opts: ["Set off", "Set up", "Set in", "Set down"], tEs: "Saldremos al amanecer.", logic: "OFF ⬇️: Empezar un viaje, separarse del origen.", extra: "The bomb set off a panic." },
+    { q: "Don't ___ that old magazine.", a: "Throw away", opts: ["Throw away", "Throw up", "Throw out", "Throw in"], tEs: "No tires esa revista.", logic: "AWAY ➡️: Alejar algo para siempre (tirar a la basura).", extra: "Throw away the trash." },
+    { q: "Can you ___ my cat while I'm away?", a: "Look after", opts: ["Look after", "Look for", "Look into", "Look at"], tEs: "¿Cuidas a mi gato?", logic: "AFTER ⬅️: Cuidar (estar pendiente 'detrás' de alguien).", extra: "I look after my brother." },
+    { q: "A thief tried to ___ our house.", a: "Break into", opts: ["Break into", "Break up", "Break out", "Break down"], tEs: "Intentaron entrar a robar.", logic: "INTO 💥: Forzar la entrada al interior de un lugar.", extra: "The car was broken into." },
+    { q: "I need to ___ with my emails.", a: "Catch up", opts: ["Catch up", "Catch on", "Catch out", "Catch in"], tEs: "Ponerme al día con correos.", logic: "UP ⬆️: Alcanzar el nivel de lo que está pendiente.", extra: "Let's catch up over coffee." },
+    { q: "The firemen managed to ___ the fire.", a: "Put out", opts: ["Put out", "Put on", "Put off", "Put away"], tEs: "Lograron apagar el fuego.", logic: "OUT 🚪: Extinguir una llama o fuego.", extra: "Put out the cigarette." },
+    { q: "I like to ___ my childhood.", a: "Look back on", opts: ["Look back on", "Look forward to", "Look up to", "Look down on"], tEs: "Recordar mi infancia.", logic: "BACK ⬅️: Mirar hacia atrás en el tiempo (recordar).", extra: "Don't look back in anger." },
+    { q: "She has always ___ her older sister.", a: "Looked up to", opts: ["Looked up to", "Looked down on", "Looked after", "Looked for"], tEs: "Admira a su hermana.", logic: "UP ⬆️: Mirar 'hacia arriba' a alguien con admiración.", extra: "I look up to my mentor." },
+    { q: "Don't ___ people who are different.", a: "Look down on", opts: ["Look down on", "Look up to", "Look for", "Look after"], tEs: "No menosprecies.", logic: "DOWN ⬇️: Mirar 'hacia abajo' a alguien, sintiéndose superior.", extra: "He looks down on poor people." },
+    { q: "Remember to ___ your hat.", a: "Put on", opts: ["Put on", "Take off", "Try on", "Get on"], tEs: "Ponte el sombrero.", logic: "ON 👕: Vestirse o ponerse una prenda.", extra: "Put your shoes on." },
+    { q: "Can you ___ this email for me?", a: "Print out", opts: ["Print out", "Print in", "Print off", "Print up"], tEs: "¿Imprimes este correo?", logic: "OUT 🚪: Que la información salga en papel.", extra: "I printed out the tickets." },
+    { q: "I'll ___ the trash tonight.", a: "Take out", opts: ["Take out", "Take in", "Take off", "Take up"], tEs: "Sacaré la basura.", logic: "OUT 🚪: Mover algo al exterior.", extra: "Take out the dog." },
+    { q: "Just ___ walking until you see the bank.", a: "Keep on", opts: ["Keep on", "Keep off", "Keep out", "Keep away"], tEs: "Sigue caminando.", logic: "ON 👕: Continuar con la acción actual.", extra: "Keep on smiling." },
+    { q: "It's dark; ___ the light.", a: "Turn on", opts: ["Turn on", "Turn off", "Turn down", "Turn up"], tEs: "Enciende la luz.", logic: "ON 👕: Activar la energía o luz.", extra: "Turn the radio on." },
+    { q: "I can ___ you ___ at the airport.", a: "Drop off", opts: ["Drop off", "Drop in", "Drop by", "Drop out"], tEs: "Te dejo en el aeropuerto.", logic: "OFF ⬇️: Dejar a alguien que transportabas en un lugar.", extra: "I'll drop off the kids." },
+    { q: "He decided to ___ of the race.", a: "Drop out", opts: ["Drop out", "Drop in", "Drop off", "Drop by"], tEs: "Se retiró de la carrera.", logic: "OUT 🚪: Salirse o abandonar una competencia/escuela.", extra: "She dropped out of university." },
+    { q: "I need to ___ sugar in my diet.", a: "Cut down on", opts: ["Cut down on", "Cut off", "Cut out", "Cut in"], tEs: "Reducir el azúcar.", logic: "DOWN ⬇️: Disminuir la cantidad de algo que consumes.", extra: "Cut down on salt." },
+    { q: "Don't ___ the surprise yet!", a: "Give away", opts: ["Give away", "Give up", "Give in", "Give out"], tEs: "¡No reveles la sorpresa!", logic: "AWAY ➡️: Regalar o revelar un secreto a otros.", extra: "They give away free food." },
+    { q: "I ___ an old diary in the attic.", a: "Came across", opts: ["Came across", "Came by", "Came in", "Came out"], tEs: "Hallé un diario viejo.", logic: "ACROSS 🗺️: Cruzarse por accidente con algo o alguien.", extra: "I came across this book." },
+    { q: "Let's ___ the plan one more time.", a: "Go over", opts: ["Go over", "Go out", "Go on", "Go by"], tEs: "Revisemos el plan.", logic: "OVER 🎢: Repasar algo detalle a detalle (por encima).", extra: "Go over the notes." },
+    { q: "The police will ___ the case.", a: "Look into", opts: ["Look into", "Look for", "Look after", "Look at"], tEs: "Investigarán el caso.", logic: "INTO 💥: Mirar 'hacia adentro' del problema para investigar.", extra: "We are looking into it." },
+    { q: "___ this new restaurant with me.", a: "Check out", opts: ["Check out", "Check in", "Check up", "Check off"], tEs: "Mira este restaurante.", logic: "OUT 🚪: Explorar o revisar algo con tus propios ojos.", extra: "Check out the new mall." },
+    { q: "___ my phone number, please.", a: "Write down", opts: ["Write down", "Write up", "Write out", "Write in"], tEs: "Anota mi número.", logic: "DOWN ⬇️: Bajar las palabras al papel (anotar).", extra: "Write down the address." },
+    { q: "I'll ___ the money next week.", a: "Pay back", opts: ["Pay back", "Pay for", "Pay off", "Pay in"], tEs: "Devolveré el dinero.", logic: "BACK ⬅️: Devolver algo a su origen o dueño.", extra: "I'll pay you back later." },
+    { q: "I finally ___ my car loan.", a: "Paid off", opts: ["Paid off", "Paid for", "Paid back", "Paid in"], tEs: "Liquidé el préstamo.", logic: "OFF ⬇️: Pagar una deuda hasta que desaparece (off).", extra: "The effort paid off." },
+    { q: "How did you ___ that idea?", a: "Come up with", opts: ["Come up with", "Come down with", "Come across", "Come by"], tEs: "¿Cómo se te ocurrió?", logic: "UP ⬆️: Hacer surgir una idea en tu mente.", extra: "Who came up with this plan?" },
+    { q: "I think I'm ___ the flu.", a: "Coming down with", opts: ["Coming down with", "Coming up with", "Coming in", "Coming across"], tEs: "Creo que me enfermaré.", logic: "DOWN ⬇️: Caer enfermo; tu energía disminuye.", extra: "He came down with a cold." },
+    { q: "The ring was ___ from her grandma.", a: "Passed down", opts: ["Passed down", "Passed out", "Passed away", "Passed by"], tEs: "Heredado de su abuela.", logic: "DOWN ⬇️: Pasar de generación en generación (hacia abajo).", extra: "Customs passed down." },
+    { q: "My great-uncle ___ at age 95.", a: "Passed away", opts: ["Passed away", "Passed out", "Passed by", "Passed down"], tEs: "Mi tío falleció.", logic: "AWAY ➡️: Partida definitiva (morir).", extra: "Her dog passed away." },
+    { q: "He ___ when he saw the blood.", a: "Passed out", opts: ["Passed out", "Passed away", "Passed by", "Passed down"], tEs: "Se desmayó.", logic: "OUT 🚪: Salir del estado de consciencia; desmayarse.", extra: "It was so hot she passed out." },
+    { q: "I need to ___ space on my phone.", a: "Free up", opts: ["Free up", "Free out", "Free in", "Free off"], tEs: "Liberar espacio.", logic: "UP ⬆️: Aumentar la disponibilidad de algo.", extra: "Free up some time for me." },
+    { q: "They want to ___ in the suburbs.", a: "Settle down", opts: ["Settle down", "Settle in", "Settle up", "Settle for"], tEs: "Establecerse.", logic: "DOWN ⬇️: Asentarse, bajar el ritmo y echar raíces.", extra: "Calm down and settle down." },
+    { q: "A fire ___ in the forest.", a: "Broke out", opts: ["Broke out", "Broke up", "Broke down", "Broke into"], tEs: "Se desató un incendio.", logic: "OUT 🚪: Escapar y expandirse repentinamente (incendio o guerra).", extra: "War broke out in 1939." },
+    { q: "Please ___ with your work.", a: "Carry on", opts: ["Carry on", "Carry out", "Carry off", "Carry in"], tEs: "Continúe su trabajo.", logic: "ON 👕: Continuar activo en una tarea.", extra: "Carry on, don't mind me." },
+    { q: "You can always ___ me.", a: "Count on", opts: ["Count on", "Count in", "Count out", "Count up"], tEs: "Cuenta conmigo.", logic: "ON 👕: Apoyar tu peso (o confianza) sobre alguien.", extra: "I'm counting on you." },
+    { q: "The old house is ___.", a: "Falling apart", opts: ["Falling apart", "Falling down", "Falling out", "Falling behind"], tEs: "Se cae a pedazos.", logic: "APART ↔️: Las piezas se separan del conjunto.", extra: "My car is falling apart." },
+    { q: "We need to ___ how to fix this.", a: "Figure out", opts: ["Figure out", "Figure in", "Figure on", "Figure up"], tEs: "Resolver cómo arreglar.", logic: "OUT 🚪: Hallar la solución externa a un problema mental.", extra: "I can't figure it out." },
+    { q: "It's hard to ___ on a low salary.", a: "Get by", opts: ["Get by", "Get in", "Get out", "Get through"], tEs: "Arreglárselas.", logic: "BY 📍: Pasar apenas rozando (sobrevivir con lo justo).", extra: "I get by with a little help." }
+];
+
+let mastered = JSON.parse(localStorage.getItem('sentenceMastery')) || [];
+let mistakesSession = []; 
+let isReviewMode = false;
+let currentStreak = 0;
+let currentSentence = null;
+
+// EVENT LISTENER PARA TECLADO
+document.addEventListener('keydown', (e) => {
+    if (e.key >= '1' && e.key <= '4') {
+        const btns = document.querySelectorAll('.opt-btn');
+        if (btns[e.key - 1] && !btns[e.key - 1].disabled) {
+            btns[e.key - 1].click();
+        }
+    }
+    if (e.key === 'Enter') {
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn.style.display === 'block') nextBtn.click();
+    }
+});
+
+function updateStats() {
+    const total = sentenceData.length;
+    const progress = mastered.length;
+    document.getElementById('learnedCount').innerText = progress;
+    document.getElementById('streakCount').innerText = currentStreak;
+    document.getElementById('progressFill').style.width = (progress / total * 100) + "%";
+    
+    let rank = "Novato 🌱";
+    let color = "#38bdf8";
+    if(progress >= 70) { rank = "PHRASAL KING 👑"; color = "#fb923c"; }
+    else if(progress >= 50) { rank = "Experto 💎"; color = "#a855f7"; }
+    else if(progress >= 30) { rank = "Avanzado 🥇"; color = "#22c55e"; }
+    else if(progress >= 15) { rank = "Intermedio 🥈"; color = "#eab308"; }
+    
+    document.getElementById('rankDisplay').innerText = rank;
+    document.documentElement.style.setProperty('--rank-color', color);
+}
+
+function generateQuestion() {
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('explanationBox').style.display = 'none';
+    document.getElementById('audioBtn').style.display = 'none';
+    document.getElementById('optionsArea').innerHTML = '';
+
+    let targets = [];
+    if (isReviewMode && mistakesSession.length > 0) {
+        sentenceData.forEach((s, i) => { if (mistakesSession.includes(s.a)) targets.push(i); });
+    } else {
+        isReviewMode = false;
+        sentenceData.forEach((_, i) => { if (!mastered.includes(i)) targets.push(i); });
+    }
+
+    if (targets.length === 0) {
+        if(mastered.length === 70) {
+            confetti({ particleCount: 200, spread: 80, origin: { y: 0.6 } });
+            document.getElementById('sentenceText').innerHTML = "¡70/70 COMPLETADO! 🏆<br>Eres un Phrasal King.";
+        } else {
+            document.getElementById('sentenceText').innerHTML = "¡Repaso terminado!";
+            isReviewMode = false;
+            setTimeout(generateQuestion, 1500);
+        }
+        return;
+    }
+
+    const idx = targets[Math.floor(Math.random() * targets.length)];
+    currentSentence = sentenceData[idx];
+    document.getElementById('sentenceText').innerHTML = (isReviewMode ? "🚩 REPASO: " : "") + currentSentence.q.replace("___", "<span class='blank'>____</span>");
+
+    [...currentSentence.opts].sort(() => Math.random() - 0.5).forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'opt-btn';
+        btn.innerText = opt;
+        btn.setAttribute('data-key', index + 1); // Asignar número para UI
+        btn.onclick = () => checkAnswer(opt, currentSentence.a, idx, btn);
+        document.getElementById('optionsArea').appendChild(btn);
+    });
+}
+
+function checkAnswer(sel, cor, idx, btn) {
+    const all = document.querySelectorAll('.opt-btn');
+    all.forEach(b => b.disabled = true);
+    
+    document.getElementById('explanationBox').style.display = 'block';
+    document.getElementById('audioBtn').style.display = 'inline-block';
+    document.getElementById('fullSentenceEn').innerText = currentSentence.q.replace("___", cor);
+    document.getElementById('translationText').innerText = currentSentence.tEs;
+    document.getElementById('particleLogicText').innerText = currentSentence.logic;
+    document.getElementById('extraExampleText').innerText = currentSentence.extra;
+
+    if (sel === cor) {
+        btn.classList.add('correct');
+        currentStreak++;
+        if (!mastered.includes(idx)) mastered.push(idx);
+        if(isReviewMode) mistakesSession = mistakesSession.filter(m => m !== cor);
+    } else {
+        btn.classList.add('wrong');
+        btn.classList.add('shake'); // Animar error
+        currentStreak = 0;
+        all.forEach(b => { if(b.innerText === cor) b.classList.add('correct'); });
+        if (!mistakesSession.includes(cor)) mistakesSession.push(cor);
+    }
+
+    localStorage.setItem('sentenceMastery', JSON.stringify(mastered));
+    updateStats();
+    updateMistakeTracker();
+    document.getElementById('nextBtn').style.display = 'block';
+}
+
+function updateMistakeTracker() {
+    const list = document.getElementById('mistakeList');
+    document.getElementById('mistakeTracker').style.display = mistakesSession.length > 0 ? 'block' : 'none';
+    list.innerHTML = mistakesSession.map(m => `<li>• ${m}</li>`).join('');
+}
+
+function startReviewMode() { isReviewMode = true; generateQuestion(); }
+function speakSentence() {
+    const msg = new SpeechSynthesisUtterance(currentSentence.q.replace("___", currentSentence.a));
+    msg.lang = 'en-US'; msg.rate = 0.85; window.speechSynthesis.speak(msg);
+}
+
+function resetGame() {
+    if(confirm("¿Estás seguro de que deseas borrar todo tu progreso y volver al nivel Novato?")) {
+        mastered = []; mistakesSession = []; localStorage.clear();
+        updateStats(); generateQuestion();
+    }
+}
+
+updateStats();
+generateQuestion();
+</script>
+</body>
+</html>

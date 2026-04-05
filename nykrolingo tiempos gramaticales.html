@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Tenses & Conditionals | Aprende Gramática Inglesa</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f7fb; color: #1a2a3a; }
+button { font-family: inherit; cursor: pointer; transition: transform 0.1s; }
+button:active { transform: scale(0.97); }
+
+ :root {
+            --primary: #1e2a3e;
+            --present: #2ecc71;
+            --past: #3498db;
+            --future: #9b59b6;
+            --conditional: #e67e22;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --success: #27ae60;
+            --error: #e74c3c;
+            --hint: #f39c12;
+            --tab-bg: #ffffff;
+            --tab-active: #3498db;
+            --text-main: #1e2a3e;
+            --text-muted: #444;
+            --expl-bg: #f8fafc;
+            --formula-bg: #f1f5f9;
+            --example-bg: #fffdf2;
+            --practice-bg: #f0f7ff;
+            --practice-border: #e0e6ed;
+            --nav-bg: rgba(255,255,255,0.8);
+            --footer-bg: #1e2a3e;
+        }
+
+        body.dark-mode {
+            --bg: #0f172a;
+            --card-bg: #1e2a3e;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --expl-bg: #162032;
+            --formula-bg: #0f1f33;
+            --example-bg: #1a2030;
+            --practice-bg: #162032;
+            --practice-border: #2d3f55;
+            --nav-bg: rgba(15,23,42,0.92);
+            --tab-bg: #1e2a3e;
+            --footer-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* --- MEJORA DE DISEÑO DE PESTAÑAS (NAV-TABS) --- */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            background: var(--nav-bg);
+            padding: 15px;
+            border-radius: 0 0 20px 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 20px;
+        }
+
+        .tab-link {
+            text-decoration: none;
+            color: #555;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+            background: var(--tab-bg);
+        }
+
+        .tab-link i {
+            font-size: 1.1rem;
+        }
+
+        .tab-link:hover {
+            background: #f8fafc;
+            color: var(--tab-active);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .tab-link.active {
+            background: var(--tab-active);
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Botón modo oscuro */
+        .dark-toggle {
+            background: var(--tab-bg);
+            border: 1px solid transparent;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .dark-toggle:hover {
+            background: #f8fafc;
+            color: #000;
+            transform: translateY(-2px);
+        }
+        body.dark-mode .dark-toggle {
+            color: #e2e8f0;
+        }
+        body.dark-mode .dark-toggle:hover {
+            color: #000;
+        }
+
+        /* --- FIN MEJORA PESTAÑAS --- */
+
+        header {
+            background: linear-gradient(135deg, #1e2a3e, #2c3e50);
+            color: white;
+            padding: 2.5rem 1rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            margin: 0 1rem;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+.header { background: white; border-bottom: 2px solid #e2e8f0; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.logo { font-size: 22px; font-weight: 900; color: #1e3c72; }
+.logo-sub { font-size: 12px; color: #5a6e8a; margin-top: 2px; }
+.badges { display: flex; gap: 10px; align-items: center; }
+.badge { display: flex; align-items: center; gap: 6px; border-radius: 20px;
+  padding: 6px 14px; font-weight: 700; font-size: 14px; border: 2px solid; }
+.badge-xp { background: #fef9e3; border-color: #f5b04240; color: #c47c2e; }
+.badge-lives { background: #ffe8e8; border-color: #e53e3e40; color: #e53e3e; }
+.reset-btn { background: #f1f5f9; border: 2px solid #cbd5e0; border-radius: 20px;
+  padding: 6px 14px; font-weight: 700; font-size: 14px; color: #4a5568;
+  display: flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.2s; }
+.reset-btn:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+
+.container { max-width: 720px; margin: 0 auto; padding: 24px; }
+
+.level-card { background: linear-gradient(135deg, #2c5282 0%, #2b6cb0 100%);
+  border-radius: 20px; padding: 24px; color: white; margin-bottom: 28px; }
+.level-label { font-size: 13px; opacity: 0.8; font-weight: 600; letter-spacing: 1px; margin-bottom: 4px; }
+.level-name { font-size: 22px; font-weight: 800; margin-bottom: 16px; }
+.progress-bar-wrap { height: 10px; background: rgba(255,255,255,0.25); border-radius: 5px; overflow: hidden; margin-bottom: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 5px; transition: width 0.5s ease; }
+.level-sub { font-size: 12px; opacity: 0.75; }
+
+.section-title { font-size: 13px; font-weight: 800; color: #7f8fa4; letter-spacing: 1.5px; margin-bottom: 16px; }
+
+.guide-btn { width: 100%; background: white; border: 2px solid #e2e8f0;
+  border-radius: 16px; padding: 16px 20px; display: flex; align-items: center;
+  gap: 14px; margin-bottom: 24px; text-align: left; }
+.guide-btn:hover { border-color: #f5b042; box-shadow: 0 4px 16px #f5b04220; }
+.icon-box { width: 48px; height: 48px; border-radius: 14px; display: flex;
+  align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.btn-title { font-weight: 700; font-size: 15px; color: #1a2a3a; }
+.btn-sub { color: #7f8fa4; font-size: 13px; margin-top: 2px; }
+.arrow { margin-left: auto; color: #cbd5e0; font-size: 22px; line-height: 1; }
+
+.lessons-list { display: flex; flex-direction: column; gap: 14px; }
+.lesson-card { width: 100%; background: white; border-radius: 20px;
+  padding: 20px 24px; text-align: left; border: 3px solid; position: relative;
+  overflow: hidden; transition: all 0.2s; }
+.lesson-card:hover:not(:disabled) { transform: translateY(-2px); }
+.lesson-card:disabled { opacity: 0.5; cursor: not-allowed; }
+.lesson-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.lesson-icon { width: 56px; height: 56px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+.lesson-title-text { font-weight: 800; font-size: 17px; }
+.lesson-sub-text { color: #7f8fa4; font-size: 13px; margin-top: 2px; }
+.lesson-progress-row { display: flex; justify-content: space-between; font-size: 12px; color: #7f8fa4; margin-bottom: 6px; }
+.lesson-progress-bar { height: 8px; background: #edf2f7; border-radius: 4px; overflow: hidden; }
+.lesson-completed-badge { position: absolute; top: 12px; right: 12px;
+  color: white; border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 700; }
+
+.lesson-header { color: white; padding: 32px 24px 28px; }
+.back-btn-white { border: none; color: white; border-radius: 10px; padding: 8px 16px;
+  font-size: 14px; font-weight: 600; margin-bottom: 20px; display: inline-block; background: rgba(255,255,255,0.2); }
+.back-btn-white:hover { background: rgba(255,255,255,0.3); }
+.lesson-header-icon { font-size: 40px; margin-bottom: 8px; }
+.lesson-header-title { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.lesson-header-sub { font-size: 15px; opacity: 0.85; }
+
+.unit-card { width: 100%; background: white; border-radius: 16px; padding: 20px 24px;
+  text-align: left; border: 2px solid; display: flex; align-items: center; gap: 16px;
+  transition: all 0.2s; margin-bottom: 14px; }
+.unit-card:hover:not(:disabled) { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.unit-card:disabled { opacity: 0.5; cursor: not-allowed; }
+.unit-icon { width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.unit-info { flex: 1; }
+.unit-title-text { font-weight: 700; font-size: 16px; }
+.unit-count { color: #7f8fa4; font-size: 13px; margin-top: 2px; }
+.unit-tags { display: flex; flex-direction: column; gap: 6px; }
+.unit-tag { border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 700; }
+
+.xp-hint { border-radius: 14px; padding: 16px 20px; display: flex; align-items: center;
+  gap: 12px; margin-top: 8px; border: 2px solid; background: #fef9e3; border-color: #f5b04240; }
+
+/* LEARN PAGE */
+.learn-header { background: white; border-bottom: 2px solid #edf2f7; padding: 16px 24px;
+  display: flex; align-items: center; gap: 16px; }
+.learn-header-info { font-size: 13px; font-weight: 700; color: #7f8fa4; margin-bottom: 4px; }
+.back-btn-gray { background: none; border: none; font-size: 20px; color: #7f8fa4; padding: 0; flex-shrink: 0; }
+
+.grammar-card { background: white; border: 2px solid; border-radius: 20px; padding: 28px 24px; text-align: center; }
+.grammar-title { font-size: 28px; font-weight: 800; margin-bottom: 20px; }
+.grammar-structure { font-size: 20px; font-weight: 700; background: #f7fafc; padding: 12px; border-radius: 16px; margin: 16px 0; font-family: monospace; }
+.grammar-example { font-size: 18px; color: #2c5282; font-style: italic; margin-bottom: 12px; }
+.grammar-usage { font-size: 15px; color: #4a5568; margin-top: 16px; padding: 12px; background: #f0f5fa; border-radius: 12px; }
+.grammar-extra { margin-top: 16px; font-size: 14px; background: #fff8e7; padding: 12px; border-radius: 12px; text-align: left; }
+.dots-row { display: flex; gap: 8px; justify-content: center; margin-top: 28px; }
+.dot-btn { height: 10px; border-radius: 5px; border: none; padding: 0; transition: all 0.3s; cursor: pointer; }
+
+.learn-body { flex: 1; padding: 32px 24px; max-width: 640px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; justify-content: center; }
+.learn-footer { background: white; border-top: 2px solid #edf2f7; padding: 16px 24px;
+  display: flex; gap: 12px; }
+.btn-prev { background: transparent; border: 2px solid #e2e8f0; border-radius: 14px;
+  padding: 14px 24px; font-size: 15px; font-weight: 600; color: #4a5568; flex-shrink: 0; }
+.btn-prev:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-next { flex: 1; border: none; border-radius: 14px; padding: 14px 24px;
+  font-size: 16px; font-weight: 700; color: white; }
+
+/* QUIZ */
+.quiz-header { background: white; border-bottom: 2px solid #edf2f7; padding: 16px 24px;
+  display: flex; align-items: center; gap: 16px; }
+.close-btn { background: none; border: none; font-size: 22px; color: #a0aec0; padding: 0; line-height: 1; flex-shrink: 0; }
+.lives-display { display: flex; align-items: center; gap: 6px; color: #e53e3e; font-weight: 700; flex-shrink: 0; }
+
+.quiz-body { flex: 1; padding: 32px 24px; max-width: 640px; margin: 0 auto; width: 100%; }
+.question-counter { font-size: 12px; color: #a0aec0; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+.question-title { font-size: 19px; font-weight: 700; color: #2d3748; margin-bottom: 24px; }
+.question-card { background: white; border: 3px solid; border-radius: 20px;
+  padding: 32px 24px; text-align: center; margin-bottom: 28px; }
+.question-text { font-size: 20px; font-weight: 600; color: #2d3748; }
+
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.option-btn { background: white; border: 2px solid #e2e8f0; border-radius: 14px;
+  padding: 18px 12px; font-size: 15px; font-weight: 600; color: #2d3748;
+  text-align: center; min-height: 68px; display: flex; align-items: center; justify-content: center;
+  line-height: 1.3; }
+.option-btn:hover:not(:disabled) { border-color: #a0aec0; background: #fafcff; }
+.option-correct { border-color: #38a169 !important; background: #f0fff4 !important; color: #2f855a !important; }
+.option-wrong { border-color: #e53e3e !important; background: #fff5f5 !important; color: #c53030 !important; }
+
+.feedback { border-radius: 14px; padding: 16px 20px; margin: 20px 0 14px;
+  display: flex; align-items: center; gap: 12px; border: 2px solid; }
+.feedback-correct { background: #f0fff4; border-color: #38a16960; }
+.feedback-wrong { background: #fff5f5; border-color: #e53e3e60; }
+.feedback-icon { font-size: 24px; flex-shrink: 0; }
+.feedback-title { font-weight: 700; font-size: 15px; }
+.feedback-correct .feedback-title { color: #38a169; }
+.feedback-wrong .feedback-title { color: #e53e3e; }
+.feedback-answer { color: #4a5568; font-size: 13px; margin-top: 3px; }
+
+.btn-continue-quiz { width: 100%; border: none; border-radius: 14px; padding: 16px 24px;
+  font-size: 16px; font-weight: 700; color: white; }
+
+/* RESULTS */
+.results-page { min-height: 100vh; background: linear-gradient(135deg, #2c5282 0%, #2b6cb0 100%);
+  display: flex; align-items: center; justify-content: center; padding: 24px; }
+.results-card { background: white; border-radius: 24px; padding: 40px 36px; max-width: 440px;
+  width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+.results-emoji { font-size: 72px; margin-bottom: 16px; }
+.results-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #1a2a3a; }
+.results-sub { color: #718096; margin-bottom: 32px; font-size: 16px; }
+.results-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 32px; }
+.stat-box { border-radius: 14px; padding: 16px 8px; border: 2px solid; }
+.stat-value { font-size: 24px; font-weight: 800; }
+.stat-label { font-size: 12px; color: #718096; margin-top: 4px; }
+.results-btns { display: flex; flex-direction: column; gap: 12px; }
+.btn-results-main { border: none; border-radius: 14px; padding: 16px 24px;
+  font-size: 16px; font-weight: 700; color: white; width: 100%; }
+.btn-results-back { background: transparent; border: 2px solid #e2e8f0; border-radius: 14px;
+  padding: 14px 24px; font-size: 15px; font-weight: 600; color: #718096; width: 100%; }
+
+/* GUIDE PAGE */
+.guide-header { padding: 32px 24px 40px; color: white; }
+.guide-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; border-left: 6px solid; }
+.guide-card h3 { font-size: 18px; margin-bottom: 10px; }
+.guide-table { width: 100%; border-collapse: collapse; font-size: 14px; background: white; border-radius: 16px; overflow: hidden; }
+.guide-table th, .guide-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+.guide-table th { background: #edf2f7; font-weight: 700; }
+
+.page { display: none; }
+.page.active { display: block; }
+.flex-page { display: none; flex-direction: column; min-height: 100vh; }
+.flex-page.active { display: flex; }
+</style>
+</head>
+<body>
+  <nav class="nav-tabs">
+    <a href="index.html" class="tab-link">Inicio</a>
+        <a href="Sentence Master Pro.html" class="tab-link">
+            <i class="fas fa-pen-fancy"></i> 🎮 Phrasal Verbs Sentence Pro
+        </a>
+        <a href="phrasalverbs.html" class="tab-link">
+            <i class="fas fa-gamepad"></i> 🎮 Phrasal Verbs Option Master
+        </a>
+        <a href="tiempos.html" class="tab-link">
+            <i class="fas fa-hourglass-half"></i> ⏳ English Tenses Master
+        </a>
+        <a href="guia.html" class="tab-link">
+            <i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL
+        </a>
+        <a href="guia%202.html" class="tab-link">
+            <i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL
+        </a>
+        <a href="libro - copia.html" class="tab-link"><i class="fas fa-bookmark"></i> 📑 LIBRO Advanced_Student</a>
+        <a href="tiempos.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
+        <a href="nykrolingo tiempos gramaticales.html" class="tab-link active"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
+        <a href="more grammar.html" class="tab-link">App Interactiva de Pronunciación</a>
+        <a href="kybalingo grammar 2.html" class="tab-link">Kybalingo grammar 2</a>
+        <button class="dark-toggle" id="darkToggle" title="Alternar modo oscuro" aria-label="Alternar entre modo claro y oscuro"><i class="fas fa-moon"></i> Modo Oscuro</button>
+    </nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="header">
+    <div>
+      <div class="logo">📘 English Tenses & Conditionals</div>
+      <div class="logo-sub">Domina la gramática inglesa paso a paso</div>
+    </div>
+    <div class="badges">
+      <div class="badge badge-xp">⭐ <span id="xp-display">0</span> XP</div>
+      <div class="badge badge-lives">❤️ <span id="lives-display">5</span></div>
+      <button class="reset-btn" id="resetGameBtn" onclick="resetGame()">🔄 Reiniciar juego</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="level-card">
+      <div class="level-label">NIVEL <span id="level-num">1</span></div>
+      <div class="level-name" id="level-name">Grammar Explorer</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="level-bar" style="width:0%;background:white;"></div>
+      </div>
+      <div class="level-sub"><span id="level-xp">0</span>/100 XP para el siguiente nivel</div>
+    </div>
+
+    <button class="guide-btn" onclick="showGuide()">
+      <div class="icon-box" style="background:#fef9e3;">📖</div>
+      <div>
+        <div class="btn-title">Guía completa: Tiempos y Condicionales</div>
+        <div class="btn-sub">Repasa estructuras, usos y ejemplos</div>
+      </div>
+      <div class="arrow">›</div>
+    </button>
+
+    <div class="section-title">LECCIONES</div>
+    <div class="lessons-list" id="lessons-list"></div>
+    <div style="height:40px;"></div>
+  </div>
+</div>
+
+<!-- GUIDE PAGE mejorada con más detalles -->
+<div id="page-guide" class="page">
+  <div class="guide-header" style="background:linear-gradient(135deg,#2c5282,#2b6cb0);">
+    <button class="back-btn-white" onclick="showHome()">← Volver</button>
+    <div class="lesson-header-icon">📚</div>
+    <div class="lesson-header-title">Gramática Inglesa Avanzada</div>
+    <div class="lesson-header-sub">12 tiempos verbales + 5 condicionales con ejemplos y usos</div>
+  </div>
+  <div class="container">
+    <div class="guide-card" style="border-left-color: #3182ce;">
+      <h3>⏳ Tiempos Presentes (Present Tenses)</h3>
+      <table class="guide-table"><thead><tr><th>Tiempo</th><th>Estructura</th><th>Ejemplo</th><th>Uso clave</th></tr></thead><tbody>
+        <tr><td>Present Simple</td><td>Suj + V1/Vs</td><td>She works every day.</td><td>Hechos, rutinas, verdades universales.</td></tr>
+        <tr><td>Present Continuous</td><td>Suj + am/is/are + V-ing</td><td>They are playing now.</td><td>Acciones en progreso ahora, planes futuros.</td></tr>
+        <tr><td>Present Perfect</td><td>Suj + have/has + V3</td><td>I have seen that movie.</td><td>Experiencias, cambios, acciones pasadas con relevancia actual.</td></tr>
+        <tr><td>Present Perfect Continuous</td><td>Suj + have/has been + V-ing</td><td>He has been studying for hours.</td><td>Énfasis en duración de una acción que empezó en el pasado y continúa.</td></tr>
+      </tbody></table>
+    </div>
+    <div class="guide-card" style="border-left-color: #e53e3e;">
+      <h3>🕰️ Tiempos Pasados (Past Tenses)</h3>
+      <table class="guide-table"><thead><tr><th>Tiempo</th><th>Estructura</th><th>Ejemplo</th><th>Uso clave</th></tr></thead><tbody>
+        <tr><td>Past Simple</td><td>Suj + V2/ed</td><td>We visited London.</td><td>Acciones completadas en el pasado.</td></tr>
+        <tr><td>Past Continuous</td><td>Suj + was/were + V-ing</td><td>I was reading at 8pm.</td><td>Acciones en progreso en un momento específico del pasado.</td></tr>
+        <tr><td>Past Perfect</td><td>Suj + had + V3</td><td>She had left before I arrived.</td><td>Acción anterior a otra acción pasada.</td></tr>
+        <tr><td>Past Perfect Continuous</td><td>Suj + had been + V-ing</td><td>They had been waiting for an hour.</td><td>Duración de una acción antes de otra en el pasado.</td></tr>
+      </tbody></table>
+    </div>
+    <div class="guide-card" style="border-left-color: #38a169;">
+      <h3>🔮 Tiempos Futuros (Future Tenses)</h3>
+      <table class="guide-table"><thead><tr><th>Tiempo</th><th>Estructura</th><th>Ejemplo</th><th>Uso clave</th></tr></thead><tbody>
+        <tr><td>Future Simple</td><td>Suj + will + V1</td><td>It will rain tomorrow.</td><td>Predicciones, promesas, decisiones espontáneas.</td></tr>
+        <tr><td>Future Continuous</td><td>Suj + will be + V-ing</td><td>This time tomorrow I will be flying.</td><td>Acciones en progreso en un momento futuro.</td></tr>
+        <tr><td>Future Perfect</td><td>Suj + will have + V3</td><td>By 2025, I will have graduated.</td><td>Acciones completadas antes de un tiempo futuro.</td></tr>
+        <tr><td>Future Perfect Continuous</td><td>Suj + will have been + V-ing</td><td>By next year, she will have been working here for 5 years.</td><td>Duración de una acción hasta un momento futuro.</td></tr>
+      </tbody></table>
+    </div>
+    <div class="guide-card" style="border-left-color: #d69e2e;">
+      <h3>⚖️ Condicionales (Conditionals)</h3>
+      <table class="guide-table"><thead><tr><th>Tipo</th><th>If clause</th><th>Main clause</th><th>Ejemplo</th><th>Uso</th></tr></thead><tbody>
+        <tr><td>Zero</td><td>If + present simple</td><td>present simple</td><td>If you heat ice, it melts.</td><td>Verdades universales / hechos científicos.</td></tr>
+        <tr><td>First</td><td>If + present simple</td><td>will + inf</td><td>If it rains, we will stay home.</td><td>Situaciones reales o probables en el futuro.</td></tr>
+        <tr><td>Second</td><td>If + past simple</td><td>would + inf</td><td>If I won the lottery, I would travel.</td><td>Hipotéticas o improbables en presente/futuro.</td></tr>
+        <tr><td>Third</td><td>If + past perfect</td><td>would have + V3</td><td>If you had studied, you would have passed.</td><td>Irreal en el pasado (no ocurrió).</td></tr>
+        <tr><td>Mixed</td><td>past perfect / past simple</td><td>would + inf / would have + V3</td><td>If I had taken the job, I would be rich now.</td><td>Conectar pasado irreal con presente hipotético.</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- UNIT SELECT -->
+<div id="page-units" class="page">
+  <div id="unit-lesson-header" class="lesson-header">
+    <button class="back-btn-white" onclick="showHome()">← Volver</button>
+    <div class="lesson-header-icon" id="unit-icon-el"></div>
+    <div class="lesson-header-title" id="unit-title-el"></div>
+    <div class="lesson-header-sub" id="unit-sub-el"></div>
+  </div>
+  <div class="container">
+    <div class="section-title">UNIDADES</div>
+    <div id="units-list"></div>
+    <div class="xp-hint">
+      <span style="font-size:24px;">📈</span>
+      <div>
+        <div style="font-weight:700;color:#c47c2e;font-size:14px;">Gana XP</div>
+        <div style="color:#7f8fa4;font-size:13px;">Completa unidades y cuestionarios para mejorar tu nivel</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEARN PAGE -->
+<div id="page-learn" class="flex-page">
+  <div class="learn-header">
+    <button class="back-btn-gray" onclick="goBackToUnits()">←</button>
+    <div style="flex:1;">
+      <div class="learn-header-info" id="learn-breadcrumb">Lección</div>
+      <div class="progress-bar-wrap" style="height:8px;background:#edf2f7;">
+        <div class="progress-bar-fill" id="learn-bar" style="width:0%;"></div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#a0aec0;font-weight:600;" id="learn-counter">1/1</div>
+  </div>
+  <div class="learn-body">
+    <div style="font-size:12px;color:#a0aec0;font-weight:700;letter-spacing:1.5px;margin-bottom:16px;">APRENDE</div>
+    <div class="grammar-card" id="learn-card"></div>
+    <div class="dots-row" id="learn-dots"></div>
+  </div>
+  <div class="learn-footer">
+    <button class="btn-prev" id="btn-prev" onclick="learnPrev()">← Anterior</button>
+    <button class="btn-next" id="btn-next" onclick="learnNext()">Siguiente →</button>
+  </div>
+</div>
+
+<!-- QUIZ PAGE -->
+<div id="page-quiz" class="flex-page">
+  <div class="quiz-header">
+    <button class="close-btn" onclick="goBackToUnits()">✕</button>
+    <div style="flex:1;">
+      <div class="progress-bar-wrap" style="height:10px;background:#edf2f7;">
+        <div class="progress-bar-fill" id="quiz-bar" style="width:0%;"></div>
+      </div>
+    </div>
+    <div class="lives-display">❤️ <span id="quiz-lives">5</span></div>
+  </div>
+  <div class="quiz-body">
+    <div class="question-counter" id="quiz-counter">PREGUNTA 1 DE 10</div>
+    <div class="question-title" id="quiz-qtitle"></div>
+    <div class="question-card" id="quiz-card"></div>
+    <div class="options-grid" id="quiz-options"></div>
+    <div id="quiz-feedback" style="display:none;"></div>
+    <button class="btn-continue-quiz" id="btn-quiz-next" style="display:none;" onclick="quizNext()">Siguiente</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="page-results" class="flex-page results-page">
+  <div class="results-card">
+    <div class="results-emoji" id="res-emoji">🏆</div>
+    <h2 class="results-title" id="res-title">¡Excelente!</h2>
+    <p class="results-sub" id="res-sub"></p>
+    <div class="results-stats">
+      <div class="stat-box"><div class="stat-value" style="color:#319795;" id="res-acc">0%</div><div class="stat-label">Precisión</div></div>
+      <div class="stat-box"><div class="stat-value" style="color:#2c5282;" id="res-correct">0</div><div class="stat-label">Correctas</div></div>
+      <div class="stat-box"><div class="stat-value" style="color:#c47c2e;" id="res-xp">+0</div><div class="stat-label">XP ganados</div></div>
+    </div>
+    <div class="results-btns">
+      <button class="btn-results-main" id="btn-res-continue" onclick="finishQuiz()">Continuar</button>
+      <button class="btn-results-back" onclick="showHome()">Volver al mapa</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== DATOS MEJORADOS: CADA UNIDAD CONTIENE MÚLTIPLES ITEMS DETALLADOS ==========
+const LESSONS = [
+  { id:"present", title:"Present Tenses", subtitle:"Simple, Continuous, Perfect & Perfect Continuous", icon:"⏳", color:"#3182ce", units:[
+    { id:"pres-simple", title:"Present Simple", items:[
+      { name:"Present Simple - Estructura", structure:"Sujeto + Verbo base / + (s/es para 3ra persona)", example:"She works in an office. / They play football.", usage:"Hechos generales, rutinas, horarios, verdades universales.", extra:"Palabras clave: always, never, often, every day, usually." },
+      { name:"Present Simple - Negativa", structure:"Sujeto + do/does + not + verbo base", example:"She does not (doesn't) work on Sundays. / I don't like coffee.", usage:"Negar hábitos o hechos.", extra:"Contracciones: don't, doesn't." },
+      { name:"Present Simple - Preguntas", structure:"Do/Does + sujeto + verbo base?", example:"Do you speak English? / Does she live here?", usage:"Preguntas sobre rutinas o hechos.", extra:"Respuestas cortas: Yes, I do / No, she doesn't." }
+    ]},
+    { id:"pres-cont", title:"Present Continuous", items:[
+      { name:"Present Continuous - Afirmativo", structure:"Sujeto + am/is/are + verbo-ing", example:"She is reading a book now. / They are playing outside.", usage:"Acciones en progreso ahora mismo o cerca del presente.", extra:"Palabras clave: now, right now, at the moment, today." },
+      { name:"Present Continuous - Negativo", structure:"Sujeto + am/is/are + not + V-ing", example:"He is not (isn't) sleeping. / We aren't working today.", usage:"Negar acciones en progreso.", extra:"Contracciones: isn't, aren't." },
+      { name:"Present Continuous - Planes futuros", structure:"Sujeto + am/is/are + V-ing (con tiempo futuro)", example:"I am meeting my friend tomorrow.", usage:"Planes fijos o acordados en el futuro cercano.", extra:"Se usa con expresiones de tiempo futuro: next week, tomorrow." }
+    ]},
+    { id:"pres-perf", title:"Present Perfect", items:[
+      { name:"Present Perfect - Experiencias", structure:"Sujeto + have/has + participio pasado (V3)", example:"I have visited Paris. / She has seen that movie.", usage:"Experiencias de vida sin especificar cuándo.", extra:"Palabras clave: ever, never, already, yet, before." },
+      { name:"Present Perfect - Cambios recientes", structure:"Sujeto + have/has + V3", example:"The population has increased.", usage:"Cambios que han ocurrido en un período no terminado.", extra:"Se usa con 'just', 'recently', 'lately'." },
+      { name:"Present Perfect - Resultado actual", structure:"Sujeto + have/has + V3", example:"I have lost my keys. (No puedo abrir la puerta)", usage:"Acción pasada con resultado presente.", extra:"Diferencia con Past Simple: el tiempo exacto no es importante." }
+    ]},
+    { id:"pres-perf-cont", title:"Present Perfect Continuous", items:[
+      { name:"Present Perfect Continuous - Duración", structure:"Sujeto + have/has been + V-ing", example:"He has been running for an hour.", usage:"Énfasis en la duración de una acción que empezó en el pasado y sigue.", extra:"Palabras clave: for, since, all day, recently." },
+      { name:"Present Perfect Continuous - Acción reciente", structure:"Sujeto + have/has been + V-ing", example:"I'm tired because I have been working.", usage:"Acción reciente que explica un resultado presente.", extra:"Se diferencia del Present Perfect simple (énfasis en resultado vs duración)." }
+    ]}
+  ]},
+  { id:"past", title:"Past Tenses", subtitle:"Simple, Continuous, Perfect & Perfect Continuous", icon:"🕰️", color:"#e53e3e", units:[
+    { id:"past-simple", title:"Past Simple", items:[
+      { name:"Past Simple - Regular/Irregular", structure:"Sujeto + V2 (ed / irregular)", example:"We visited the museum. / She bought a car.", usage:"Acciones completadas en un momento específico del pasado.", extra:"Palabras clave: yesterday, last week, in 2010, ago." },
+      { name:"Past Simple - Negativo/Preguntas", structure:"Sujeto + did not + V1 / Did + sujeto + V1?", example:"He didn't call me. / Did you see the movie?", usage:"Negar o preguntar sobre acciones pasadas.", extra:"El verbo principal siempre en forma base." }
+    ]},
+    { id:"past-cont", title:"Past Continuous", items:[
+      { name:"Past Continuous - Interrupción", structure:"Sujeto + was/were + V-ing", example:"I was sleeping when you called.", usage:"Acción larga en progreso interrumpida por otra acción corta (Past Simple).", extra:"Palabras clave: while, when, at that time." },
+      { name:"Past Continuous - Contexto pasado", structure:"Sujeto + was/were + V-ing", example:"Yesterday at 8pm, I was watching TV.", usage:"Acciones en progreso en un momento específico del pasado.", extra:"Describe el ambiente o acciones simultáneas." }
+    ]},
+    { id:"past-perf", title:"Past Perfect", items:[
+      { name:"Past Perfect - Antes de otra acción", structure:"Sujeto + had + V3", example:"She had already eaten when I arrived.", usage:"Indica qué acción ocurrió primero entre dos eventos pasados.", extra:"Palabras clave: already, just, never, by the time, after, before." },
+      { name:"Past Perfect - Causa pasada", structure:"Sujeto + had + V3", example:"I was tired because I had worked all night.", usage:"Explica la causa de un estado en el pasado.", extra:"Se usa con 'because', 'since'." }
+    ]},
+    { id:"past-perf-cont", title:"Past Perfect Continuous", items:[
+      { name:"Past Perfect Continuous - Duración antes de otra acción", structure:"Sujeto + had been + V-ing", example:"They had been waiting for two hours before the bus came.", usage:"Énfasis en la duración de una acción que ocurrió antes de otra en el pasado.", extra:"Palabras clave: for, since, how long, before." }
+    ]}
+  ]},
+  { id:"future", title:"Future Tenses", subtitle:"Simple, Continuous, Perfect & Perfect Continuous", icon:"🔮", color:"#38a169", units:[
+    { id:"fut-simple", title:"Future Simple", items:[
+      { name:"Future Simple - Predicciones", structure:"Sujeto + will + V1", example:"It will rain tomorrow.", usage:"Predicciones sin evidencia firme.", extra:"También para promesas, ofertas, decisiones espontáneas." },
+      { name:"Future Simple - Promesas/Ofertas", structure:"Sujeto + will + V1", example:"I will help you with your homework.", usage:"Expresar voluntad o promesa.", extra:"Contracción: 'll (I'll, you'll)" }
+    ]},
+    { id:"fut-cont", title:"Future Continuous", items:[
+      { name:"Future Continuous - En progreso futuro", structure:"Sujeto + will be + V-ing", example:"This time next week, I will be travelling.", usage:"Acciones que estarán en curso en un momento específico del futuro.", extra:"También para planes normales y rutinas futuras." }
+    ]},
+    { id:"fut-perf", title:"Future Perfect", items:[
+      { name:"Future Perfect - Completado antes de", structure:"Sujeto + will have + V3", example:"By 2030, we will have finished the project.", usage:"Acción que estará terminada antes de un tiempo futuro.", extra:"Palabras clave: by, by the time, before." }
+    ]},
+    { id:"fut-perf-cont", title:"Future Perfect Continuous", items:[
+      { name:"Future Perfect Continuous - Duración hasta futuro", structure:"Sujeto + will have been + V-ing", example:"By June, I will have been working here for 5 years.", usage:"Énfasis en la duración de una acción hasta cierto punto en el futuro.", extra:"Se usa con 'for', 'by'." }
+    ]}
+  ]},
+  { id:"conditionals", title:"Conditionals", subtitle:"Zero, First, Second, Third & Mixed", icon:"⚖️", color:"#d69e2e", units:[
+    { id:"cond-zero", title:"Zero Conditional", items:[
+      { name:"Zero Conditional - Verdades universales", structure:"If + present simple, ... present simple", example:"If you heat water, it boils.", usage:"Siempre verdad, leyes de la naturaleza.", extra:"También para instrucciones (If you press this button, the light turns on)." }
+    ]},
+    { id:"cond-first", title:"First Conditional", items:[
+      { name:"First Conditional - Posible futuro", structure:"If + present simple, ... will + inf", example:"If it rains, we will cancel the picnic.", usage:"Situaciones reales o probables en el futuro.", extra:"También con imperativos (If you see her, tell her to call me)." }
+    ]},
+    { id:"cond-second", title:"Second Conditional", items:[
+      { name:"Second Conditional - Hipotético presente/futuro", structure:"If + past simple, ... would + inf", example:"If I were rich, I would buy a yacht.", usage:"Situaciones imaginarias o improbables.", extra:"Con 'were' para todas las personas (formal)." }
+    ]},
+    { id:"cond-third", title:"Third Conditional", items:[
+      { name:"Third Conditional - Irreal pasado", structure:"If + past perfect, ... would have + V3", example:"If you had told me, I would have helped.", usage:"Situaciones hipotéticas en el pasado (no ocurrieron).", extra:"Expresar arrepentimiento o crítica." }
+    ]},
+    { id:"cond-mixed", title:"Mixed Conditional", items:[
+      { name:"Mixed Conditional - Pasado irreal con presente", structure:"If + past perfect, ... would + inf", example:"If I had studied medicine, I would be a doctor now.", usage:"Conectar una condición pasada no real con un resultado presente.", extra:"También: If + past simple, ... would have + V3 (presente con pasado)." }
+    ]}
+  ]}
+];
+
+// STATE (mismo que original)
+let prog = JSON.parse(localStorage.getItem("eng-grammar-v2")||"{}");
+prog.xp = prog.xp||0; prog.lives = prog.lives||5; prog.done = prog.done||[];
+function save(){ localStorage.setItem("eng-grammar-v2",JSON.stringify(prog)); }
+
+let cLes=0, cUnit=0, cLearn=0;
+let qqs=[], qIdx=0, qCorrect=0, qAnswered=false;
+
+// ========== NUEVA FUNCIÓN: REINICIAR JUEGO ==========
+function resetGame() {
+  if (confirm("⚠️ ¿Estás seguro de que quieres reiniciar todo el progreso? Se perderán XP, vidas y todas las unidades completadas. ¡Esta acción no se puede deshacer!")) {
+    // Borrar localStorage
+    localStorage.removeItem("eng-grammar-v2");
+    // Reiniciar variable global prog
+    prog = { xp: 0, lives: 5, done: [] };
+    save();
+    // Reiniciar variables de navegación
+    cLes = 0; cUnit = 0; cLearn = 0;
+    qqs = []; qIdx = 0; qCorrect = 0; qAnswered = false;
+    // Recargar la página principal
+    renderHome();
+    showPage("home");
+    // Opcional: mostrar un mensaje breve de éxito
+    alert("✅ Juego reiniciado. ¡Comienza de nuevo desde cero!");
+  }
+}
+
+// NAV
+function showPage(id){
+  document.querySelectorAll(".page,.flex-page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page-"+id).classList.add("active");
+  window.scrollTo(0,0);
+}
+function showHome(){ renderHome(); showPage("home"); }
+function showGuide(){ showPage("guide"); }
+function showLesson(i){
+  cLes=i; const L=LESSONS[i];
+  document.getElementById("unit-lesson-header").style.background=L.color;
+  document.getElementById("unit-icon-el").textContent=L.icon;
+  document.getElementById("unit-title-el").textContent=L.title;
+  document.getElementById("unit-sub-el").textContent=L.subtitle;
+  renderUnits(); showPage("units");
+}
+function goBackToUnits(){ showLesson(cLes); }
+function startLearn(ui){ cUnit=ui; cLearn=0; renderLearn(); showPage("learn"); }
+function startQuiz(ui){ cUnit=ui; qqs=makeQuiz(LESSONS[cLes].units[ui].items); qIdx=0; qCorrect=0; qAnswered=false; renderQuiz(); showPage("quiz"); }
+
+// HOME (igual pero con nuevo storage)
+function renderHome(){
+  const xp=prog.xp, lv=Math.floor(xp/100)+1, lxp=xp%100;
+  document.getElementById("xp-display").textContent=xp;
+  document.getElementById("lives-display").textContent=prog.lives;
+  document.getElementById("level-num").textContent=lv;
+  document.getElementById("level-name").textContent=lv===1?"Grammar Explorer":lv===2?"Tense Master":lv===3?"Conditionals Pro":"Grammar Guru";
+  document.getElementById("level-xp").textContent=lxp;
+  document.getElementById("level-bar").style.width=lxp+"%";
+  const list=document.getElementById("lessons-list"); list.innerHTML="";
+  LESSONS.forEach((L,i)=>{
+    const prevOk=i===0||LESSONS[i-1].units.every(u=>prog.done.includes(u.id));
+    const unlocked=i===0||prevOk;
+    const done=L.units.filter(u=>prog.done.includes(u.id)).length;
+    const total=L.units.length; const pct=Math.round(done/total*100);
+    const completed=done===total;
+    const btn=document.createElement("button"); btn.className="lesson-card";
+    btn.style.borderColor=unlocked?L.color:"#cbd5e0";
+    if(!unlocked)btn.disabled=true;
+    btn.innerHTML=`${completed?`<div class="lesson-completed-badge" style="background:${L.color};">Completado ✓</div>`:""}
+      <div class="lesson-card-header"><div class="lesson-icon" style="background:${unlocked?L.color+"15":"#edf2f7"};">${unlocked?L.icon:"🔒"}</div>
+      <div><div class="lesson-title-text" style="color:${unlocked?"#1a2a3a":"#94a3b8"};">${L.title}</div><div class="lesson-sub-text">${L.subtitle}</div></div></div>
+      ${unlocked?`<div class="lesson-progress-row"><span>${done}/${total} unidades</span><span>${pct}%</span></div><div class="lesson-progress-bar"><div style="height:100%;width:${pct}%;background:${L.color};border-radius:4px;"></div></div>`:`<div style="color:#94a3b8;font-size:13px;">Completa la lección anterior</div>`}`;
+    if(unlocked) btn.onclick=()=>showLesson(i);
+    list.appendChild(btn);
+  });
+}
+
+function renderUnits(){
+  const L=LESSONS[cLes]; const list=document.getElementById("units-list"); list.innerHTML="";
+  L.units.forEach((u,ui)=>{
+    const prevOk=ui===0||prog.done.includes(L.units[ui-1].id);
+    const done=prog.done.includes(u.id); const unlocked=ui===0||prevOk;
+    const btn=document.createElement("button"); btn.className="unit-card";
+    btn.style.borderColor=unlocked?(done?L.color:"#e2e8f0"):"#edf2f7";
+    if(!unlocked) btn.disabled=true;
+    btn.innerHTML=`<div class="unit-icon" style="background:${unlocked?(done?L.color+"20":"#f8fafc"):"#f1f5f9"};">${!unlocked?"🔒":done?"✅":"📘"}</div>
+      <div class="unit-info"><div class="unit-title-text" style="color:${unlocked?"#1a2a3a":"#94a3b8"};">${u.title}</div><div class="unit-count">${u.items.length} temas / ejemplos</div></div>
+      <div class="unit-tags"><div class="unit-tag" style="background:${done?L.color+"20":"#edf2f7"};color:${done?L.color:"#718096"};">Aprender</div><div class="unit-tag" style="background:${done?L.color+"20":"#edf2f7"};color:${done?L.color:"#718096"};">Quiz</div></div>`;
+    if(unlocked) btn.onclick=()=>startLearn(ui);
+    list.appendChild(btn);
+  });
+}
+
+function renderLearn(){
+  const L=LESSONS[cLes], u=L.units[cUnit], item=u.items[cLearn], total=u.items.length;
+  document.getElementById("learn-breadcrumb").textContent=`${L.title} — ${u.title}`;
+  document.getElementById("learn-counter").textContent=`${cLearn+1}/${total}`;
+  document.getElementById("learn-bar").style.width=`${(cLearn+1)/total*100}%`;
+  document.getElementById("learn-bar").style.background=L.color;
+  document.getElementById("learn-card").innerHTML=`
+    <div class="grammar-title" style="color:${L.color};">${item.name}</div>
+    <div class="grammar-structure">📐 ${item.structure}</div>
+    <div class="grammar-example">📌 "${item.example}"</div>
+    <div class="grammar-usage">💡 ${item.usage}</div>
+    ${item.extra?`<div class="grammar-extra">✨ ${item.extra}</div>`:""}
+  `;
+  const dots=document.getElementById("learn-dots"); dots.innerHTML="";
+  u.items.forEach((_,i)=>{
+    const d=document.createElement("button"); d.className="dot-btn";
+    d.style.width=i===cLearn?"24px":"10px"; d.style.background=i<=cLearn?L.color:"#cbd5e0";
+    d.onclick=()=>{cLearn=i; renderLearn();}; dots.appendChild(d);
+  });
+  const bp=document.getElementById("btn-prev"); bp.disabled=cLearn===0;
+  const bn=document.getElementById("btn-next"); bn.style.background=L.color;
+  bn.textContent=cLearn+1>=total?"Ir al Quiz ✓":"Siguiente →";
+}
+function learnPrev(){ if(cLearn>0){cLearn--; renderLearn();} }
+function learnNext(){
+  const u=LESSONS[cLes].units[cUnit];
+  if(cLearn+1>=u.items.length) startQuiz(cUnit);
+  else { cLearn++; renderLearn(); }
+}
+
+// QUIZ mejorado: preguntas sobre estructura, ejemplo, uso y palabras clave
+function makeQuiz(items){
+  const qs=[];
+  const allItems = [];
+  LESSONS[cLes].units.forEach(u=>{ if(u.id !== LESSONS[cLes].units[cUnit].id) allItems.push(...u.items); });
+  items.forEach(item=>{
+    // tipo estructura
+    qs.push({type:"structure", item, question:`¿Cuál es la estructura de "${item.name}"?`, options:[item.structure, ...allItems.slice(0,3).map(i=>i.structure)].sort(()=>Math.random()-0.5), answer:item.structure});
+    // tipo ejemplo
+    qs.push({type:"example", item, question:`Elige el ejemplo correcto para "${item.name}"`, options:[item.example, ...allItems.slice(0,3).map(i=>i.example)].sort(()=>Math.random()-0.5), answer:item.example});
+    // tipo uso
+    qs.push({type:"usage", item, question:`¿Cuál es el uso principal de "${item.name}"?`, options:[item.usage, ...allItems.slice(0,3).map(i=>i.usage)].sort(()=>Math.random()-0.5), answer:item.usage});
+    if(item.extra){
+      qs.push({type:"extra", item, question:`Palabra clave o detalle de "${item.name}":`, options:[item.extra, ...allItems.slice(0,3).map(i=>i.extra||"Sin extra")].sort(()=>Math.random()-0.5), answer:item.extra});
+    }
+  });
+  return qs.sort(()=>Math.random()-0.5).slice(0,12);
+}
+
+function renderQuiz(){
+  if(qIdx>=qqs.length){showResults();return;}
+  const L=LESSONS[cLes], q=qqs[qIdx]; qAnswered=false;
+  document.getElementById("quiz-lives").textContent=prog.lives;
+  document.getElementById("quiz-counter").textContent=`PREGUNTA ${qIdx+1} DE ${qqs.length}`;
+  document.getElementById("quiz-bar").style.width=`${qIdx/qqs.length*100}%`;
+  document.getElementById("quiz-bar").style.background=L.color;
+  document.getElementById("quiz-feedback").style.display="none";
+  document.getElementById("btn-quiz-next").style.display="none";
+  document.getElementById("quiz-qtitle").textContent=q.question;
+  document.getElementById("quiz-card").innerHTML=`<div class="question-text">${q.type==="structure"?"📐 Estructura":q.type==="example"?"📝 Ejemplo":q.type==="usage"?"🎯 Uso":"✨ Detalle"}</div>`;
+  const og=document.getElementById("quiz-options"); og.innerHTML="";
+  q.options.forEach(opt=>{
+    const b=document.createElement("button"); b.className="option-btn"; b.textContent=opt;
+    b.onclick=()=>pickAnswer(opt,q); og.appendChild(b);
+  });
+}
+
+function pickAnswer(sel,q){
+  if(qAnswered)return; qAnswered=true; const ok=sel===q.answer;
+  if(ok) qCorrect++; else { prog.lives=Math.max(0,prog.lives-1); save(); }
+  document.querySelectorAll(".option-btn").forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===q.answer) b.classList.add("option-correct");
+    else if(b.textContent===sel&&!ok) b.classList.add("option-wrong");
+  });
+  const fb=document.getElementById("quiz-feedback"); fb.style.display="flex";
+  fb.className=`feedback ${ok?"feedback-correct":"feedback-wrong"}`;
+  fb.innerHTML=`<span class="feedback-icon">${ok?"✅":"❌"}</span><div><div class="feedback-title">${ok?"¡Correcto!":"Incorrecto"}</div>${!ok?`<div class="feedback-answer">Respuesta: <strong>${q.answer}</strong></div>`:""}</div>`;
+  const bn=document.getElementById("btn-quiz-next"); bn.style.display="block"; bn.textContent=qIdx+1>=qqs.length?"Ver resultados":"Siguiente →";
+}
+function quizNext(){ qIdx++; if(qIdx>=qqs.length) showResults(); else renderQuiz(); }
+
+function showResults(){
+  const L=LESSONS[cLes], u=L.units[cUnit]; const acc=Math.round(qCorrect/qqs.length*100);
+  const xpEarned=qCorrect*5+(acc>=80?20:0); prog.xp+=xpEarned;
+  if(!prog.done.includes(u.id)) prog.done.push(u.id); save();
+  document.getElementById("res-emoji").textContent=acc>=80?"🏆":acc>=60?"📘":"💪";
+  document.getElementById("res-title").textContent=acc>=80?"¡Excelente!":acc>=60?"Buen trabajo":"Sigue practicando";
+  document.getElementById("res-sub").innerHTML=`Completaste <strong>${u.title}</strong> (${u.items.length} conceptos)`;
+  document.getElementById("res-acc").textContent=acc+"%"; document.getElementById("res-correct").textContent=qCorrect;
+  document.getElementById("res-xp").textContent="+"+xpEarned; document.getElementById("btn-res-continue").style.background=L.color;
+  showPage("results");
+}
+function finishQuiz(){ showLesson(cLes); }
+
+renderHome();
+// ==================== MODO OSCURO ====================
+const darkToggle = document.getElementById('darkToggle');
+    const darkPref   = localStorage.getItem('dark_mode');
+    if (darkPref === '1') {
+        document.body.classList.add('dark-mode');
+        darkToggle.innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
+    }
+    darkToggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('dark_mode', isDark ? '1' : '0');
+        darkToggle.innerHTML = isDark
+            ? '<i class="fas fa-sun"></i> Modo Claro'
+            : '<i class="fas fa-moon"></i> Modo Oscuro';
+    });
+</script>
+</body>
+</html>

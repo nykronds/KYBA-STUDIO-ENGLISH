@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterClass de Pronunciación Inglesa 2.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #e0e7ff;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            scroll-behavior: smooth;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 280px;
+            background-color: var(--dark);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        nav h2 {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: #818cf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(79, 70, 229, 0.2);
+            color: white;
+            border-color: rgba(79, 70, 229, 0.5);
+            transform: translateX(5px);
+        }
+
+        /* Tabs for Local Files (New Point) */
+        /* --- DISEÑO DE LAS PESTAÑAS --- */
+
+/* 1. Contenedor principal de la barra de pestañas */
+/* --- DISEÑO DE PESTAÑAS PREMIUM --- */
+
+/* --- DISEÑO DE PESTAÑAS ULTRA-COMPACTO --- */
+
+.file-tabs {
+    display: flex;
+    flex-wrap: nowrap;          /* Mantiene todo en una sola línea */
+    justify-content: center;    /* Centra las pestañas en la pantalla */
+    align-items: center;
+    gap: 4px;                   /* Espacio mínimo entre cápsulas */
+    margin: 10px auto 25px auto;
+    padding: 5px;               /* Contenedor muy delgado */
+    background: #eef2f6;        /* Gris suave de fondo */
+    border-radius: 12px;        /* Bordes redondeados tipo cápsula */
+    border: 1px solid #d1d9e6;
+    max-width: 98%;             /* Aprovecha casi todo el ancho disponible */
+    overflow-x: auto;           /* Permite deslizar si el nombre es muy largo */
+    scrollbar-width: none;      /* Oculta scroll en Firefox */
+}
+
+/* Ocultar barra de scroll en Chrome/Safari */
+.file-tabs::-webkit-scrollbar { display: none; }
+
+.tab-link {
+    background: transparent;
+    color: #5e6d82;             /* Gris profesional */
+    text-decoration: none;
+    padding: 6px 14px;          /* Padding reducido para ahorrar espacio */
+    border-radius: 8px;
+    font-size: 12px;            /* Tamaño de letra pequeño pero legible */
+    font-weight: 600;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;        /* Evita que el texto salte de línea */
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.tab-link:hover {
+    color: #4f46e5;
+    background: rgba(255, 255, 255, 0.5); /* Brillo sutil */
+}
+
+/* Pestaña ACTIVA: Estilo de botón resaltado */
+.tab-link.active-file {
+    background: #ffffff;        /* Fondo blanco puro */
+    color: #4f46e5;             /* Texto en color primario */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra de elevación */
+    border: 1px solid #e2e8f0;
+}
+
+/* Ajustes para móviles o pantallas pequeñas */
+@media (max-width: 900px) {
+    .file-tabs {
+        justify-content: flex-start; /* Permite scroll lateral si no caben */
+        padding-left: 8px;
+    }
+    .tab-link {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}
+
+/* Responsivo para móviles */
+@media (max-width: 600px) {
+    .file-tabs {
+        justify-content: flex-start; /* En móviles se alinean al inicio para el scroll */
+        width: 100%;
+    }
+}
+
+        /* Main Content */
+        main {
+            margin-left: 280px;
+            padding: 3rem 5%;
+            width: calc(100% - 280px);
+            max-width: 1300px;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h1 { font-size: 3rem; color: var(--dark); line-height: 1.2; margin-bottom: 1rem; }
+        .subtitle { color: var(--gray); font-size: 1.2rem; }
+
+        section {
+            margin-bottom: 5rem;
+            padding-top: 2rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Audio Button */
+        .audio-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.2rem;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .audio-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Cards Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+        }
+
+        .card.short::before { background: var(--accent); }
+        .card.long::before { background: var(--primary); }
+        .card.schwa::before { background: var(--secondary); }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .tag.short { background: #fef3c7; color: #b45309; }
+        .tag.long { background: var(--primary-light); color: var(--primary); }
+
+        .example-box {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .example-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        /* Accordions */
+        details {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        summary {
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1.5rem;
+            cursor: pointer;
+            background: #fafafa;
+            color: var(--dark);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .details-content { padding: 1.5rem; border-top: 1px solid var(--border); }
+
+        /* Dictionary Table */
+        .dictionary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .dictionary-table th { background: var(--dark); color: white; padding: 1rem; text-align: left; }
+        .dictionary-table td { padding: 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        .phonetic-symbol { font-family: monospace; font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { width: 100%; height: auto; position: relative; padding: 1rem; }
+            main { margin-left: 0; width: 100%; padding: 2rem 1rem; }
+            body { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>🎙️ Fonética Pro</h2>
+        <a href="#intro">Inicio</a>
+        <a href="#vocales">1. Sistema Vocálico</a>
+        <a href="#consonantes">2. Consonantes</a>
+        <a href="#pasado">3. Regla del Pasado (-ed)</a>
+        <a href="#connected">4. Habla Conectada</a>
+        <a href="#profesional">5. Vocabulario Profesional</a>
+        <a href="#diccionario">6. Alfabeto Fonético</a>
+        <a href="#abecedario">7. Abecedario Letra a Letra</a>
+    </nav>
+
+    <main>
+        <header id="intro">
+            <h1>App Interactiva de Pronunciación</h1>
+            <p class="subtitle">Proyecto Kybalingo - Sistema de navegación entre módulos.</p>
+        </header>
+
+        <div class="file-tabs">
+            <a href="index.html" class="tab-link">Inicio</a>
+            <a href="Sentence Master Pro.html" class="tab-link">Index</a>
+            <a href="guia.html" class="tab-link">Guía</a>
+            <a href="guia 2.html" class="tab-link">Guía 2</a>
+            <a href="kybalingo grammar 2.html" class="tab-link">Grammar 2</a>
+            <a href="more grammar.html" class="tab-link active-file">App Interactiva de Pronunciación</a>
+            <a href="nykrolingo tiempos gramaticales.html" class="tab-link">Tiempos Gram.</a>
+            <a href="tiempos.html" class="tab-link">Tiempos</a>
+            <a href="phrasalverbs.html" class="tab-link">Phrasal Verbs</a>
+            <a href="libro - copia.html" class="tab-link">Libro</a>
+        </div>
+
+        <section id="vocales">
+            <h2>👄 1. El Sistema Vocálico</h2>
+            <p style="margin-bottom: 2rem; color: var(--gray);">Las vocales en inglés cambian dependiendo de su entorno. Aquí están las más importantes para hispanohablantes.</p>
+
+            <div class="grid-container">
+                <div class="card short">
+                    <span class="tag short">Vocal Corta /æ/</span>
+                    <h3>La "A" Sonriente</h3>
+                    <p><strong>Truco:</strong> Baja la mandíbula como si fueras a decir "A", pero estira las comisuras de los labios hacia los lados para decir "E".</p>
+                    <div class="example-box">
+                        <div class="example-item"><span>M<strong>a</strong>nager</span> <button class="audio-btn" onclick="speak('Manager')">🔊</button></div>
+                        <div class="example-item"><span>C<strong>a</strong>t</span> <button class="audio-btn" onclick="speak('Cat')">🔊</button></div>
+                    </div>
+                </div>
+
+                <div class="card short">
+                    <span class="tag short">Vocal Corta /ɪ/</span>
+                    <h3>La "I" Perezosa</h3>
+                    <p><strong>Truco:</strong> No sonrías. Relaja la boca casi como si fueras a decir una "E" española y emite un sonido corto desde la garganta.</p>
+                    <div class="example-box">
+                        <div class="example-item"><span>B<strong>u</strong>siness</span> <button class="audio-btn" onclick="speak('Business')">🔊</button></div>
+                        <div class="example-item"><span>L<strong>i</strong>sten</span> <button class="audio-btn" onclick="speak('Listen')">🔊</button></div>
+                    </div>
+                </div>
+
+                <div class="card long">
+                    <span class="tag long">Vocal Larga /eɪ/</span>
+                    <h3>El Diptongo "EI"</h3>
+                    <p><strong>Truco:</strong> Mueve la boca de una posición abierta a una cerrada sonriendo. Suena igual a la letra "A" en el alfabeto inglés.</p>
+                    <div class="example-box">
+                        <div class="example-item"><span>S<strong>a</strong>les</span> <button class="audio-btn" onclick="speak('Sales')">🔊</button></div>
+                        <div class="example-item"><span>R<strong>a</strong>te</span> <button class="audio-btn" onclick="speak('Rate')">🔊</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="consonantes">
+            <h2>⚙️ 2. Consonantes Críticas</h2>
+            <details>
+                <summary>La temida "TH" (Sorda y Sonora)</summary>
+                <div class="details-content">
+                    <p><strong>Sorda (Solo aire):</strong> Pon la lengua entre los dientes y sopla aire suavemente. No uses la voz.</p>
+                    <div class="example-item">Think (Pensar) <button class="audio-btn" onclick="speak('Think')">🔊</button></div>
+                    <br>
+                    <p><strong>Sonora (Con vibración):</strong> Misma posición, pero haz vibrar tus cuerdas vocales (como una D suave).</p>
+                    <div class="example-item">That (Eso) <button class="audio-btn" onclick="speak('That')">🔊</button></div>
+                </div>
+            </details>
+            <details>
+                <summary>La "V" (Labiodental) vs "B" (Bilabial)</summary>
+                <div class="details-content">
+                    <p><strong>V (Motor):</strong> Los dientes de arriba muerden suavemente el labio de abajo. Haz vibrar el aire.</p>
+                    <div class="example-item">Very (Muy) <button class="audio-btn" onclick="speak('Very')">🔊</button></div>
+                    <div class="example-item">Value (Valor) <button class="audio-btn" onclick="speak('Value')">🔊</button></div>
+                </div>
+            </details>
+        </section>
+
+        <section id="pasado">
+            <h2>⏳ 3. La Regla del Pasado (-ed)</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>1. Suena como /ɪd/</h3>
+                    <p>Solo si el verbo termina en <strong>T</strong> o <strong>D</strong>.</p>
+                    <div class="example-item">Wanted <button class="audio-btn" onclick="speak('Wanted')">🔊</button></div>
+                </div>
+                <div class="card">
+                    <h3>2. Suena como /T/</h3>
+                    <p>Verbos que terminan en sordo (p, k, f, s, sh, ch).</p>
+                    <div class="example-item">Worked <button class="audio-btn" onclick="speak('Worked')">🔊</button></div>
+                </div>
+                <div class="card">
+                    <h3>3. Suena como /D/</h3>
+                    <p>Todos los demás (sonidos vibrantes y vocales).</p>
+                    <div class="example-item">Closed <button class="audio-btn" onclick="speak('Closed')">🔊</button></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="connected">
+            <h2>🔗 4. Habla Conectada (Flap T)</h2>
+            <p>En el inglés americano, la "T" entre vocales suena como una <strong>"R" suave</strong> del español (como en "ca<strong>r</strong>o").</p>
+            <div class="example-box">
+                <div class="example-item">Water <em>(Uó-rer)</em> <button class="audio-btn" onclick="speak('Water')">🔊</button></div>
+                <div class="example-item">Meeting <em>(Mí-ring)</em> <button class="audio-btn" onclick="speak('Meeting')">🔊</button></div>
+                <div class="example-item">Check it out <em>(Che-ki-daut)</em> <button class="audio-btn" onclick="speak('Check it out')">🔊</button></div>
+            </div>
+        </section>
+
+        <section id="profesional">
+            <h2>💼 5. Vocabulario Profesional (Ventas & Citas)</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Lead (Prospecto)</h3>
+                    <div class="example-item">Lead <button class="audio-btn" onclick="speak('Lead')">🔊</button></div>
+                </div>
+                <div class="card">
+                    <h3>Appointment (Cita)</h3>
+                    <div class="example-item">Appointment <button class="audio-btn" onclick="speak('Appointment')">🔊</button></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diccionario">
+            <h2>📖 6. El Cheat Sheet Fonético</h2>
+            <table class="dictionary-table">
+                <thead>
+                    <tr><th>Símbolo IPA</th><th>Aproximación</th><th>Ejemplo</th><th>Oír</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="phonetic-symbol">/iː/</td><td>"I" larga</td><td>S<strong>ee</strong></td><td><button class="audio-btn" onclick="speak('See')">🔊</button></td></tr>
+                    <tr><td class="phonetic-symbol">/ə/</td><td>Schwa</td><td><strong>A</strong>bout</td><td><button class="audio-btn" onclick="speak('About')">🔊</button></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="abecedario">
+            <h2>🔤 7. Abecedario Letra a Letra</h2>
+            <table class="dictionary-table">
+                <thead><tr><th>Letra</th><th>Nombre ESP</th><th>Ejemplo</th><th>Oír</th></tr></thead>
+                <tbody>
+                    <tr><td>A</td><td>Ei</td><td><strong>A</strong>pple</td><td><button class="audio-btn" onclick="speak('A, Apple')">🔊</button></td></tr>
+                    <tr><td>B</td><td>Bii</td><td><strong>B</strong>est</td><td><button class="audio-btn" onclick="speak('B, Best')">🔊</button></td></tr>
+                    <tr><td>C</td><td>Sii</td><td><strong>C</strong>ity</td><td><button class="audio-btn" onclick="speak('C, City')">🔊</button></td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US'; 
+                utterance.rate = 0.85;     
+                const voices = window.speechSynthesis.getVoices();
+                const usVoice = voices.find(voice => voice.lang === 'en-US' && voice.name.includes('Google'));
+                if (usVoice) utterance.voice = usVoice;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
