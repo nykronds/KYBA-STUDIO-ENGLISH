@@ -58,80 +58,76 @@ button:active { transform: scale(0.97); }
         }
 
         /* --- MEJORA DE DISEÑO DE PESTAÑAS (NAV-TABS) --- */
-        .nav-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            background: var(--nav-bg);
-            padding: 15px;
-            border-radius: 0 0 20px 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            margin-bottom: 20px;
-        }
+        /* --- CONTENEDOR DE NAVEGACIÓN --- */
+/* --- CONTENEDOR PRINCIPAL (Móvil Primero) --- */
+/* --- NAVEGACIÓN (Base Móvil) --- */
+/* --- NAVEGACIÓN UNIVERSAL (PC Y MÓVIL) --- */
+.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;         /* Impide que las pestañas se bajen a otra línea */
+    justify-content: flex-start; /* Siempre alineadas al inicio para permitir scroll */
+    align-items: center;
+    gap: 12px;
+    background: #1a2635;      /* Ajusta a tu color de fondo */
+    padding: 12px 15px;
+    border-radius: 0 0 20px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    margin-bottom: 20px;
 
-        .tab-link {
-            text-decoration: none;
-            color: #555;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid transparent;
-            background: var(--tab-bg);
-        }
+    /* --- ACTIVAR SCROLL EN TODAS LAS PANTALLAS --- */
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;    /* Oculta barra en Firefox */
+    
+    /* Para que el scroll sea más fluido con el mouse en PC */
+    scroll-behavior: smooth;
+}
 
-        .tab-link i {
-            font-size: 1.1rem;
-        }
+/* Ocultar barra de scroll en Chrome, Safari y Edge (Mantiene la estética limpia) */
+.nav-tabs::-webkit-scrollbar {
+    display: none;
+}
 
-        .tab-link:hover {
-            background: #f8fafc;
-            color: var(--tab-active);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
+/* --- ESTILO DE LOS BOTONES --- */
+.tab-link, .dark-toggle {
+    text-decoration: none;
+    color: #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    
+    /* CRUCIAL: Esto evita que los botones se encojan en PC */
+    white-space: nowrap; 
+    flex-shrink: 0; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-        .tab-link.active {
-            background: var(--tab-active);
-            color: white !important;
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-        }
+/* --- ESTADOS --- */
+.tab-link:hover, .dark-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateY(-2px);
+}
 
-        /* Botón modo oscuro */
-        .dark-toggle {
-            background: var(--tab-bg);
-            border: 1px solid transparent;
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-        .dark-toggle:hover {
-            background: #f8fafc;
-            color: #000;
-            transform: translateY(-2px);
-        }
-        body.dark-mode .dark-toggle {
-            color: #e2e8f0;
-        }
-        body.dark-mode .dark-toggle:hover {
-            color: #000;
-        }
+.tab-link.active {
+    background: #3498db; /* Azul de tu botón de Reiniciar */
+    color: white !important;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* --- ICONOS --- */
+.tab-link i, .dark-toggle i {
+    font-size: 1.1rem;
+}
 
         /* --- FIN MEJORA PESTAÑAS --- */
 
