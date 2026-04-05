@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
 <title>English Tenses & Conditionals | Aprende Gramática Inglesa</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f7fb; color: #1a2a3a; }
-button { font-family: inherit; cursor: pointer; transition: transform 0.1s; }
+button { font-family: inherit; cursor: pointer; transition: transform 0.1s, opacity 0.2s; touch-action: manipulation; }
 button:active { transform: scale(0.97); }
 
  :root {
@@ -263,7 +263,7 @@ button:active { transform: scale(0.97); }
 .option-btn { background: white; border: 2px solid #e2e8f0; border-radius: 14px;
   padding: 18px 12px; font-size: 15px; font-weight: 600; color: #2d3748;
   text-align: center; min-height: 68px; display: flex; align-items: center; justify-content: center;
-  line-height: 1.3; }
+  line-height: 1.3; word-break: break-word; white-space: normal; }
 .option-btn:hover:not(:disabled) { border-color: #a0aec0; background: #fafcff; }
 .option-correct { border-color: #38a169 !important; background: #f0fff4 !important; color: #2f855a !important; }
 .option-wrong { border-color: #e53e3e !important; background: #fff5f5 !important; color: #c53030 !important; }
@@ -307,10 +307,62 @@ button:active { transform: scale(0.97); }
 .guide-table th, .guide-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
 .guide-table th { background: #edf2f7; font-weight: 700; }
 
-.page { display: none; }
-.page.active { display: block; }
+/* ========== MEJORAS MÓVIL: media queries para pantallas pequeñas ========== */
+@media (max-width: 600px) {
+    .container { padding: 16px; }
+    .options-grid { grid-template-columns: 1fr; gap: 10px; } /* Botones a ancho completo, más fáciles de tocar */
+    .option-btn { padding: 16px 12px; min-height: 56px; font-size: 14px; }
+    .grammar-title { font-size: 22px; }
+    .grammar-structure { font-size: 16px; word-break: break-word; }
+    .grammar-example { font-size: 16px; }
+    .question-text { font-size: 18px; }
+    .question-card { padding: 24px 16px; }
+    .quiz-body { padding: 20px 16px; }
+    .learn-body { padding: 24px 16px; }
+    .badges { gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+    .badge { padding: 4px 10px; font-size: 12px; }
+    .reset-btn { padding: 4px 12px; font-size: 12px; }
+    .header { padding: 12px 16px; flex-wrap: wrap; }
+    .logo { font-size: 18px; }
+    .unit-card { padding: 16px; gap: 12px; flex-wrap: wrap; }
+    .unit-tags { flex-direction: row; gap: 8px; }
+    .results-card { padding: 28px 20px; }
+    .results-stats { gap: 8px; }
+    .stat-value { font-size: 20px; }
+    .guide-table th, .guide-table td { padding: 8px 6px; font-size: 12px; word-break: break-word; }
+    .guide-card { padding: 16px; overflow-x: auto; }
+    .guide-table { display: block; overflow-x: auto; white-space: nowrap; } /* Tablas desplazables horizontalmente */
+    .guide-card table { display: table; min-width: 500px; }
+    .lesson-card { padding: 16px; }
+    .lesson-icon { width: 48px; height: 48px; font-size: 24px; }
+    .dots-row { gap: 6px; }
+    .dot-btn { min-width: 8px; }
+    .learn-footer .btn-prev, .learn-footer .btn-next { padding: 12px 16px; }
+    .nav-tabs { gap: 8px; padding: 10px 12px; }
+    .tab-link, .dark-toggle { padding: 8px 14px; font-size: 0.8rem; }
+}
+
+/* Ajuste adicional para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .lesson-title-text { font-size: 15px; }
+    .unit-title-text { font-size: 14px; }
+    .grammar-usage, .grammar-extra { font-size: 13px; }
+    .feedback { padding: 12px 16px; }
+}
+
+/* Mejora de scroll y touch para toda la app */
+html, body { height: 100%; }
 .flex-page { display: none; flex-direction: column; min-height: 100vh; }
 .flex-page.active { display: flex; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* Mejora en la visualización de tablas de guía en móvil sin romper diseño */
+.guide-card { overflow-x: auto; }
+.guide-table { min-width: 480px; }
+
+/* Asegurar que todos los botones tengan feedback táctil */
+button, .tab-link, .dark-toggle, .reset-btn, .unit-card, .lesson-card { cursor: pointer; touch-action: manipulation; }
 </style>
 </head>
 <body>
@@ -595,18 +647,13 @@ let qqs=[], qIdx=0, qCorrect=0, qAnswered=false;
 // ========== NUEVA FUNCIÓN: REINICIAR JUEGO ==========
 function resetGame() {
   if (confirm("⚠️ ¿Estás seguro de que quieres reiniciar todo el progreso? Se perderán XP, vidas y todas las unidades completadas. ¡Esta acción no se puede deshacer!")) {
-    // Borrar localStorage
     localStorage.removeItem("eng-grammar-v2");
-    // Reiniciar variable global prog
     prog = { xp: 0, lives: 5, done: [] };
     save();
-    // Reiniciar variables de navegación
     cLes = 0; cUnit = 0; cLearn = 0;
     qqs = []; qIdx = 0; qCorrect = 0; qAnswered = false;
-    // Recargar la página principal
     renderHome();
     showPage("home");
-    // Opcional: mostrar un mensaje breve de éxito
     alert("✅ Juego reiniciado. ¡Comienza de nuevo desde cero!");
   }
 }
@@ -705,20 +752,22 @@ function learnNext(){
   else { cLearn++; renderLearn(); }
 }
 
-// QUIZ mejorado: preguntas sobre estructura, ejemplo, uso y palabras clave
+// QUIZ mejorado con opciones seguras y sin undefined
 function makeQuiz(items){
   const qs=[];
   const allItems = [];
   LESSONS[cLes].units.forEach(u=>{ if(u.id !== LESSONS[cLes].units[cUnit].id) allItems.push(...u.items); });
+  const getSafeOpt = (val, fallback="No disponible") => (val && typeof val === "string") ? val : fallback;
   items.forEach(item=>{
-    // tipo estructura
-    qs.push({type:"structure", item, question:`¿Cuál es la estructura de "${item.name}"?`, options:[item.structure, ...allItems.slice(0,3).map(i=>i.structure)].sort(()=>Math.random()-0.5), answer:item.structure});
-    // tipo ejemplo
-    qs.push({type:"example", item, question:`Elige el ejemplo correcto para "${item.name}"`, options:[item.example, ...allItems.slice(0,3).map(i=>i.example)].sort(()=>Math.random()-0.5), answer:item.example});
-    // tipo uso
-    qs.push({type:"usage", item, question:`¿Cuál es el uso principal de "${item.name}"?`, options:[item.usage, ...allItems.slice(0,3).map(i=>i.usage)].sort(()=>Math.random()-0.5), answer:item.usage});
+    const safeStructure = getSafeOpt(item.structure);
+    const safeExample = getSafeOpt(item.example);
+    const safeUsage = getSafeOpt(item.usage);
+    const safeExtra = getSafeOpt(item.extra, "Sin información adicional");
+    qs.push({type:"structure", item, question:`¿Cuál es la estructura de "${item.name}"?`, options:[safeStructure, ...allItems.slice(0,3).map(i=>getSafeOpt(i.structure))].sort(()=>Math.random()-0.5), answer:safeStructure});
+    qs.push({type:"example", item, question:`Elige el ejemplo correcto para "${item.name}"`, options:[safeExample, ...allItems.slice(0,3).map(i=>getSafeOpt(i.example))].sort(()=>Math.random()-0.5), answer:safeExample});
+    qs.push({type:"usage", item, question:`¿Cuál es el uso principal de "${item.name}"?`, options:[safeUsage, ...allItems.slice(0,3).map(i=>getSafeOpt(i.usage))].sort(()=>Math.random()-0.5), answer:safeUsage});
     if(item.extra){
-      qs.push({type:"extra", item, question:`Palabra clave o detalle de "${item.name}":`, options:[item.extra, ...allItems.slice(0,3).map(i=>i.extra||"Sin extra")].sort(()=>Math.random()-0.5), answer:item.extra});
+      qs.push({type:"extra", item, question:`Palabra clave o detalle de "${item.name}":`, options:[safeExtra, ...allItems.slice(0,3).map(i=>getSafeOpt(i.extra, "Sin extra"))].sort(()=>Math.random()-0.5), answer:safeExtra});
     }
   });
   return qs.sort(()=>Math.random()-0.5).slice(0,12);
