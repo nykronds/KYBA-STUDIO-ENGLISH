@@ -357,10 +357,27 @@
       border-top: 1px solid #dce5f0;
     }
 
-    /* --- MEJORAS PARA MÓVIL --- */
-    @media (max-width: 640px) {
+    /* --- MEJORAS PARA MÓVIL: eliminar sticky y evitar que las pestañas tapen el contenido --- */
+    @media (max-width: 880px) {
       body {
         padding: 0.75rem;
+      }
+      /* Desactivamos el sticky en móvil para que no floten sobre el contenido */
+      .nav-tabs {
+        position: relative;
+        top: auto;
+        background: white; /* Fondo sólido para evitar transparencia */
+        margin-bottom: 20px;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      .nav-pills {
+        position: relative;
+        top: auto;
+        background: white;
+        margin-bottom: 1.5rem;
+        border-radius: 40px;
+        backdrop-filter: none;
       }
       .hero {
         padding: 1rem;
@@ -376,7 +393,7 @@
         margin-left: 1rem;
       }
       .quiz-input, .quiz-select {
-        font-size: 16px; /* evita zoom en iOS */
+        font-size: 16px;
       }
       .quiz-check {
         width: 100%;
@@ -411,7 +428,6 @@
       }
     }
 
-    /* Ajustes para pantallas muy pequeñas */
     @media (max-width: 480px) {
       .nav-tabs {
         gap: 6px;
@@ -432,7 +448,6 @@
       }
     }
 
-    /* Mejora de área táctil para todos los botones */
     button, .quiz-check, .tab-link, .nav-pills a, .quiz-input, .quiz-select {
       touch-action: manipulation;
     }
@@ -443,18 +458,18 @@
   </style>
 </head>
 <body>
-    <div class="container">
-    <nav class="nav-tabs">
-      <a href="index.html" class="tab-link">Inicio</a>
-        <a href="Sentence Master Pro.html" class="tab-link">📝Phrasal Verbs Sentence Pro</a>
-        <a href="phrasalverbs.html" class="tab-link">🎮Phrasal Verbs Option Master</a>
-        <a href="guia.html" class="tab-link"><i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL</a>
-        <a href="guia%202.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL</a>
-        <a href="tiempos.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
-        <a href="libro - copia.html" class="tab-link active"><i class="fas fa-bookmark"></i> 📑 LIBRO  Advanced_Student</a>
-        <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
-    </nav>
 <div class="container">
+  <nav class="nav-tabs">
+    <a href="index.html" class="tab-link">Inicio</a>
+    <a href="Sentence Master Pro.html" class="tab-link">📝Phrasal Verbs Sentence Pro</a>
+    <a href="phrasalverbs.html" class="tab-link">🎮Phrasal Verbs Option Master</a>
+    <a href="guia.html" class="tab-link"><i class="fas fa-book"></i> 📘 Guía Principal IETS & TOEFL</a>
+    <a href="guia%202.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 Guía 2 IETS & TOEFL</a>
+    <a href="tiempos.html" class="tab-link"><i class="fas fa-file-alt"></i> 📑 TIEMPOS GRAMATICALES</a>
+    <a href="libro - copia.html" class="tab-link active"><i class="fas fa-bookmark"></i> 📑 LIBRO  Advanced_Student</a>
+    <a href="nykrolingo tiempos gramaticales.html" class="tab-link"><i class="fas fa-file-alt"></i>  Nykrolingo TIEMPOS GRAMATICALES GAME 🎮</a>
+  </nav>
+
   <div class="hero">
     <h1>📘 English File Advanced — Desglose Extremo + Frases por Tiempos + Tests Dinámicos</h1>
     <p>Análisis gramatical profundo, 40 frases modelo organizadas por tiempos gramaticales, recursos de pronunciación, ejercicios prácticos y tests interactivos (opción múltiple / respuesta escrita).</p>
