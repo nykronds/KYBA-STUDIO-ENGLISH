@@ -218,7 +218,7 @@
             flex-shrink: 0; 
             max-width: 100%; 
             max-height: 100%; 
-            box-sizing: border-box; /* NUEVO: Soluciona el problema de tamaño desbordado */
+            box-sizing: border-box; 
         }
 
         @keyframes slide {
@@ -229,14 +229,17 @@
 
         @media (max-width: 768px) {
             .promo-banner { flex-direction: column; }
-            .promo-image { width: 100%; height: 160px; max-height: 160px; order: -1; } /* MODIFICADO: Menor altura para celulares */
+            .promo-image { width: 100%; height: 160px; max-height: 160px; order: -1; } 
             .promo-content { padding: 2rem; text-align: center; align-items: center; }
             .tabs-menu { justify-content: flex-start; }
             .mascot-container { width: 80px; height: 80px; bottom: 10px; right: 10px; }
             
-            /* NUEVO: Forzamos la imagen a verse más pequeña en móvil añadiendo más relleno interno */
-            .slide-container img {
-                padding: 25px; 
+            /* Controles individuales de tamaño para móvil */
+            .slide-container img.img-kyba1 {
+                padding: 25px; /* Mantiene el tamaño original cómodo */
+            }
+            .slide-container img.img-kyba2 {
+                padding: 12px; /* Reduce el padding para aumentar el tamaño de la imagen de forma cuidada */
             }
         }
 
@@ -396,8 +399,8 @@
             </div>
             <div class="promo-image">
                 <div class="slide-container">
-                    <img src="kybalingo.png" alt="Nykro Tutor 1">
-                    <img src="kybalingo2.PNG" alt="Nykro Tutor 2">
+                    <img src="kybalingo.png" alt="Nykro Tutor 1" class="img-kyba1">
+                    <img src="kybalingo2.PNG" alt="Nykro Tutor 2" class="img-kyba2">
                 </div>
             </div>
         </section>
