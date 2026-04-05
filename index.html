@@ -191,21 +191,40 @@
 
         .promo-btn:active { transform: scale(0.95); }
 
+        /* --- MEJORAS DEL SLIDER AQUÍ --- */
         .promo-image {
             flex: 0 0 45%;
             height: 280px;
             background: #f8fafc;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            overflow: hidden; /* Oculta lo que sale del contenedor */
+            position: relative;
         }
 
-        .promo-image img {
+        .slide-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            /* Animación que mueve las imágenes */
+            animation: slide 8s infinite ease-in-out;
+        }
+
+        .slide-container img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             padding: 15px;
+            flex-shrink: 0; /* Evita que las imágenes se aplasten */
         }
+
+        @keyframes slide {
+            0%, 45% { transform: translateX(0); } /* Muestra imagen 1 */
+            50%, 95% { transform: translateX(-100%); } /* Muestra imagen 2 */
+            100% { transform: translateX(0); } /* Regresa a imagen 1 */
+        }
+        /* ------------------------------- */
 
         @media (max-width: 768px) {
             .promo-banner { flex-direction: column; }
@@ -370,7 +389,10 @@
                 </button>
             </div>
             <div class="promo-image">
-                <img src="kybalingo.png" alt="Nykro Tutor">
+                <div class="slide-container">
+                    <img src="kybalingo.png" alt="Nykro Tutor 1">
+                    <img src="kybalingo2.png" alt="Nykro Tutor 2">
+                </div>
             </div>
         </section>
     </main>
