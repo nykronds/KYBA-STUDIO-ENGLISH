@@ -68,8 +68,8 @@
         /* --- MEJORA DE DISEÑO DE PESTAÑAS (NAV-TABS) --- */
         .nav-tabs {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-wrap: nowrap; /* Cambiamos wrap por nowrap para que no se bajen */
+            justify-content: flex-start; /* Alinea al inicio para el scroll */
             gap: 10px;
             background: var(--nav-bg);
             padding: 15px;
@@ -80,7 +80,9 @@
             top: 0;
             z-index: 1000;
             margin-bottom: 20px;
-        }
+            overflow-x: auto; -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
+            scrollbar-width: none; /* Oculta scrollbar en Firefox */
+}
 
         .tab-link {
             text-decoration: none;
@@ -95,7 +97,10 @@
             gap: 8px;
             border: 1px solid transparent;
             background: var(--tab-bg);
-        }
+            /* IMPORTANTE: Evita que las pestañas se encojan */
+            white-space: nowrap; 
+            flex-shrink: 0; 
+}
 
         .tab-link i {
             font-size: 1.1rem;
