@@ -197,7 +197,7 @@
             background: #f8fafc;
             display: flex;
             align-items: center;
-            justify-content: center;  /* Mejora la centralización horizontal del contenedor */
+            justify-content: center;
             overflow: hidden; 
             position: relative;
         }
@@ -220,26 +220,24 @@
             transition: all 0.2s ease;
         }
 
-        /* --- MEJORA EXCLUSIVA PARA kybalingo2.PNG: adaptación perfecta y centrado total --- */
         .slide-container img[src*="kybalingo2.PNG"] {
-    padding: 0 !important;
-    object-fit: contain !important;
-    object-position: center center !important;
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
-    margin: 0 auto;
-    background: transparent;
-    transform: scale(0.96) translateX(-50px); /* Añade translateX para mover a la izquierda */
-}
+            padding: 0 !important;
+            object-fit: contain !important;
+            object-position: center center !important;
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+            margin: 0 auto;
+            background: transparent;
+            transform: scale(0.96) translateX(-50px);
+        }
 
-        /* Refuerzo en móviles para que la imagen se vea siempre centrada y con tamaño ideal */
         @media (max-width: 768px) {
             .slide-container img[src*="kybalingo2.PNG"] {
-                transform: scale(0.96);       /* Pequeño respiro en pantallas pequeñas, mantiene enfoque */
+                transform: scale(0.96);
                 object-fit: contain;
                 padding: 0;
-                margin-left: -30px;
+                margin-left: -50px;
             }
             .promo-image {
                 justify-content: center;
@@ -279,7 +277,6 @@
         
         @keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
         
-        /* Animación de ladrido visual */
         @keyframes bark-anim {
             0% { transform: scale(1); }
             25% { transform: scale(1.1) rotate(-5deg); }
@@ -312,6 +309,7 @@
     <main>
         <nav class="tabs-menu">
             <a href="index.html" class="tab-link active"><i class="fas fa-home"></i> inicio</a>
+            <a href="border-collie-ielts/index.html" class="tab-link"><i class="fas fa-headphones"></i> IELTS C2 App</a>
             <a href="guia 2.html" class="tab-link"><i class="fas fa-book"></i> guia2IETS&TOEFL</a>
             <a href="guia.html" class="tab-link"><i class="fas fa-bookmark"></i> guiaIETS&TOEFL</a>
             <a href="Sentence Master Pro.html" class="tab-link"><i class="fas fa-file-code"></i> Sentence Pro</a>
@@ -324,6 +322,14 @@
         </nav>
 
         <div class="grid-container">
+            <a href="border-collie-ielts/index.html" class="card">
+                <div>
+                    <div class="card-icon"><i class="fas fa-headphones-alt"></i></div>
+                    <h3>Border Collie IELTS App</h3>
+                    <p>Aplicación web interactiva para entrenar el Listening y dominar el inglés a nivel C2.</p>
+                </div>
+                <div class="card-footer">Abrir App <i class="fas fa-arrow-right"></i></div>
+            </a>
             <a href="guia 2.html" class="card">
                 <div>
                     <div class="card-icon"><i class="fas fa-book-reader"></i></div>
