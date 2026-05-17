@@ -24,6 +24,8 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            
+            /* --- FONDO PELAJE BLUE MERLE --- */
             background-color: #e2e8f0;
             background-image: 
                 radial-gradient(circle at 12% 18%, rgba(26, 32, 44, 1) 0%, rgba(26, 32, 44, 0.9) 12%, transparent 18%),
@@ -241,17 +243,20 @@
                 justify-content: center;
                 align-items: center;
             }
-            .promo-banner { flex-direction: column; }
-            .promo-image { width: 100%; height: 220px; order: -1; justify-content: center; }
-            .promo-content { padding: 2rem; text-align: center; align-items: center; }
-            .tabs-menu { justify-content: flex-start; }
-            .mascot-container { width: 80px; height: 80px; bottom: 10px; right: 10px; }
         }
 
         @keyframes slide {
             0%, 45% { transform: translateX(0); } 
             50%, 95% { transform: translateX(-100%); } 
             100% { transform: translateX(0); } 
+        }
+
+        @media (max-width: 768px) {
+            .promo-banner { flex-direction: column; }
+            .promo-image { width: 100%; height: 220px; order: -1; justify-content: center; }
+            .promo-content { padding: 2rem; text-align: center; align-items: center; }
+            .tabs-menu { justify-content: flex-start; }
+            .mascot-container { width: 80px; height: 80px; bottom: 10px; right: 10px; }
         }
 
         /* --- ANIMACIONES MASCOTA --- */
@@ -304,9 +309,8 @@
     <main>
         <nav class="tabs-menu">
             <a href="index.html" class="tab-link active"><i class="fas fa-home"></i> inicio</a>
-            
-            <!-- ENLACE DE LA APP AQUI -->
-            <a href="https://ais-pre-epwscubag3ck57j2hk263q-703110320938.us-east1.run.app" target="_blank" class="tab-link"><i class="fas fa-headphones"></i> IELTS C2 App</a>
+            <!-- NUEVO ENLACE CON TU URL FINAL -->
+            <a href="https://border-collie-ielts-607551630718.us-west1.run.app" target="_blank" class="tab-link"><i class="fas fa-headphones"></i> IELTS C2 App</a>
             
             <a href="guia 2.html" class="tab-link"><i class="fas fa-book"></i> guia2IETS&TOEFL</a>
             <a href="guia.html" class="tab-link"><i class="fas fa-bookmark"></i> guiaIETS&TOEFL</a>
@@ -320,15 +324,14 @@
         </nav>
 
         <div class="grid-container">
-            
-            <!-- TARJETA DE APLICACIÓN AQUÍ -->
-            <a href="https://ais-pre-epwscubag3ck57j2hk263q-703110320938.us-east1.run.app" target="_blank" class="card" style="border: 2px solid var(--primary); background: #f8fafc;">
+            <!-- NUEVO ENLACE CON TU URL FINAL -->
+            <a href="https://border-collie-ielts-607551630718.us-west1.run.app" target="_blank" class="card">
                 <div>
                     <div class="card-icon"><i class="fas fa-headphones-alt"></i></div>
                     <h3>Border Collie IELTS App</h3>
-                    <p>Módulo IA para entender el Listening y dominar el nivel C2.</p>
+                    <p>Aplicación web interactiva para entrenar el Listening y dominar el inglés a nivel C2.</p>
                 </div>
-                <div class="card-footer">Abrir App Web <i class="fas fa-external-link-alt"></i></div>
+                <div class="card-footer">Abrir App <i class="fas fa-arrow-right"></i></div>
             </a>
             
             <a href="guia 2.html" class="card">
