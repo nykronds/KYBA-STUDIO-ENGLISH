@@ -1,0 +1,8 @@
+{
+  "name": "Border Collie IELTS",
+  "description": "A highly interactive, mobile-responsive, and gamified IELTS preparation web application designed for C2 proficiency level.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
